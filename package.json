@@ -1,0 +1,13 @@
+{
+  "name": "caade-gaza-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agricultural and Environmental Development Cooperative Association website",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "nodemailer": "^10.0.16"
+  }
+}

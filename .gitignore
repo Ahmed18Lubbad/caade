@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+backups/
+node_modules/
+cookies.txt
+*.docx
+/out.*
+.argos-cache/
+.argos-config/
+.argos-data/
+.libretranslate-cache/
+.libretranslate-config/
+.libretranslate-data/
+.lt-check-cache/
+.lt-check-config/
+.lt-check-data/
