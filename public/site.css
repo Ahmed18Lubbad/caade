@@ -581,15 +581,16 @@ h1,h2,h3,h4,h5,h6{font-weight:700}
 .hero.has-hero-photos .hero-copy{max-width:590px}
 .hero.has-hero-photos .hero-photo{transform:none}
 .hero.has-hero-photos .hero-photo.is-active{transform:none}
-.hero.has-hero-photos .hero-layout{min-height:100svh;align-items:center;justify-items:center;padding-block:110px 72px}
-.hero.has-hero-photos .hero-copy{margin-inline:auto;text-align:center}
-.hero.has-hero-photos .hero-actions,.hero.has-hero-photos .hero-controls{justify-content:center}
+.hero.has-hero-photos .hero-layout{min-height:100svh;align-items:center;justify-items:start;padding-block:110px 72px}
+.hero.has-hero-photos .hero-copy{margin-inline:0;text-align:start}
+.hero.has-hero-photos .hero-actions{justify-content:flex-start}
+.hero.has-hero-photos .hero-controls{justify-content:center}
 .hero.has-hero-photos .hero-photo img{object-fit:cover;object-position:center;opacity:1}
 .hero.has-hero-photos .hero-photo::after{inset:0;background:linear-gradient(0deg,rgba(10,35,22,.48),rgba(10,35,22,.28) 58%,rgba(10,35,22,.34))}
 .hero.has-hero-photos .hero-copy{width:min(100%,760px);padding:clamp(20px,3vw,36px);border:1px solid #ffffff24;border-radius:22px;background:rgba(13,43,29,.2);box-shadow:0 18px 60px #071e1424;backdrop-filter:blur(3px)}
-.hero.has-hero-photos .hero-copy h1{max-width:740px;margin:0 auto 18px;font-size:clamp(42px,5.4vw,72px);line-height:1.16;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 3px 24px #071e1470}
+.hero.has-hero-photos .hero-copy h1{max-width:740px;margin:0 0 18px;font-size:clamp(42px,5.4vw,72px);line-height:1.16;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 3px 24px #071e1470}
 .hero.has-hero-photos .hero-copy h1 em{display:inline-block;margin-top:6px;color:#ffda6d;text-shadow:0 2px 18px #071e1480}
-.hero.has-hero-photos .hero-description{max-width:620px;margin:0 auto 24px;color:#f1f5ed;font-size:clamp(14px,1.35vw,17px);line-height:1.9;text-align:center;text-wrap:pretty;text-shadow:0 2px 12px #071e1490}
+.hero.has-hero-photos .hero-description{max-width:620px;margin:0 0 24px;color:#f1f5ed;font-size:clamp(14px,1.35vw,17px);line-height:1.9;text-align:start;text-wrap:pretty;text-shadow:0 2px 12px #071e1490}
 .hero.has-hero-photos .hero-actions{gap:12px}
 .hero.has-hero-photos .hero-actions .button{min-width:170px;min-height:48px;box-shadow:0 8px 24px #071e1433}
 .hero.has-hero-photos .hero-controls{margin-top:16px}

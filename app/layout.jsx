@@ -1,7 +1,7 @@
 export const metadata = {
   title: 'الجمعية التعاونية للتنمية الزراعية والبيئة – غزة',
   description: 'الموقع الرسمي للجمعية التعاونية للتنمية الزراعية والبيئة – غزة',
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: '/media/caade-logo.svg' },
 };
 
 export default function RootLayout({ children }) {
