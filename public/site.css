@@ -714,6 +714,7 @@ body::after{opacity:.014}
 .hero.has-hero-photos .hero-photo.is-active{animation:hero-photo-drift 16s ease-in-out infinite alternate}
 @keyframes hero-photo-drift{from{transform:scale(1.035) translate3d(0,0,0)}to{transform:scale(1.11) translate3d(-.7%,-.45%,0)}}
 .hero.has-hero-photos .hero-image-controls{bottom:max(24px,env(safe-area-inset-bottom))}
+.hero.has-hero-photos .hero-image-controls{position:static;inset:auto;bottom:auto;width:100%;justify-content:flex-start;gap:0;margin-top:14px;direction:inherit;pointer-events:auto}
 .hero.has-hero-photos .hero-image-dots{max-width:min(100%,calc(100vw - 32px));gap:2px;padding:3px 8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(12,39,27,.34);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .hero.has-hero-photos .hero-image-dots::-webkit-scrollbar{display:none}
 .hero.has-hero-photos .hero-copy{width:min(100%,590px);max-width:100%;min-width:0;box-sizing:border-box}
