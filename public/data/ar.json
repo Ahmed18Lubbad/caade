@@ -17,7 +17,7 @@
     "facebook": "https://www.facebook.com/p/%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%88%D9%86%D9%8A%D8%A9-%D9%84%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%A8%D9%8A%D8%A6%D8%A9-%D8%BA%D8%B2%D8%A9-100076959926696",
     "instagram": "",
     "whatsapp": "",
-      "heroIntro": "جمعية تعاونية فلسطينية تعمل على تعزيز التنمية الزراعية والبيئية المستدامة، ودعم صمود المزارعين والأسر في قطاع غزة."
+    "heroIntro": "جمعية تعاونية فلسطينية تعمل على تعزيز التنمية الزراعية والبيئية المستدامة، ودعم صمود المزارعين والأسر في قطاع غزة."
   },
   "programs": [
     {
@@ -54,6 +54,84 @@
   "news": [],
   "stories": [],
   "gallery": [
+    {
+      "id": "gallery-greenhouse-crops",
+      "title": "محاصيل زراعية داخل بيت محمي",
+      "titleEn": "Crops growing in a greenhouse",
+      "image": "/media/gallery-selected/01.webp"
+    },
+    {
+      "id": "gallery-produce-preparation",
+      "title": "تجهيز وفرز المحاصيل الزراعية",
+      "titleEn": "Preparing and sorting agricultural produce",
+      "image": "/media/gallery-selected/02.webp"
+    },
+    {
+      "id": "gallery-food-support",
+      "title": "توزيع مساعدات غذائية على الأسر",
+      "titleEn": "Food assistance distribution to families",
+      "image": "/media/gallery-selected/03.webp"
+    },
+    {
+      "id": "gallery-agricultural-infrastructure",
+      "title": "منشأة زراعية وبنيتها التحتية",
+      "titleEn": "Agricultural facility and infrastructure",
+      "image": "/media/gallery-selected/04.webp"
+    },
+    {
+      "id": "gallery-farmers-at-work",
+      "title": "مزارعون يعملون في الحقل",
+      "titleEn": "Farmers working in the field",
+      "image": "/media/gallery-selected/05.webp"
+    },
+    {
+      "id": "gallery-fresh-produce",
+      "title": "خضروات طازجة من الإنتاج المحلي",
+      "titleEn": "Fresh vegetables from local production",
+      "image": "/media/gallery-selected/06.webp"
+    },
+    {
+      "id": "gallery-field-harvest",
+      "title": "حصاد المحاصيل في الحقل",
+      "titleEn": "Harvesting crops in the field",
+      "image": "/media/gallery-selected/07.webp"
+    },
+    {
+      "id": "gallery-displacement-camp",
+      "title": "مشهد لمخيمات النازحين في غزة",
+      "titleEn": "Displacement camp in Gaza",
+      "image": "/media/gallery-selected/08.webp"
+    },
+    {
+      "id": "gallery-cooperative-meeting",
+      "title": "لقاء تنسيقي للجمعية",
+      "titleEn": "Association coordination meeting",
+      "image": "/media/gallery-selected/09.webp"
+    },
+    {
+      "id": "gallery-food-processing-equipment",
+      "title": "معدات لتجهيز المنتجات الغذائية",
+      "titleEn": "Equipment for preparing food products",
+      "image": "/media/gallery-selected/10.webp"
+    },
+    {
+      "id": "gallery-production-work",
+      "title": "العمل على معدات الإنتاج",
+      "titleEn": "Working with production equipment",
+      "image": "/media/gallery-selected/11.webp"
+    },
+    {
+      "id": "gallery-production-racks",
+      "title": "رفوف إنتاج داخل منشأة الجمعية",
+      "titleEn": "Production racks at an Association facility",
+      "image": "/media/gallery-selected/12.webp"
+    },
+    {
+      "id": "gallery-fresh-vegetables",
+      "title": "خضروات وفواكه طازجة",
+      "titleEn": "Fresh vegetables and fruit",
+      "image": "/media/gallery-selected/13.webp"
+    },
     {
       "id": "project-photo-2024",
       "title": "مشروع الجمعية 2024",
