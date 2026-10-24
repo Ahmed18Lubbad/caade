@@ -659,7 +659,7 @@ function showHeroImage(index) {
 function restartHeroImageRotation() {
   window.clearInterval(heroImageTimer);
   if ($$('.hero-photo', $('#heroImageTrack')).length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    heroImageTimer = window.setInterval(() => showHeroImage(activeHeroImage + 1), 6500);
+    heroImageTimer = window.setInterval(() => showHeroImage(activeHeroImage + 1), 5000);
   }
 }
 
