@@ -11,9 +11,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="/vendor/bootstrap.rtl.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=homepage-carousels-20261023">
-  <script src="site.js?v=homepage-carousels-20261023" defer></script>
+  <link rel="stylesheet" href="/site.css?v=header-opacity-20261023">
+  <script src="/header-scroll.js?v=header-opacity-20261023" defer></script>
+  <script src="/content.js" defer></script>
+  <script src="/site.js?v=remove-project-link-20261023" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
@@ -42,6 +43,12 @@
       <div class="hero-pattern" id="heroPattern" aria-label="صور الواجهة الرئيسية"><div class="hero-image-track" id="heroImageTrack" aria-live="polite"></div></div>
       <div class="hero-image-controls" id="heroImageControls" hidden><div class="hero-image-dots" id="heroImageDots"></div></div>
       <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</p>
+          <h1 id="heroTitle">الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</h1>
+          <p class="hero-description" id="heroDescription">جمعية تعاونية فلسطينية تعمل على تعزيز التنمية الزراعية والبيئية المستدامة في قطاع غزة.</p>
+          <div class="hero-actions"><a class="button button-gold" id="heroAboutLink" href="/about">تعرّف على المزيد <span aria-hidden="true">←</span></a></div>
+        </div>
         <div class="hero-visual">
           <div class="hero-landscape" id="heroLandscape" role="img" aria-label="رسم توضيحي لحقول زراعية ونباتات"></div>
           <div class="feature-card"><span class="feature-kicker">من الميدان</span><strong>أخبار ومبادرات الجمعية</strong><a href="/news" aria-label="انتقل إلى الأخبار">↗</a></div>
@@ -172,43 +179,9 @@
       <div class="footer-contact-grid"><div class="public-contact" id="publicContact"></div><div class="location-card" id="locationCard" hidden><h3>موقع الجمعية وساعات العمل</h3><p id="officeHoursText"></p><a class="btn button button-outline" id="mapLink" target="_blank" rel="noopener noreferrer">افتح الموقع على الخريطة ↗</a></div></div>
     </section>
   </div>
-  <div class="footer-bottom-wrap"><div class="container footer-bottom"><span>© <span id="year"></span> <span data-organization-name>الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</span></span><div><button class="admin-trigger" type="button" id="adminOpen">إدارة المحتوى</button><a href="#home">العودة للأعلى ↑</a></div></div></div>
+  <div class="footer-bottom-wrap"><div class="container footer-bottom"><span>© <span id="year"></span> <span data-organization-name>الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</span></span><div><a href="#home">العودة للأعلى ↑</a></div></div></div>
 </footer>
 
-  <dialog class="admin-dialog" id="adminDialog" aria-labelledby="adminTitle">
-    <div class="admin-shell">
-      <header class="admin-header"><div><p class="eyebrow eyebrow-dark">لوحة الموقع</p><h2 id="adminTitle">إدارة محتوى الموقع</h2></div><div class="admin-header-actions"><button class="admin-logout" type="button" id="adminLogout" hidden>تسجيل الخروج</button><button class="admin-close" type="button" id="adminClose" aria-label="إغلاق">×</button></div></header>
-      <div class="admin-toolbar" id="adminToolbar" hidden>
-        <div class="admin-tabs" role="tablist"><button type="button" class="admin-tab is-active" data-admin-view="profile" role="tab" aria-selected="true">بيانات الجمعية</button><button type="button" class="admin-tab" data-admin-view="items" role="tab" aria-selected="false">الأقسام والمحتوى</button></div>
-        <p id="adminStatus" role="status" aria-live="polite"></p>
-      </div>
-      <section class="admin-view is-active" id="adminLoginView" role="tabpanel">
-        <form id="adminLoginForm" class="admin-login-form" novalidate>
-          <p class="admin-login-intro">يرجى تسجيل الدخول للوصول إلى لوحة إدارة المحتوى.</p>
-          <label>اسم المستخدم<input name="username" type="text" autocomplete="username" required></label>
-          <label>كلمة المرور<input name="password" type="password" autocomplete="current-password" required></label>
-          <div class="admin-form-actions"><button class="btn button button-gold" type="submit">تسجيل الدخول</button></div>
-        </form>
-      </section>
-      <section class="admin-view" id="adminProfile" role="tabpanel" hidden>
-        <form id="profileForm" class="admin-form" novalidate>
-          <label>اسم الجمعية<input name="name" required maxlength="160"></label>
-          <div class="wide-field logo-admin-field"><label for="logoUpload">شعار الجمعية (JPG أو PNG أو WEBP أو SVG، حتى 8 ميغابايت)</label><input id="logoUpload" type="file" accept="image/jpeg,image/png,image/webp,image/svg+xml,.svg"><div id="logoPreview" class="logo-preview" aria-live="polite"></div><small>يُحفظ الشعار ويظهر بجانب اسم الجمعية في أعلى الموقع وتذييله.</small></div>
-          <label class="wide-field">نبذة الجمعية<textarea name="about" rows="3" maxlength="4000"></textarea></label>
-          <label>الرؤية<textarea name="vision" rows="2" maxlength="1500"></textarea></label><label>الرسالة<textarea name="mission" rows="2" maxlength="1500"></textarea></label><label class="wide-field">القيم<textarea name="values" rows="2" maxlength="1500"></textarea></label>
-          <label>سنوات العمل<input name="statYears" maxlength="30" placeholder="مثال: 12+"></label><label>المشاريع والمبادرات<input name="statProjects" maxlength="30"></label><label>عدد المستفيدين<input name="statBeneficiaries" maxlength="30"></label>
-          <label>رقم الهاتف<input name="phone" type="tel" maxlength="60"></label><label>البريد الإلكتروني<input name="email" type="email" maxlength="160"></label><label class="wide-field">العنوان<input name="address" maxlength="300"></label><label class="wide-field">رابط الموقع على الخريطة (اختياري)<input name="mapUrl" type="url" maxlength="500" placeholder="https://maps.google.com/..."></label><label class="wide-field">ساعات العمل<textarea name="officeHours" rows="2" maxlength="500"></textarea></label><label class="wide-field">ساعات العمل (بالإنجليزية، اختياري)<textarea name="officeHoursEn" rows="2" maxlength="500"></textarea></label>
-          <label>صفحة فيسبوك<input name="facebook" type="url" maxlength="500"></label><label>صفحة إنستغرام<input name="instagram" type="url" maxlength="500"></label><label>واتساب<input name="whatsapp" type="url" maxlength="500"></label>
-          <div class="admin-form-actions wide-field"><button class="btn button button-gold" type="submit">حفظ بيانات الجمعية</button></div>
-        </form>
-      </section>
-      <section class="admin-view" id="adminItems" role="tabpanel" hidden>
-        <div class="collection-toolbar"><label>القسم<select id="collectionType"><option value="programs">البرامج</option><option value="news">الأخبار والإعلانات</option><option value="stories">قصص الأثر</option><option value="gallery">معرض الصور</option><option value="projects">المشاريع والأنشطة</option><option value="partners">الشركاء</option><option value="heroImages">صور الواجهة الرئيسية</option></select></label><span id="collectionCount"></span></div>
-        <form id="itemForm" class="admin-form item-form"><div id="itemFields" class="admin-fields"></div><div class="admin-form-actions wide-field"><button class="btn button button-gold" id="itemSave" type="submit">إضافة محتوى</button><button class="btn button admin-cancel" id="itemCancel" type="button" hidden>إلغاء التعديل</button></div></form>
-        <div class="admin-items" id="adminItemsList"></div>
-      </section>
-    </div>
-  </dialog>
-  <div class="save-toast" id="saveToast" role="status" aria-live="polite" hidden></div>
+
 </body>
 </html>

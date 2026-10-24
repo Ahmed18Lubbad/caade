@@ -1,0 +1,187 @@
+<!doctype html>
+<!-- صفحة index.html: هيكل الواجهة الذي يربط المحتوى بملفات التنسيق والتفاعل. -->
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d2c">
+  <meta name="description" content="الموقع الرسمي للجمعية التعاونية للتنمية الزراعية والبيئة – غزة">
+  <link id="siteFavicon" rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css?v=header-opacity-20261023">
+  <script src="/header-scroll.js?v=header-opacity-20261023" defer></script>
+  <script src="/content.js" defer></script>
+  <script src="/site.js?v=remove-project-link-20261023" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="الصفحة الرئيسية">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 40V18M24 28C14 28 9 22 9 14c9 0 15 5 15 14Zm0-8c0-9 5-15 15-15 0 9-5 15-15 15Z"/><path d="M11 39h26M15 35h18"/></svg></span>
+        <span class="brand-name" data-organization-name>الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="فتح القائمة"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav" aria-label="القائمة الرئيسية">
+        <a class="nav-link is-current" href="#home">الرئيسية</a>
+        <details class="nav-dropdown"><summary>من نحن</summary><div class="dropdown-panel"><a href="/about">نبذة عن الجمعية</a><a href="/about">الرؤية والرسالة</a></div></details>
+        <a class="nav-link" href="/#programs">برامجنا</a>
+        <a class="nav-link" href="/#projects">المشاريع</a>
+        <details class="nav-dropdown"><summary>المعرفة</summary><div class="dropdown-panel"><a href="/news">الأخبار</a><a href="/stories">قصص الأثر</a><a href="/gallery">معرض الصور</a></div></details>
+        <a class="nav-link" href="/partners">الشركاء</a>
+        <button class="language-toggle" id="languageToggle" type="button" lang="en" aria-label="Switch to English">English</button>
+        <a class="nav-cta" href="/support">كن شريكًا <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-pattern" id="heroPattern" aria-label="صور الواجهة الرئيسية"><div class="hero-image-track" id="heroImageTrack" aria-live="polite"></div></div>
+      <div class="hero-image-controls" id="heroImageControls" hidden><div class="hero-image-dots" id="heroImageDots"></div></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">Cooperative Association for Agricultural Development and Environment – Gaza</p>
+          <h1 id="heroTitle">Cooperative Association for Agricultural Development and Environment – Gaza</h1>
+          <p class="hero-description" id="heroDescription">A Palestinian cooperative advancing sustainable agricultural and environmental development in Gaza.</p>
+          <div class="hero-actions"><a class="button button-gold" id="heroAboutLink" href="/about">Learn more about us <span aria-hidden="true">→</span></a></div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-landscape" id="heroLandscape" role="img" aria-label="رسم توضيحي لحقول زراعية ونباتات"></div>
+          <div class="feature-card"><span class="feature-kicker">من الميدان</span><strong>أخبار ومبادرات الجمعية</strong><a href="/news" aria-label="انتقل إلى الأخبار">↗</a></div>
+          <span class="visual-note">نزرع اليوم، لننمو معًا</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact-band" aria-labelledby="impactTitle">
+      <div class="container impact-inner">
+        <div class="impact-heading">
+          <p class="eyebrow eyebrow-dark">أثرنا بالأرقام</p>
+          <h2 id="impactTitle">مسيرة تنموية <em>تُثمر أثرًا</em></h2>
+          <p>مؤشرات موجزة عن مسيرة الجمعية ومشاريعها وخدمة المجتمع.</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card">
+            <span class="impact-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 26V14m0 5c-6 0-9-3.5-9-9 5.5 0 9 3 9 9Zm0-5c0-5.5 3.5-9 9-9 0 5.5-3 9-9 9Z"/><path d="M7 27h18"/></svg></span>
+            <span class="impact-number" id="statYears">—</span>
+            <span class="impact-label">عامًا من العمل</span>
+          </article>
+          <article class="impact-card">
+            <span class="impact-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 10.5 16 5l11 5.5-11 5.5-11-5.5Z"/><path d="M5 16l11 5.5L27 16m-22 5.5L16 27l11-5.5M16 16v11"/></svg></span>
+            <span class="impact-number" id="statProjects">—</span>
+            <span class="impact-label">مشروعًا ومبادرة</span>
+          </article>
+          <article class="impact-card">
+            <span class="impact-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="12" cy="10" r="4"/><circle cx="22" cy="12" r="3"/><path d="M4 26v-2a8 8 0 0 1 16 0v2H4Zm17-8a6 6 0 0 1 7 6v2h-5"/></svg></span>
+            <span class="impact-number" id="statBeneficiaries">—</span>
+            <span class="impact-label">حالات استفادة أسرية عبر المشاريع</span>
+          </article>
+        </div>
+        <p class="impact-note" id="impactNote">تشمل الأرقام الأسر المستفيدة المسجلة في المشاريع، إضافة إلى 535 مستفيدًا مباشرًا في مشاريع أخرى؛ ولا تمثل أعدادًا موحدة لأشخاص فريدين.</p>
+      </div>
+    </section>
+
+    
+
+    <section class="program-section section-pad" id="programs">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow eyebrow-dark">مجالات العمل</p><h2>برامج استراتيجية</h2></div><p class="section-summary">تُعرض في هذا القسم البرامج والمجالات المعتمدة للجمعية.</p></div>
+        <div class="program-grid" id="programGrid"></div>
+      </div>
+    </section>
+
+    <section class="news-section section-pad" id="news">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow eyebrow-dark">آخر المستجدات</p><h2>الأخبار والفعاليات</h2></div></div>
+        <div class="content-toolbar" id="newsToolbar" hidden>
+          <label><span>التصنيف</span><select id="newsCategory"><option value="">كل التصنيفات</option></select></label>
+          <label><span>ترتيب التاريخ</span><select id="newsOrder"><option value="newest">الأحدث أولًا</option><option value="oldest">الأقدم أولًا</option></select></label>
+          <label class="search-field"><span>البحث</span><input id="newsSearch" type="search" placeholder="ابحث داخل الأخبار" autocomplete="off"></label>
+          <p id="newsCount" aria-live="polite"></p>
+        </div>
+        <div class="editorial-grid" id="newsGrid"></div>
+        <button class="btn button button-outline" id="newsMore" type="button" hidden>عرض المزيد</button>
+      </div>
+    </section>
+
+    <section class="projects-section section-pad" id="projects"><div class="container"><div class="section-heading"><div><p class="eyebrow eyebrow-dark">مشاريعنا</p><h2>أبرز المشاريع المنفذة</h2></div><p class="section-summary">تُعرض هنا المشاريع والأنشطة التي تضيفها الجمعية.</p></div><div class="project-placeholder-grid" id="projectGrid"></div><button class="btn button button-outline" id="projectMore" type="button" hidden>عرض المزيد</button></div></section>
+
+    <section class="intro-section section-pad" id="about">
+      <div class="container intro-grid">
+        <div class="section-lead"><p class="eyebrow eyebrow-dark">من نحن</p><h2>الجمعية التعاونية<br><em>للتنمية الزراعية والبيئة</em></h2><p class="lead-text" id="aboutCopy">أضف نبذة الجمعية من لوحة إدارة المحتوى.</p><a class="text-link" href="/about">اكتشف رؤيتنا <span aria-hidden="true">←</span></a></div>
+        <div class="identity-panel">
+          <article class="identity-row" id="vision"><span class="row-index">01</span><div><h3>رؤيتنا</h3><p id="visionCopy">أضف الرؤية من لوحة إدارة المحتوى.</p></div><span class="row-mark" aria-hidden="true">↗</span></article>
+          <article class="identity-row"><span class="row-index">02</span><div><h3>رسالتنا</h3><p id="missionCopy">أضف الرسالة من لوحة إدارة المحتوى.</p></div><span class="row-mark" aria-hidden="true">✳</span></article>
+          <article class="identity-row"><span class="row-index">03</span><div><h3>قيمنا</h3><p id="valuesCopy">أضف القيم من لوحة إدارة المحتوى.</p></div><span class="row-mark" aria-hidden="true">⌖</span></article>
+          <div class="identity-footer"><span>الجمعية التعاونية للتنمية الزراعية والبيئة</span><span class="identity-rule"></span><span>غزة</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="support-section section-pad" id="support">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow eyebrow-dark">ادعمنا</p><h2>لنُعزّز الزراعة<br><em>والتنمية المستدامة</em></h2></div>
+          <p class="section-summary">مساهمتكم تُمكّن الجمعية من تنفيذ المزيد من المشاريع الزراعية والبيئية وتحسين حياة الأسر والمجتمعات.</p>
+        </div>
+        <div class="support-grid">
+          <article class="support-card">
+            <span class="support-icon" aria-hidden="true">✦</span>
+            <h3>دعم مالي</h3>
+            <p>تمويل البذور، الإمدادات، الري، والتجهيزات الأساسية للمشاريع الزراعية.</p>
+            <a href="/contact">اطلب تفاصيل التبرع</a>
+          </article>
+          <article class="support-card">
+            <span class="support-icon" aria-hidden="true">◌</span>
+            <h3>شراكة استراتيجية</h3>
+            <p>تعاون مع مؤسسات محلية ودولية لتوسيع نطاق المشاريع ومضاعفة الأثر.</p>
+            <a href="/contact">تواصل مع الإدارة</a>
+          </article>
+          <article class="support-card">
+            <span class="support-icon" aria-hidden="true">↗</span>
+            <h3>دعم مادي</h3>
+            <p>مساهمة في المعدات، المواد الزراعية، أو دعم مشاريع التربة والبيئة.</p>
+            <a href="/contact">أرسل طلبك اليوم</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stories-section section-pad" id="stories"><div class="container stories-layout"><div class="stories-heading"><p class="eyebrow">قصص من الميدان</p><h2>قصص أثر<br><em>تُروى من أصحابها</em></h2><p>أضف القصص والشهادات بعد موافقة أصحابها واعتماد نصوصها.</p><a class="btn button button-light" href="/contact">شاركنا قصة <span aria-hidden="true">↗</span></a></div><div class="story-placeholder" id="storyList"><span class="quote-mark" aria-hidden="true">“</span><p>لا توجد قصص منشورة حاليًا.</p></div></div></section>
+
+    <section class="gallery-section section-pad" id="gallery"><div class="container"><div class="section-heading"><div><p class="eyebrow eyebrow-dark">لحظات من الميدان</p><h2>معرض الصور</h2></div><a class="text-link" href="/gallery">استكشف المعرض <span aria-hidden="true">←</span></a></div><div class="gallery-grid" id="galleryGrid"></div><button class="btn button button-outline" id="galleryMore" type="button" hidden>عرض المزيد</button><p class="section-footnote">صور توثق أنشطة الجمعية ومشاريعها.</p></div></section>
+
+    <section class="partners-section section-pad" id="partners"><div class="container partners-layout"><div><p class="eyebrow eyebrow-dark">معًا نصنع الأثر</p><h2>الشركاء والداعمون</h2><p class="section-summary">أضف أسماء الجهات الشريكة وشعاراتها من لوحة إدارة المحتوى.</p></div><div class="partner-slots" id="partnerGrid" aria-label="شركاء الجمعية"></div></div></section>
+</main>
+
+    <footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-identity">
+      <a class="footer-brand" href="#home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 40V18M24 28C14 28 9 22 9 14c9 0 15 5 15 14Zm0-8c0-9 5-15 15-15 0 9-5 15-15 15Z"/><path d="M11 39h26M15 35h18"/></svg></span>
+        <strong data-organization-name>الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</strong>
+      </a>
+      <p>نعمل معًا من أجل تنمية زراعية وبيئية مستدامة في قطاع غزة.</p>
+    </div>
+    <div class="footer-sitemap">
+      
+      <nav aria-label="خريطة الموقع">
+        <a href="/">الرئيسية</a><a href="/about">من نحن</a><a href="/#programs">البرامج</a><a href="/#projects">المشاريع</a><a href="/news">الأخبار</a>
+        <a href="/stories">قصص الأثر</a><a href="/gallery">معرض الصور</a><a href="/partners">الشركاء</a><a href="/support">ادعمنا</a><a href="/contact">تواصل معنا</a>
+      </nav>
+    </div>
+    <section class="footer-contact" id="contact" aria-labelledby="footerContactTitle">
+      <div class="footer-contact-heading"><div><p class="eyebrow">تواصل معنا</p><h2 id="footerContactTitle">لنعمل معًا</h2></div><p>يسعدنا استقبال استفساراتكم ومقترحاتكم وطلبات الشراكة.</p></div>
+      <div class="footer-contact-grid"><div class="public-contact" id="publicContact"></div><div class="location-card" id="locationCard" hidden><h3>موقع الجمعية وساعات العمل</h3><p id="officeHoursText"></p><a class="btn button button-outline" id="mapLink" target="_blank" rel="noopener noreferrer">افتح الموقع على الخريطة ↗</a></div></div>
+    </section>
+  </div>
+  <div class="footer-bottom-wrap"><div class="container footer-bottom"><span>© <span id="year"></span> <span data-organization-name>الجمعية التعاونية للتنمية الزراعية والبيئة – غزة</span></span><div><a href="#home">العودة للأعلى ↑</a></div></div></div>
+</footer>
+
+
+</body>
+</html>

@@ -72,7 +72,6 @@ const PROJECT_PHOTO_GALLERY = Object.freeze([
   { image: '/media/projects/association-activities/activity-37.jpg', title: 'معدات ومخرجات المشروع الزراعي', titleEn: 'Agricultural project equipment and outputs' },
 ]);
 const DEFAULT_NAME = document.documentElement.dataset.siteName || 'الجمعية التعاونية للتنمية الزراعية والبيئة – غزة';
-let adminAuthenticated = false;
 const EN_TRANSLATIONS = {
   'تواصل معنا': 'Contact us', 'تعرّف على الجمعية': 'About the association', 'الرئيسية': 'Home', 'من نحن': 'About us', 'نبذة عن الجمعية': 'About the association', 'الرؤية والرسالة': 'Vision and mission', 'الشراكات': 'Partners', 'برامجنا': 'Our programs', 'المشاريع': 'Projects', 'الإعلانات': 'Announcements', 'المعرفة': 'Resources', 'التقارير والحوكمة': 'Reports and governance', 'الأخبار': 'News', 'قصص الأثر': 'Impact stories', 'معرض الصور': 'Photo gallery',   'الإصدارات': 'Publications', 'اتصل بنا': 'Contact', 'كن شريكًا': 'Become a partner', 'ادعمنا': 'Support us', 'لنُعزّز الزراعة': 'To strengthen agriculture', 'والتنمية المستدامة': 'and sustainable development', 'مساهمتكم تُمكّن الجمعية من تنفيذ المزيد من المشاريع الزراعية والبيئية وتحسين حياة الأسر والمجتمعات.': 'Your support enables the association to carry out more agricultural and environmental projects and improve the lives of families and communities.', 'دعم مالي': 'Financial support', 'تمويل البذور، الإمدادات، الري، والتجهيزات الأساسية للمشاريع الزراعية.': 'Funding for seeds, supplies, irrigation, and essential equipment for agricultural projects.', 'اطلب تفاصيل التبرع': 'Request donation details', 'شراكة استراتيجية': 'Strategic partnership', 'تعاون مع مؤسسات محلية ودولية لتوسيع نطاق المشاريع ومضاعفة الأثر.': 'Partner with local and international institutions to expand projects and multiply impact.', 'تواصل مع الإدارة': 'Contact the administration', 'دعم مادي': 'Material support', 'مساهمة في المعدات، المواد الزراعية، أو دعم مشاريع التربة والبيئة.': 'Support through equipment, agricultural materials, or soil and environmental project support.', 'أرسل طلبك اليوم': 'Send your request today', 'البحث': 'Search', 'ابحث داخل الأخبار': 'Search news', 'ابحث عن مشروع أو كلمة مفتاحية': 'Search for a project or keyword', 'كل التصنيفات': 'All categories', 'كل الأنواع': 'All types', 'كل السنوات': 'All years',  'الجمعية التعاونية للتنمية الزراعية والبيئة': 'Agricultural and Environmental Development Cooperative Association', 'معًا نحو': 'Together towards', 'أرضٍ أكثر خضرة': 'a greener land', 'منصة الجمعية للتعريف ببرامجها ومشاريعها ومبادراتها الزراعية والبيئية.': 'The association’s platform for sharing its agricultural and environmental programs, projects, and initiatives.', 'استكشف المشاريع': 'Explore projects', 'التنمية تبدأ من الأرض': 'Development begins with the land', 'وتنمو بالعمل المشترك': 'and grows through collaboration', 'شرائح الواجهة': 'Hero slides', 'الشريحة السابقة': 'Previous slide', 'الشريحة التالية': 'Next slide', 'رسم توضيحي لحقول زراعية ونباتات': 'Illustration of agricultural fields and plants', 'من الميدان': 'From the field', 'أخبار ومبادرات الجمعية': 'Association news and initiatives', 'انتقل إلى الأخبار': 'Go to news', 'نزرع اليوم، لننمو معًا': 'We plant today to grow together', 'اكتشف الموقع': 'Explore the site', 'للتنمية الزراعية والبيئة': 'for Agricultural and Environmental Development', 'اكتشف رؤيتنا': 'Discover our vision', 'رؤيتنا': 'Our vision', 'أضف الرؤية من لوحة إدارة المحتوى.': 'Add the vision in the content management panel.', 'رسالتنا': 'Our mission', 'أضف الرسالة من لوحة إدارة المحتوى.': 'Add the mission in the content management panel.', 'قيمنا': 'Our values', 'أضف القيم من لوحة إدارة المحتوى.': 'Add the values in the content management panel.', 'غزة': 'Gaza',
   'مجالات العمل': 'Areas of work', 'برامج تنموية': 'Development programs', 'قريبة من المجتمع': 'Rooted in the community', 'تُعرض في هذا القسم البرامج والمجالات المعتمدة للجمعية.': 'This section presents the association’s approved programs and areas of work.', 'أثرنا بالأرقام': 'Our impact in numbers', 'مسيرة تنموية': 'A journey of development', 'تُثمر أثرًا': 'creating lasting impact', 'مؤشرات موجزة عن مسيرة الجمعية ومشاريعها وخدمة المجتمع.': 'A snapshot of the association’s journey, projects, and service to the community.', 'عامًا من العمل': 'years of work', 'مشروعًا ومبادرة': 'projects and initiatives', 'مستفيدًا ومستفيدة': 'people reached', 'آخر المستجدات': 'Latest updates', 'الأخبار والفعاليات': 'News and events', 'جميع الأخبار': 'All news', 'قصص من الميدان': 'Stories from the field', 'قصص أثر': 'Impact stories', 'تُروى من أصحابها': 'Told by the people behind them', 'أضف القصص والشهادات بعد موافقة أصحابها واعتماد نصوصها.': 'Add stories and testimonials with the authors’ consent and approved wording.', 'شاركنا قصة': 'Share a story', 'لا توجد قصص منشورة حاليًا.': 'No stories have been published yet.',   'لحظات من الميدان': 'Moments from the field', 'استكشف المعرض': 'Explore the gallery', 'أضف الصور من لوحة إدارة المحتوى.': 'Add photos in the content management panel.', 'صور توثق أنشطة الجمعية ومشاريعها.': 'Photos documenting the Association’s activities and projects.', 'أبرز المشاريع المنفذة': 'Featured projects', 'تُعرض هنا المشاريع والأنشطة التي تضيفها الجمعية.': 'Projects and activities added by the association will appear here.', 'المعرفة والشفافية': 'Knowledge and transparency', 'التقارير والإصدارات': 'Reports and publications', 'أضف التقارير والمواد التعريفية من لوحة إدارة المحتوى.': 'Add reports and information materials in the content management panel.', 'معًا نصنع الأثر': 'Creating impact together', 'الشركاء والداعمون': 'Partners and supporters', 'أضف أسماء الجهات الشريكة وشعاراتها من لوحة إدارة المحتوى.': 'Add partner names and logos in the content management panel.', 'لنعمل معًا': 'Let’s work together', 'من أجل تنمية مستدامة': 'for sustainable development', 'العودة إلى الأعلى': 'Back to top', 'إدارة المحتوى': 'Manage content', 'انتقل إلى المحتوى': 'Skip to content',
@@ -93,30 +92,23 @@ Object.assign(EN_TRANSLATIONS, {
   'موقع الجمعية وساعات العمل': 'Location and office hours', 'افتح الموقع على الخريطة ↗': 'Open location in maps ↗', 'معًا نحو أثر أكبر': 'Together, we can make a greater impact', 'شاركونا استفساراتكم ومقترحاتكم.': 'Share your questions and suggestions with us.', 'ابدأ التواصل': 'Get in touch',
   'ساعات العمل': 'Office hours', 'رابط الموقع على الخريطة': 'Map location URL', 'ساعات العمل (بالإنجليزية)': 'Office hours (English)', 'نص الخبر الكامل': 'Full news story', 'رابط خارجي (اختياري)': 'External link (optional)', 'ترتيب التاريخ': 'Date order', 'اقرأ الخبر كاملًا ←': 'Read full story →', 'تفاصيل المشروع ←': 'Project details →', 'المصدر الخارجي ↗': 'External source ↗', 'رابط خارجي ↗': 'External link ↗', 'عرض 0 من 0 خبر': 'Showing 0 of 0 news items'
 });
-Object.assign(EN_TRANSLATIONS, { 'صور الواجهة الرئيسية': 'Homepage images', 'وصف الصورة': 'Image description', 'الصورة السابقة': 'Previous image', 'الصورة التالية': 'Next image' });
+Object.assign(EN_TRANSLATIONS, {
+  'صور الواجهة الرئيسية': 'Homepage images', 'وصف الصورة': 'Image description', 'الصورة السابقة': 'Previous image', 'الصورة التالية': 'Next image',
+  'أضف نبذة الجمعية في data/ar.json.': 'Add the association profile in data/en.json.',
+  'أضف الرؤية في data/ar.json.': 'Add the vision in data/en.json.',
+  'أضف الرسالة في data/ar.json.': 'Add the mission in data/en.json.',
+  'أضف القيم في data/ar.json.': 'Add the values in data/en.json.',
+  'تعرّف على الجهات التي تدعم عمل الجمعية.': 'Meet the organizations supporting the Association.',
+});
 const originalTextNodes = new WeakMap();
 const originalAttributes = new WeakMap();
-const dynamicTranslations = new Map();
-const COLLECTIONS = {
-  programs: { label: 'البرامج', fields: [['title', 'اسم البرنامج', 'text', true], ['titleEn', 'Program name (English)', 'text', false], ['description', 'نبذة البرنامج', 'textarea', false], ['descriptionEn', 'Program summary (English)', 'textarea', false], ['icon', 'رمز مختصر (اختياري)', 'text', false]] },
-  news: { label: 'الأخبار والإعلانات', fields: [['category', 'التصنيف', 'text', false], ['categoryEn', 'Category (English)', 'text', false], ['title', 'عنوان الخبر', 'text', true], ['titleEn', 'News title (English)', 'text', false], ['excerpt', 'ملخص الخبر', 'textarea', false], ['excerptEn', 'News summary (English)', 'textarea', false], ['body', 'نص الخبر الكامل', 'textarea', false], ['bodyEn', 'Full news story (English)', 'textarea', false], ['date', 'التاريخ', 'date', false], ['url', 'رابط خارجي (اختياري)', 'url', false], ['image', 'رابط الصورة', 'url', false]] },
-  stories: { label: 'قصص الأثر', fields: [['title', 'عنوان القصة', 'text', true], ['titleEn', 'Story title (English)', 'text', false], ['quote', 'نص القصة أو الشهادة', 'textarea', true], ['quoteEn', 'Story or testimonial (English)', 'textarea', false], ['attribution', 'اسم صاحب القصة (اختياري)', 'text', false], ['attributionEn', 'Author (English, optional)', 'text', false], ['image', 'رابط الصورة', 'url', false]] },
-  gallery: { label: 'معرض الصور', fields: [['title', 'وصف الصورة', 'text', true], ['titleEn', 'Image caption (English)', 'text', false], ['image', 'رابط الصورة', 'url', true]] },
-  projects: { label: 'المشاريع والأنشطة', fields: [['category', 'التصنيف', 'text', false], ['categoryEn', 'Category (English)', 'text', false], ['title', 'عنوان المشروع أو النشاط', 'text', true], ['titleEn', 'Project title (English)', 'text', false], ['description', 'نبذة', 'textarea', false], ['descriptionEn', 'Project summary (English)', 'textarea', false], ['date', 'التاريخ', 'date', false], ['image', 'رابط الصورة (اختياري)', 'url', false], ['url', 'رابط التفاصيل (اختياري)', 'url', false]] },
-  partners: { label: 'الشركاء', fields: [['name', 'اسم الشريك', 'text', true], ['nameEn', 'Partner name (English)', 'text', false], ['url', 'رابط الشريك (اختياري)', 'url', false], ['logo', 'رابط الشعار (اختياري)', 'url', false]] },
-  heroImages: { label: 'صور الواجهة الرئيسية', fields: [['title', 'وصف الصورة', 'text', true], ['titleEn', 'Image description (English)', 'text', false], ['image', 'رابط الصورة', 'url', true]] },
-};
 const EMPTY_DATA = {
   name: DEFAULT_NAME,
   profile: { logo: '', nameEn: '', about: '', aboutEn: '', vision: '', visionEn: '', mission: '', missionEn: '', values: '', valuesEn: '', statYears: '', statProjects: '', statBeneficiaries: '', phone: '', email: '', address: '', addressEn: '', mapUrl: '', officeHours: '', officeHoursEn: '', facebook: '', instagram: '', whatsapp: '' },
   programs: [], news: [], stories: [], gallery: [], projects: [], partners: [], heroImages: [],
 };
 let siteData = structuredClone(EMPTY_DATA);
-let editingId = null;
-let adminStatusTimer;
-let saveToastTimer;
-let currentLanguage = 'ar';
-try { currentLanguage = localStorage.getItem('caade_site_language') === 'en' ? 'en' : 'ar'; } catch {}
+let currentLanguage = location.pathname === '/en' || location.pathname.startsWith('/en/') ? 'en' : 'ar';
 
 const CONTENT_PAGE_SIZE = 4;
 let visibleNewsCount = CONTENT_PAGE_SIZE;
@@ -124,36 +116,11 @@ let visibleProjectsCount = CONTENT_PAGE_SIZE;
 let visibleGalleryCount = 4;
 let galleryResizeObserver; let galleryViewItems = [];
 
-try {
-  ['caad_projects_v2', 'caad_settings_v2', 'caad_logo_v1', 'caad_lang'].forEach(key => localStorage.removeItem(key));
-} catch {}
-
 function normalizeData(data = {}) {
   const normalized = { ...structuredClone(EMPTY_DATA), ...data };
   normalized.profile = { ...EMPTY_DATA.profile, ...(data.profile || {}) };
-  Object.keys(COLLECTIONS).forEach(key => { normalized[key] = Array.isArray(data[key]) ? data[key] : []; });
+  ['programs', 'news', 'stories', 'gallery', 'projects', 'partners', 'heroImages'].forEach(key => { normalized[key] = Array.isArray(data[key]) ? data[key] : []; });
   return normalized;
-}
-
-async function api(path, options = {}) {
-  const response = await fetch(path, {
-    ...options,
-    headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...(options.headers || {}) },
-  });
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.error || 'تعذر حفظ البيانات.');
-  return result;
-}
-
-async function autoTranslatePairs(pairs) {
-  const pending = pairs.filter(pair => {
-    const source = String(pair.sourceText || '').trim();
-    return source && (!String(pair.currentText || '').trim() || source !== String(pair.previousSource || '').trim());
-  });
-  if (!pending.length) return null;
-  const result = await api('/api/translate', { method: 'POST', body: JSON.stringify({ texts: pending.map(pair => pair.sourceText.trim()) }) });
-  pending.forEach((pair, index) => pair.apply(result.translations[index] || ''));
-  return null;
 }
 
 function safeHref(value) {
@@ -225,7 +192,7 @@ function applyLanguage(root = document.body) {
     const original = originalTextNodes.get(node) ?? node.nodeValue;
     if (!originalTextNodes.has(node)) originalTextNodes.set(node, original);
     const trimmed = original.trim();
-    let translated = isEnglish ? (EN_TRANSLATIONS[trimmed] || dynamicTranslations.get(trimmed) || trimmed) : original;
+    let translated = isEnglish ? (EN_TRANSLATIONS[trimmed] || trimmed) : original;
     if (isEnglish && /^\d+ عنصر$/.test(trimmed)) translated = `${trimmed.match(/^\d+/)[0]} items`;
     if (isEnglish && trimmed === 'لا توجد قصص منشورة حاليًا.') translated = 'No stories have been published yet.';
     node.nodeValue = original.replace(trimmed, translated);
@@ -238,7 +205,7 @@ function applyLanguage(root = document.body) {
       if (!(attribute in originals)) originals[attribute] = element.getAttribute(attribute);
       const original = originals[attribute];
       const trimmed = original.trim();
-      element.setAttribute(attribute, isEnglish ? (EN_TRANSLATIONS[trimmed] || dynamicTranslations.get(trimmed) || original) : original);
+      element.setAttribute(attribute, isEnglish ? (EN_TRANSLATIONS[trimmed] || original) : original);
     });
     originalAttributes.set(element, originals);
   });
@@ -258,47 +225,25 @@ function applyLanguage(root = document.body) {
   });
 }
 
-async function translateMissingPageCopy() {
-  if (currentLanguage !== 'en') return;
-  const sources = new Set();
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  let node;
-  while ((node = walker.nextNode())) {
-    if (node.parentElement?.closest('script,style,textarea,code,pre,[contenteditable="true"]')) continue;
-    const original = originalTextNodes.get(node) ?? node.nodeValue;
-    const text = original.trim();
-    if (/[\u0600-\u06FF]/.test(text) && !EN_TRANSLATIONS[text] && !dynamicTranslations.has(text) && text.length <= 5000) sources.add(text);
-  }
-  document.body.querySelectorAll('[aria-label],[placeholder],[title]').forEach(element => {
-    ['aria-label', 'placeholder', 'title'].forEach(attribute => {
-      const text = (originalAttributes.get(element)?.[attribute] ?? element.getAttribute(attribute) ?? '').trim();
-      if (/[\u0600-\u06FF]/.test(text) && !EN_TRANSLATIONS[text] && !dynamicTranslations.has(text) && text.length <= 5000) sources.add(text);
-    });
-  });
-  const texts = [...sources];
-  for (let start = 0; start < texts.length; start += 100) {
-    const batch = texts.slice(start, start + 100);
-    const result = await api('/api/translate', { method: 'POST', body: JSON.stringify({ texts: batch }) });
-    if (!Array.isArray(result.translations) || result.translations.length !== batch.length) throw new Error('The translation service returned an incomplete result.');
-    batch.forEach((text, index) => dynamicTranslations.set(text, result.translations[index] || text));
-  }
-  applyLanguage();
+async function toggleLanguage() {
+  const pathname = location.pathname;
+  const suffix = /^\/(?:ar|en)(?=\/|$)/.test(pathname) ? pathname.replace(/^\/(?:ar|en)/, '') : pathname;
+  const target = currentLanguage === 'ar' ? 'en' : 'ar';
+  location.href = `/${target}${suffix || '/'}` + location.search + location.hash;
 }
 
-async function toggleLanguage() {
-  currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
-  try { localStorage.setItem('caade_site_language', currentLanguage); } catch {}
-  renderSite();
-  if (currentLanguage !== 'en') return;
-  const toggle = $('#languageToggle');
-  if (toggle) { toggle.disabled = true; toggle.setAttribute('aria-busy', 'true'); }
-  try {
-    await translateMissingPageCopy();
-  } catch (error) {
-    showSaveToast('تعذرت ترجمة بعض النصوص. تأكد من تشغيل خدمة الترجمة ثم أعد المحاولة.');
-  } finally {
-    if (toggle) { toggle.disabled = false; toggle.removeAttribute('aria-busy'); }
-  }
+function normalizeLocalLinks(root = document) {
+  const prefix = currentLanguage === 'en' ? '/en' : '/ar';
+  root.querySelectorAll('a[href^="/"]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (/^\/(?:ar|en)(?:\/|$)/.test(href) || /^\/(?:media|data|vendor|favicon\.svg|site\.|subpage\.|detail\.)/.test(href)) return;
+    if (href === '/') { link.href = `${prefix}/`; return; }
+    if (href.startsWith('/#')) { link.href = `${prefix}/${href.slice(1)}`; return; }
+    const detail = href.match(/^\/(news|projects)\/([A-Za-z0-9_-]{1,80})$/);
+    if (detail) { link.href = `${prefix}/detail/?collection=${detail[1]}&id=${encodeURIComponent(detail[2])}`; return; }
+    const page = href.match(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)\/?$/);
+    if (page) link.href = `${prefix}/subpage/?page=${page[1]}`;
+  });
 }
 
 function updateOrganizationName() {
@@ -505,7 +450,7 @@ function renderProjects() {
     grid.append(make('p', 'empty-content', currentLanguage === 'en' ? 'No projects match the selected filters.' : 'لا توجد نتائج مطابقة للفلاتر.'));
   }
   filtered.slice(0, 4).forEach(item => {
-    const card = make('article', 'project-card-admin');
+    const card = make('article', 'project-card');
     const imageSrc = safeImage(item.image);
     const gallerySources = [...(PROJECT_GALLERY_IMAGES[item.id] || []), ...(item.gallery || '').split(/\r?\n/)]
       .map(safeImage).filter(Boolean).filter((source, index, sources) => sources.indexOf(source) === index).slice(0, 3);
@@ -641,7 +586,7 @@ function renderContact() {
   const locationCard = $('#locationCard');
   const officeHours = localized(profile, 'officeHours');
   const mapUrl = safeHref(profile.mapUrl) || (localized(profile, 'address') ?
-    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(localized(profile, 'address'))}` : '');
+    `https://www.google.com/maps/search/?query=${encodeURIComponent(localized(profile, 'address'))}` : '');
   locationCard.hidden = !officeHours && !mapUrl;
   $('#officeHoursText').textContent = officeHours || '';
   const mapLink = $('#mapLink');
@@ -777,7 +722,6 @@ function renderHeroImages() {
 function addSectionPageLinks() {
   const links = [
     ['programs', '/programs', 'استكشف جميع البرامج', 'Explore all programmes'],
-    ['projects', '/projects', 'استعرض جميع المشاريع', 'Browse all projects'],
     ['news', '/news', 'جميع الأخبار', 'All news'],
     ['stories', '/stories', 'جميع قصص الأثر', 'All impact stories'],
     ['gallery', '/gallery', 'استكشف معرض الصور', 'Explore the photo gallery'],
@@ -788,10 +732,10 @@ function addSectionPageLinks() {
     if (!section || section.hidden) return;
     const existingLink = section.querySelector('.section-page-link');
     if (existingLink) {
-      existingLink.textContent = ['programs', 'projects'].includes(sectionId) ? (currentLanguage === 'en' ? 'View more' : '\u0639\u0631\u0636 \u0627\u0644\u0645\u0632\u064a\u062f') : (currentLanguage === 'en' ? labelEn : labelAr);
+      existingLink.textContent = sectionId === 'programs' ? (currentLanguage === 'en' ? 'View more' : '\u0639\u0631\u0636 \u0627\u0644\u0645\u0632\u064a\u062f') : (currentLanguage === 'en' ? labelEn : labelAr);
       return;
     }
-    const link = make('a', 'btn button button-outline section-page-link', ['programs', 'projects'].includes(sectionId) ? (currentLanguage === 'en' ? 'View more' : '\u0639\u0631\u0636 \u0627\u0644\u0645\u0632\u064a\u062f') : (currentLanguage === 'en' ? labelEn : labelAr));
+    const link = make('a', 'btn button button-outline section-page-link', sectionId === 'programs' ? (currentLanguage === 'en' ? 'View more' : '\u0639\u0631\u0636 \u0627\u0644\u0645\u0632\u064a\u062f') : (currentLanguage === 'en' ? labelEn : labelAr));
     link.href = href;
     section.querySelector('.container')?.append(link);
   });
@@ -799,10 +743,14 @@ function addSectionPageLinks() {
 
 function renderSite() {
   updateOrganizationName();
-  fillText('aboutCopy', localized(siteData.profile, 'about'), currentLanguage === 'en' ? 'Add the association profile in the content management panel.' : 'أضف نبذة الجمعية من لوحة إدارة المحتوى.');
-  fillText('visionCopy', localized(siteData.profile, 'vision'), currentLanguage === 'en' ? 'Add the vision in the content management panel.' : 'أضف الرؤية من لوحة إدارة المحتوى.');
-  fillText('missionCopy', localized(siteData.profile, 'mission'), currentLanguage === 'en' ? 'Add the mission in the content management panel.' : 'أضف الرسالة من لوحة إدارة المحتوى.');
-  fillText('valuesCopy', localized(siteData.profile, 'values'), currentLanguage === 'en' ? 'Add the values in the content management panel.' : 'أضف القيم من لوحة إدارة المحتوى.');
+  fillText('heroTitle', currentLanguage === 'en' ? siteData.profile.nameEn || siteData.nameEn || siteData.name : siteData.name, siteData.name);
+  fillText('heroDescription', localized(siteData.profile, 'heroIntro'), '');
+  const heroAboutLink = $('#heroAboutLink');
+  if (heroAboutLink) heroAboutLink.textContent = currentLanguage === 'en' ? 'Learn more about us →' : 'تعرّف على المزيد ←';
+  fillText('aboutCopy', localized(siteData.profile, 'about'), currentLanguage === 'en' ? 'Add the association profile in data/en.json.' : 'أضف نبذة الجمعية في data/ar.json.');
+  fillText('visionCopy', localized(siteData.profile, 'vision'), currentLanguage === 'en' ? 'Add the vision in data/en.json.' : 'أضف الرؤية في data/ar.json.');
+  fillText('missionCopy', localized(siteData.profile, 'mission'), currentLanguage === 'en' ? 'Add the mission in data/en.json.' : 'أضف الرسالة في data/ar.json.');
+  fillText('valuesCopy', localized(siteData.profile, 'values'), currentLanguage === 'en' ? 'Add the values in data/en.json.' : 'أضف القيم في data/ar.json.');
   fillText('statYears', siteData.profile.statYears, '—');
   fillText('statProjects', siteData.profile.statProjects, '—');
   fillText('statBeneficiaries', siteData.profile.statBeneficiaries, '—');
@@ -813,471 +761,53 @@ function renderSite() {
     const unavailable = $(`#${sectionId}`).hidden;
     document.querySelectorAll(`a[href="#${sectionId}"],a[href="/#${sectionId}"]`).forEach(link => { link.hidden = unavailable; });
   }
+  normalizeLocalLinks();
   applyLanguage();
 }
 
-function setAdminStatus(message, isError = false) {
-  const status = $('#adminStatus');
-  status.textContent = message;
-  status.classList.toggle('is-error', isError);
-  applyLanguage(status);
-  window.clearTimeout(adminStatusTimer);
-  if (message) adminStatusTimer = window.setTimeout(() => { status.textContent = ''; }, 5000);
-}
-
-function showSaveToast(message) {
-  const toast = $('#saveToast');
-  toast.textContent = message;
-  toast.hidden = false;
-  applyLanguage(toast);
-  requestAnimationFrame(() => toast.classList.add('is-visible'));
-  window.clearTimeout(saveToastTimer);
-  saveToastTimer = window.setTimeout(() => {
-    toast.classList.remove('is-visible');
-    window.setTimeout(() => { toast.hidden = true; }, 260);
-  }, 3200);
-}
-
-function setAdminSessionState(isAuthenticated) {
-  const toolbar = $('#adminToolbar');
-  const loginView = $('#adminLoginView');
-  const profileView = $('#adminProfile');
-  const itemsView = $('#adminItems');
-  const logoutButton = $('#adminLogout');
-  const showAdmin = Boolean(isAuthenticated);
-  adminAuthenticated = showAdmin;
-  toolbar.hidden = !showAdmin;
-  loginView.hidden = showAdmin;
-  profileView.hidden = !showAdmin;
-  itemsView.hidden = !showAdmin;
-  logoutButton.hidden = !showAdmin;
-  if (showAdmin) switchAdminView('profile');
-  else $('#adminLoginForm')?.reset();
-}
-
-async function loadAdminSession() {
-  try {
-    const result = await api('/api/admin/session');
-    setAdminSessionState(Boolean(result.authenticated));
-    return Boolean(result.authenticated);
-  } catch (error) {
-    setAdminSessionState(false);
-    return false;
-  }
-}
-
-async function persistData(message = 'تم حفظ التغييرات.') {
-  const result = await api('/api/site-data', { method: 'PUT', body: JSON.stringify(siteData) });
-  siteData = normalizeData(result.data);
-  renderSite();
-  setAdminStatus(message);
-}
-
-function fillProfileForm() {
-  const form = $('#profileForm');
-  form.elements.name.value = siteData.name;
-  Object.keys(EMPTY_DATA.profile).forEach(key => {
-    if (key !== 'logo' && form.elements[key]) form.elements[key].value = siteData.profile[key] || '';
-  });
-  $('#logoPreview').replaceChildren();
-  const logoSrc = safeImage(siteData.profile.logo);
-  if (logoSrc) { const image = make('img'); image.src = logoSrc; image.alt = 'معاينة شعار الجمعية'; $('#logoPreview').append(image); }
-}
-
-function renderItemFields() {
-  const collection = $('#collectionType').value;
-  const schema = COLLECTIONS[collection];
-  const host = $('#itemFields');
-  host.replaceChildren();
-  schema.fields.forEach(([key, label, type, required]) => {
-    const fieldLabel = make('label', type === 'textarea' ? 'wide-field' : '', label);
-    const input = type === 'textarea' ? make('textarea') : make('input');
-    input.name = key;
-    input.dataset.itemField = key;
-    if (type !== 'textarea') input.type = (key === 'image' || key === 'logo') ? 'text' : type;
-    if (required) input.required = true;
-    if (type === 'textarea') input.rows = 3;
-    if (key === 'date') input.maxLength = 20;
-    if (key === 'image' || key === 'logo') input.placeholder = '/media/اسم-الصورة.jpg';
-    fieldLabel.append(input);
-    host.append(fieldLabel);
-  });
-  if (schema.fields.some(([key]) => key === 'image' || key === 'logo')) {
-    const uploadLabel = make('label', 'wide-field upload-field', 'رفع صورة (JPG أو PNG أو WEBP، حتى 8 ميغابايت)');
-    const fileInput = make('input');
-    fileInput.type = 'file'; fileInput.accept = 'image/jpeg,image/png,image/webp'; fileInput.dataset.upload = 'true';
-    uploadLabel.append(fileInput);
-    host.append(uploadLabel);
-    fileInput.addEventListener('change', uploadSelectedImage);
-  }
-  if (collection === 'projects') {
-    const galleryLabel = make('label', 'wide-field', 'روابط الصور الإضافية للمشروع / Project gallery URLs (one per line)');
-    const galleryInput = make('textarea');
-    galleryInput.name = 'gallery';
-    galleryInput.dataset.itemField = 'gallery';
-    galleryInput.rows = 4;
-    galleryInput.placeholder = '/media/projects/project/photo-02.jpg';
-    galleryLabel.append(galleryInput);
-    host.append(galleryLabel);
-  }
-  applyLanguage(host);
-}
-
-function renderAdminItems() {
-  const collection = $('#collectionType').value;
-  const items = siteData[collection] || [];
-  $('#collectionCount').textContent = `${items.length} عنصر`;
-  applyLanguage($('#collectionCount'));
-  const list = $('#adminItemsList');
-  list.replaceChildren();
-  if (!items.length) {
-    list.append(make('p', 'admin-empty', 'لا يوجد محتوى في هذا القسم بعد. استخدم النموذج أعلاه لإضافة أول عنصر.'));
-    applyLanguage(list);
-    return;
-  }
-  items.forEach(item => {
-    const row = make('article', 'admin-item');
-    const heading = localized(item, 'title') || localized(item, 'name') || (currentLanguage === 'en' ? 'Untitled item' : 'عنصر بلا عنوان');
-    const info = make('div', 'admin-item-info');
-    info.append(make('strong', '', heading));
-    const detail = localized(item, 'category') || localized(item, 'type') || item.date || item.url || localized(item, 'description') || localized(item, 'quote') || '';
-    if (detail) info.append(make('small', '', detail));
-    const actions = make('div', 'admin-item-actions');
-    const editButton = make('button', 'item-edit', 'تعديل');
-    editButton.type = 'button'; editButton.addEventListener('click', () => editItem(item));
-    const deleteButton = make('button', 'item-delete', 'حذف');
-    deleteButton.type = 'button'; deleteButton.addEventListener('click', () => deleteItem(item));
-    actions.append(editButton, deleteButton);
-    row.append(info, actions);
-    list.append(row);
-  });
-  applyLanguage(list);
-}
-
-function resetItemForm() {
-  editingId = null;
-  $('#itemForm').reset();
-  $('#itemSave').textContent = 'إضافة محتوى';
-  $('#itemCancel').hidden = true;
-}
-
-function editItem(item) {
-  editingId = item.id;
-  $$('#itemFields [data-item-field]').forEach(field => { field.value = item[field.name] || ''; });
-  $('#itemSave').textContent = 'حفظ التعديل';
-  $('#itemCancel').hidden = false;
-  $('#itemForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-async function deleteItem(item) {
-  const collection = $('#collectionType').value;
-  const itemLabel = localized(item, 'title') || localized(item, 'name') || (currentLanguage === 'en' ? 'this item' : 'هذا العنصر');
-  if (!window.confirm(currentLanguage === 'en' ? `Delete “${itemLabel}”?` : `هل تريد حذف «${itemLabel}»؟`)) return;
-  siteData[collection] = siteData[collection].filter(entry => entry.id !== item.id);
-  try { await persistData('تم حذف العنصر.'); renderAdminItems(); resetItemForm(); }
-  catch (error) { setAdminStatus(error.message, true); }
-}
-
-function readFileAsDataUrl(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = () => reject(new Error('تعذرت قراءة الملف.'));
-    reader.readAsDataURL(file);
-  });
-}
-
-async function optimizeImageForUpload(file) {
-  // Keep PNG files lossless, particularly logos and text-heavy artwork.
-  if (!window.createImageBitmap || !/^image\/(jpeg|webp)$/.test(file.type)) return file;
-  let bitmap;
-  try { bitmap = await createImageBitmap(file); }
-  catch { return file; }
-  try {
-    const scale = Math.min(1, 2560 / Math.max(bitmap.width, bitmap.height));
-    const canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-    canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-    const context = canvas.getContext('2d');
-    if (!context) return file;
-    context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-    const optimized = await new Promise(resolve => canvas.toBlob(resolve, 'image/webp', 0.94));
-    return optimized?.type === 'image/webp' && optimized.size < file.size ? optimized : file;
-  } finally { bitmap.close?.(); }
-}
-
-async function uploadSelectedImage(event) {
-  const file = event.currentTarget.files?.[0];
-  if (!file) return;
-  const collection = $('#collectionType').value;
-  const targetKey = COLLECTIONS[collection].fields.some(([key]) => key === 'image') ? 'image' : 'logo';
-  const target = $(`#itemFields [data-item-field="${targetKey}"]`);
-  if (file.size > 8 * 1024 * 1024) { setAdminStatus('حجم الملف أكبر من 8 ميغابايت.', true); event.currentTarget.value = ''; return; }
-  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-    setAdminStatus('اختر صورة JPG أو PNG أو WEBP.', true); event.currentTarget.value = ''; return;
-  }
-  try {
-    setAdminStatus('جارٍ تحسين الصورة ورفعها…');
-    const data = await readFileAsDataUrl(await optimizeImageForUpload(file));
-    const result = await api('/api/media', { method: 'POST', body: JSON.stringify({ data }) });
-    target.value = result.url;
-    target.dispatchEvent(new Event('input', { bubbles: true }));
-    setAdminStatus('تم رفع الصورة وإدراج رابطها تلقائيًا. احفظ العنصر لإضافته إلى الموقع.');
-  } catch (error) { setAdminStatus(error.message, true); }
-}
-
-function switchAdminView(view) {
-  $$('.admin-tab').forEach(tab => {
-    const active = tab.dataset.adminView === view;
-    tab.classList.toggle('is-active', active);
-    tab.setAttribute('aria-selected', String(active));
-  });
-  $('#adminProfile').hidden = view !== 'profile';
-  $('#adminItems').hidden = view !== 'items';
-  $('#adminProfile').classList.toggle('is-active', view === 'profile');
-  $('#adminItems').classList.toggle('is-active', view === 'items');
-}
+const heroSection = $('.hero');
+heroSection?.addEventListener('mouseenter', () => window.clearInterval(heroImageTimer));
+heroSection?.addEventListener('mouseleave', restartHeroImageRotation);
+heroSection?.addEventListener('focusin', () => window.clearInterval(heroImageTimer));
+heroSection?.addEventListener('focusout', event => {
+  if (!heroSection.contains(event.relatedTarget)) restartHeroImageRotation();
+});
 
 const menuButton = $('.menu-toggle');
 const mainNav = $('#mainNav');
-const siteHeader = $('.site-header');
-if (siteHeader) {
-  let contrastFrame = 0;
-  const updateHeaderContrast = () => {
-    contrastFrame = 0;
-    siteHeader.classList.toggle('is-compact', window.scrollY > 80);
-    const previousVisibility = siteHeader.style.visibility;
-    siteHeader.style.visibility = 'hidden';
-    const underHeader = document.elementFromPoint(Math.floor(window.innerWidth / 2), Math.min(window.innerHeight - 1, 150));
-    siteHeader.style.visibility = previousVisibility;
-    const isDark = Boolean(underHeader?.closest('.hero,.impact-band,.stories-section,.contact-banner,.site-footer'));
-    siteHeader.classList.toggle('is-over-light', !isDark);
-  };
-  const scheduleHeaderContrast = () => {
-    if (!contrastFrame) contrastFrame = window.requestAnimationFrame(updateHeaderContrast);
-  };
-  window.addEventListener('scroll', scheduleHeaderContrast, { passive: true });
-  window.addEventListener('resize', scheduleHeaderContrast);
-  updateHeaderContrast();
-}
-const hero = $('.hero');
-const heroTitle = $('#heroTitle');
-const heroDescription = $('.hero-description');
-const heroDots = $$('[data-hero-slide]');
-const slides = [
-  { lead: 'معًا نحو', highlight: 'أرضٍ أكثر خضرة', description: 'منصة الجمعية للتعريف ببرامجها ومشاريعها ومبادراتها الزراعية والبيئية.' },
-  { lead: 'المعرفة تنمو', highlight: 'بالعمل المشترك', description: 'تعرّف على مجالات التنمية الزراعية والبيئية من خلال أقسام الموقع.' },
-  { lead: 'من الميدان', highlight: 'إلى المجتمع', description: 'تابع الأخبار والأنشطة والمشاريع التي تُنشر عبر المنصة.' },
-];
-let activeSlide = 0;
-let slideTimer;
-
-function showSlide(index) {
-  activeSlide = (index + slides.length) % slides.length;
-  const slide = slides[activeSlide];
-  if (!heroTitle || !heroDescription) return;
-  heroTitle.querySelector('[data-hero-lead]').textContent = slide.lead;
-  heroTitle.querySelector('[data-hero-highlight]').textContent = slide.highlight;
-  heroDescription.textContent = slide.description;
-  heroDots.forEach((dot, dotIndex) => {
-    const selected = dotIndex === activeSlide;
-    dot.classList.toggle('is-active', selected);
-    dot.setAttribute('aria-pressed', String(selected));
-  });
-  hero.classList.remove('is-changing');
-  requestAnimationFrame(() => hero.classList.add('is-changing'));
-  applyLanguage(hero);
-}
-
-function restartSlides() {
-  window.clearInterval(slideTimer);
-  if (!heroTitle || !heroDescription) return;
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) slideTimer = window.setInterval(() => showSlide(activeSlide + 1), 7000);
-}
-
-heroDots.forEach((button, index) => button.addEventListener('click', () => { showSlide(index); restartSlides(); }));
-hero.querySelectorAll('[data-slide-step]').forEach(button => button.addEventListener('click', () => { showSlide(activeSlide + Number(button.dataset.slideStep)); restartSlides(); }));
-hero.querySelectorAll('[data-hero-image-step]').forEach(button => button.addEventListener('click', () => { showHeroImage(activeHeroImage + Number(button.dataset.heroImageStep)); restartHeroImageRotation(); }));
-hero.addEventListener('mouseenter', () => { window.clearInterval(slideTimer); });
-hero.addEventListener('mouseleave', () => { restartSlides(); restartHeroImageRotation(); });
-hero.addEventListener('focusin', () => { window.clearInterval(slideTimer); window.clearInterval(heroImageTimer); });
-hero.addEventListener('focusout', event => { if (!hero.contains(event.relatedTarget)) { restartSlides(); restartHeroImageRotation(); } });
-restartSlides();
-
-menuButton.addEventListener('click', () => {
+menuButton?.addEventListener('click', () => {
   const opened = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!opened));
-  menuButton.setAttribute('aria-label', opened ? 'فتح القائمة' : 'إغلاق القائمة');
-  mainNav.classList.toggle('is-open', !opened);
+  menuButton.setAttribute('aria-label', opened ? (currentLanguage === 'en' ? 'Open menu' : 'فتح القائمة') : (currentLanguage === 'en' ? 'Close menu' : 'إغلاق القائمة'));
+  mainNav?.classList.toggle('is-open', !opened);
   document.body.classList.toggle('menu-open', !opened);
 });
-mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-  menuButton.setAttribute('aria-expanded', 'false');
-  menuButton.setAttribute('aria-label', 'فتح القائمة');
-  mainNav.classList.remove('is-open');
+mainNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  menuButton?.setAttribute('aria-expanded', 'false');
+  menuButton?.setAttribute('aria-label', currentLanguage === 'en' ? 'Open menu' : 'فتح القائمة');
+  mainNav?.classList.remove('is-open');
   document.body.classList.remove('menu-open');
 }));
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
-  menuButton.setAttribute('aria-expanded', 'false');
-  mainNav.classList.remove('is-open');
+  menuButton?.setAttribute('aria-expanded', 'false');
+  menuButton?.setAttribute('aria-label', currentLanguage === 'en' ? 'Open menu' : 'فتح القائمة');
+  mainNav?.classList.remove('is-open');
   document.body.classList.remove('menu-open');
-  mainNav.querySelectorAll('details[open]').forEach(item => { item.open = false; });
+  mainNav?.querySelectorAll('details[open]').forEach(item => { item.open = false; });
 });
 
 $('#year').textContent = new Date().getFullYear();
 $('#languageToggle').addEventListener('click', toggleLanguage);
-$('#collectionType').addEventListener('change', () => { resetItemForm(); renderItemFields(); renderAdminItems(); });
-renderItemFields();
-renderAdminItems();
-$('#itemCancel').addEventListener('click', resetItemForm);
-$('#collectionType').addEventListener('change', resetItemForm);
-$$('.admin-tab').forEach(tab => tab.addEventListener('click', () => switchAdminView(tab.dataset.adminView)));
-
-$('#profileForm').addEventListener('submit', async event => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const saveButton = form.querySelector('[type="submit"]');
-  const originalLabel = saveButton.textContent;
-  if (!form.elements.name.value.trim()) {
-    setAdminStatus('اكتب اسم الجمعية قبل الحفظ.', true);
-    form.elements.name.focus();
-    return;
-  }
-  const values = new FormData(form);
-  const previousName = siteData.name;
-  const previousProfile = structuredClone(siteData.profile);
-  siteData.name = String(values.get('name') || '').trim() || DEFAULT_NAME;
-  Object.keys(EMPTY_DATA.profile).forEach(key => {
-    if (key !== 'logo') siteData.profile[key] = String(values.get(key) || '').trim();
-  });
-  saveButton.disabled = true;
-  saveButton.textContent = 'جارٍ الحفظ…';
-  setAdminStatus('جارٍ حفظ البيانات وترجمتها…');
-  let translationError = null;
-  try {
-    const pairs = [
-      { sourceText: siteData.name, currentText: siteData.profile.nameEn, previousSource: previousName, apply: value => { siteData.profile.nameEn = value; } },
-      ...['about', 'vision', 'mission', 'values', 'address', 'officeHours'].map(key => ({
-        sourceText: siteData.profile[key], currentText: siteData.profile[`${key}En`], previousSource: previousProfile[key], apply: value => { siteData.profile[`${key}En`] = value; },
-      })),
-    ];
-    try { await autoTranslatePairs(pairs); }
-    catch (error) { translationError = error; }
-    await persistData('تم حفظ بيانات الجمعية بنجاح.');
-    if (translationError) {
-      const warning = `تم حفظ البيانات، لكن تعذرت الترجمة: ${translationError.message}`;
-      setAdminStatus(warning, true);
-      showSaveToast('تم حفظ البيانات، لكن تعذرت الترجمة');
-    } else showSaveToast('تم حفظ البيانات بنجاح');
-  }
-  catch (error) { setAdminStatus(`تعذر الحفظ: ${error.message}`, true); }
-  finally { saveButton.disabled = false; saveButton.textContent = originalLabel; }
-});
-
-$('#logoUpload').addEventListener('change', async event => {
-  const file = event.currentTarget.files?.[0];
-  if (!file) return;
-  const isSvg = file.type === 'image/svg+xml' || /\.svg$/i.test(file.name);
-  if (!isSvg && !['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-    setAdminStatus('اختر شعارًا بصيغة JPG أو PNG أو WEBP أو SVG.', true); event.currentTarget.value = ''; return;
-  }
-  if (file.size > 8 * 1024 * 1024) {
-    setAdminStatus('حجم الشعار أكبر من 8 ميغابايت.', true); event.currentTarget.value = ''; return;
-  }
-  try {
-    setAdminStatus('جارٍ رفع الشعار…');
-    const data = await readFileAsDataUrl(file);
-    const uploadData = isSvg ? data.replace(/^data:[^,]*,/, 'data:image/svg+xml;base64,') : data;
-    const result = await api('/api/media', { method: 'POST', body: JSON.stringify({ data: uploadData, purpose: 'logo' }) });
-    siteData.profile.logo = result.url;
-    await persistData('تم حفظ الشعار.');
-    fillProfileForm();
-  } catch (error) { setAdminStatus(error.message, true); }
-});
-
-$('#itemForm').addEventListener('submit', async event => {
-  event.preventDefault();
-  const collection = $('#collectionType').value;
-  const previousItem = editingId ? siteData[collection].find(current => current.id === editingId) : null;
-  const item = { id: editingId || crypto.randomUUID() };
-  $$('#itemFields [data-item-field]').forEach(field => { item[field.name] = field.value.trim(); });
-  const translationPairs = Object.keys(item).filter(key => key.endsWith('En')).map(targetKey => {
-    const sourceKey = targetKey.slice(0, -2);
-    return { sourceText: item[sourceKey], currentText: item[targetKey], previousSource: previousItem?.[sourceKey], apply: value => { item[targetKey] = value; } };
-  });
-  if (editingId) siteData[collection] = siteData[collection].map(current => current.id === editingId ? item : current);
-  else siteData[collection].unshift(item);
-  try {
-    let translationError = null;
-    try { await autoTranslatePairs(translationPairs); }
-    catch (error) { translationError = error; }
-    if (editingId) siteData[collection] = siteData[collection].map(current => current.id === editingId ? item : current);
-    else siteData[collection][0] = item;
-    await persistData(editingId ? 'تم تحديث المحتوى.' : 'تمت إضافة المحتوى.');
-    if (translationError) setAdminStatus(`تم حفظ المحتوى، لكن تعذرت الترجمة: ${translationError.message}`, true);
-    resetItemForm(); renderAdminItems();
-  } catch (error) { setAdminStatus(error.message, true); }
-});
-
-$('#adminLoginForm').addEventListener('submit', async event => {
-  event.preventDefault();
-  const username = String(new FormData(event.currentTarget).get('username') || '').trim();
-  const password = String(new FormData(event.currentTarget).get('password') || '');
-  if (!username || !password) {
-    setAdminStatus('يرجى إدخال اسم المستخدم وكلمة المرور.', true);
-    return;
-  }
-  const submitButton = event.currentTarget.querySelector('button[type="submit"]');
-  const originalLabel = submitButton.textContent;
-  submitButton.disabled = true;
-  submitButton.textContent = 'جارٍ تسجيل الدخول…';
-  setAdminStatus('جارٍ تسجيل الدخول…');
-  try {
-    const result = await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ username, password }) });
-    if (!result.authenticated) throw new Error('تعذر تسجيل الدخول.');
-    setAdminSessionState(true);
-    if (new URLSearchParams(window.location.search).get('admin') === 'items') switchAdminView('items');
-    fillProfileForm();
-    setAdminStatus('تم تسجيل الدخول بنجاح.');
-    showSaveToast('تم تسجيل الدخول بنجاح');
-  } catch (error) {
-    setAdminStatus(error.message || 'تعذرت عملية تسجيل الدخول.', true);
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = originalLabel;
-  }
-});
-
-$('#adminLogout').addEventListener('click', async () => {
-  try {
-    await api('/api/admin/logout', { method: 'POST' });
-    setAdminSessionState(false);
-    setAdminStatus('تم تسجيل الخروج.');
-    showSaveToast('تم تسجيل الخروج');
-  } catch (error) {
-    setAdminStatus(error.message || 'تعذر تسجيل الخروج.', true);
-  }
-});
-
-$('#adminOpen').addEventListener('click', () => {
-  window.location.href = '/admin';
-});
-$('#adminClose').addEventListener('click', () => $('#adminDialog').close());
-$('#adminDialog').addEventListener('click', event => {
-  if (event.target === $('#adminDialog')) $('#adminDialog').close();
-});
 
 async function loadSiteData() {
   try {
-    siteData = normalizeData(await api('/api/site-data'));
-    renderSite();
-    fillProfileForm();
-    renderAdminItems();
+    siteData = normalizeData(await loadSiteContent());
   } catch (error) {
-    renderSite();
-    setAdminStatus(`تعذر تحميل البيانات: ${error.message}`, true);
+    console.error('Unable to load site content:', error);
+    siteData = normalizeData();
   }
+  renderSite();
 }
 
 const revealItems = $$('.program-card,.editorial-card,.gallery-tile,.project-placeholder-grid article,.identity-row');
@@ -1289,13 +819,4 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   revealItems.forEach(item => { item.classList.add('will-reveal'); revealObserver.observe(item); });
 }
 
-loadSiteData().then(async () => {
-  const isAuthenticated = await loadAdminSession();
-  if (new URLSearchParams(window.location.search).get('admin') === 'items') {
-    $('#adminDialog').showModal();
-    if (isAuthenticated) switchAdminView('items');
-  }
-  if (currentLanguage === 'en') {
-    translateMissingPageCopy().catch(() => showSaveToast('Some text could not be translated. Check the translation service and try again.'));
-  }
-});
+loadSiteData();

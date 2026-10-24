@@ -109,3 +109,6 @@
   .subpage-content{padding-inline:0}
   .shared-page-footer .footer-sitemap nav{column-gap:10px}
 }
+
+/* Use the same image frame in the dedicated photo gallery. */
+.subpage-gallery-item img{height:clamp(170px,24vw,230px);object-fit:contain;object-position:center}

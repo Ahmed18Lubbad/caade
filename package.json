@@ -1,13 +1,19 @@
 {
   "name": "caade-gaza-website",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Agricultural and Environmental Development Cooperative Association website",
+  "description": "Static Next.js site for the Agricultural and Environmental Development Cooperative Association",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
-    "start": "node server.js"
+    "dev": "next dev",
+    "build": "next build"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "nodemailer": "^10.0.16"
-  }
+    "next": "16.4.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {}
 }

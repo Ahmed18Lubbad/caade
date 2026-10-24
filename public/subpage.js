@@ -1,6 +1,6 @@
 // منطق الصفحات التعريفية الفرعية، مع تحميل بيانات الصفحة وعرضها.
-const pageKey = location.pathname.split('/').filter(Boolean)[0] || 'about';
-let language = (() => { try { return localStorage.getItem('caade_site_language') === 'en' ? 'en' : 'ar'; } catch { return 'ar'; } })();
+const pageKey = new URLSearchParams(location.search).get('page') || 'about';
+let language = location.pathname.startsWith('/en/') ? 'en' : 'ar';
 let data;
 const PROJECT_GALLERY_IMAGES = Object.freeze({
   'caade-project-04': ['/media/projects/association-activities/activity-06.jpg', '/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],
@@ -27,8 +27,7 @@ function renderAbout() {
   const p=data.profile, intro=section(text('نبذة الجمعية','About the Association'));
   intro.append(node('div','subpage-copy',get(p,'about')));
   const facts=section(text('بيانات أساسية','Key facts')); const grid=node('div','subpage-facts'); facts.append(grid);
-  const entries=language==='en' ? [['Legal registration','No. 1696'],['Established','29 December 2021'],['Operations began','2022'],['Area of work','Agricultural development'],['Geographic area','North Gaza Governorate'],['Members','28 (21 founding members)']] : [['التسجيل القانوني','رقم 1696'],['تاريخ التأسيس','29 كانون الأول 2021'],['بدء العمل','2022'],['مجال العمل','التنمية الزراعية'],['النطاق الجغرافي','محافظة شمال غزة'],['الأعضاء','28 عضوًا (21 عضوًا مؤسسًا)']];
-  entries.slice(0,4).forEach(([label,value])=>{const card=node('article','subpage-fact');card.append(node('span','',label),node('strong','',value));grid.append(card);});
+  (data.institutionFacts||[]).forEach(fact=>{const card=node('article','subpage-fact');card.append(node('span','',get(fact,'label')),node('strong','',get(fact,'value')));grid.append(card);});
   const identity=section(text('الرؤية والرسالة','Vision and mission')); const cards=node('div','subpage-cards'); identity.append(cards);
   [[text('رؤيتنا','Our vision'),get(p,'vision')],[text('رسالتنا','Our mission'),get(p,'mission')]].forEach(([title,copy])=>{const c=node('article','subpage-card');c.append(node('h2','',title),node('p','',copy));cards.append(c);});
   const values=section(text('قيم الجمعية','Association values')); const list=node('ul','subpage-values'); values.append(list);
@@ -36,14 +35,10 @@ function renderAbout() {
   renderBoard();
 }
 function renderBoard() {
-  const board=language==='en' ? [
-    ['Jehad Mohammad Hassan Al-Kafarna','Chairperson'],['Issa Walid Issa Khalifa','Vice-Chairperson'],['Abdel Qader Attia Abdel Qader Al-Kilani','Treasurer'],['Kamla Ahmed Mohammad Abu Banat','Secretary'],['Nasser Ibrahim Mohammad Abu Jarad','Board member'],['Mohammad Saadi Khalil Al-Attar','Board member'],['Mohammad Ahmed Fouad Al-Shafie','Board member']
-  ] : [['جهاد محمد حسن الكفارنة','رئيس مجلس الإدارة'],['عيسى وليد عيسى خليفة','نائب الرئيس'],['عبد القادر عطية عبد القادر الكيلاني','أمين الصندوق'],['كامله أحمد محمد أبو بنات','أمينة السر'],['ناصر إبراهيم محمد أبو جراد','عضو مجلس الإدارة'],['محمد سعدي خليل العطار','عضو مجلس الإدارة'],['محمد أحمد فؤاد الشافعي','عضو مجلس الإدارة']];
   const s=section(text('مجلس الإدارة','Board of Directors')); const grid=node('div','board-grid');s.append(grid);
-  board.slice(0,4).forEach(([name,role])=>{const card=node('article','board-card');card.append(node('h3','',name),node('p','',role));grid.append(card);});
-  const oversight=language==='en' ? [['Zafaf Saeed Rashid Al-Akhras','Committee Chair'],['Nahid Abdul Karim Abdul Razzaq Al-Kafarna','Member'],['Abdul Rab Jamil Abdul Rab Abu Aida','Member']] : [['زفاف سعيد رشيد الأخرس','رئيسة اللجنة'],['ناهض عبد الكريم عبد الرازق الكفارنة','عضو'],['عبد ربه جميل عبد ربه أبو عيدة','عضو']];
+  (data.board||[]).forEach(member=>{const card=node('article','board-card');card.append(node('h3','',get(member,'name')),node('p','',get(member,'role')));grid.append(card);});
   const os=section(text('لجنة الرقابة','Supervisory Committee'));const og=node('div','board-grid');os.append(og);
-  oversight.slice(0,4).forEach(([name,role])=>{const card=node('article','board-card');card.append(node('h3','',name),node('p','',role));og.append(card);});
+  (data.oversightCommittee||[]).forEach(member=>{const card=node('article','board-card');card.append(node('h3','',get(member,'name')),node('p','',get(member,'role')));og.append(card);});
 }
 function renderPrograms() {
   const s=section(text('البرامج الاستراتيجية','Strategic programmes'));const grid=node('div','subpage-cards');s.append(grid);
@@ -144,8 +139,8 @@ function render() {
   $('#languageToggle').textContent=language==='en'?'العربية':'English';$('#languageToggle').setAttribute('aria-label',language==='en'?'Switch to Arabic':'Switch to English');
   $('#pageContent').replaceChildren();page.render();
 }
-$('#languageToggle').addEventListener('click',()=>{language=language==='ar'?'en':'ar';try{localStorage.setItem('caade_site_language',language);}catch{}render();});
-fetch('/api/site-data').then(r=>{if(!r.ok)throw new Error('Unable to load site content');return r.json();}).then(result=>{data=result;render();}).catch(()=>{$('#pageContent').replaceChildren(node('p','empty-page',text('تعذر تحميل محتوى الصفحة. حاول تحديثها.','Page content could not be loaded. Please refresh.')));});
+$('#languageToggle').addEventListener('click',()=>{const target=language==='ar'?'en':'ar';location.href=`/${target}/subpage/${location.search}`;});
+loadSiteContent().then(result=>{data=result;render();document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href.startsWith('/#'))link.href=`/${language}/${href.slice(1)}`;else if(href==='/'||href==='/index.html')link.href=`/${language}/`;else if(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)\/?$/.test(href)){const page=href.replaceAll('/','');link.href=`/${language}/subpage/?page=${page}`;}else if(/^\/(news|projects)\/[A-Za-z0-9_-]+$/.test(href)){const [,collection,id]=href.split('/');link.href=`/${language}/detail/?collection=${collection}&id=${encodeURIComponent(id)}`;}});}).catch(()=>{$('#pageContent').replaceChildren(node('p','empty-page',text('تعذر تحميل محتوى الصفحة. حاول تحديثها.','Page content could not be loaded. Please refresh.')));});
 
 const subpageMenuToggle=document.querySelector('#subpageMenuToggle');
 const subpageNav=document.querySelector('#subpageNav');

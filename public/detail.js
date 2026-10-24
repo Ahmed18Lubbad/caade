@@ -1,8 +1,8 @@
 // تحميل تفاصيل الخبر أو المشروع المحدد وعرض محتواه.
 const container = document.querySelector('#detailContent');
-const segments = window.location.pathname.split('/').filter(Boolean);
-const collection = segments[0];
-const id = segments[1];
+const params = new URLSearchParams(window.location.search);
+const collection = params.get('collection');
+const id = params.get('id');
 const PROJECT_GALLERY_IMAGES = Object.freeze({
   'caade-project-04': ['/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],
   'caade-project-06': ['/media/projects/association-activities/activity-17.jpg', '/media/projects/association-activities/activity-18.jpg', '/media/projects/association-activities/activity-19.jpg'],
@@ -14,10 +14,7 @@ const PROJECT_GALLERY_IMAGES = Object.freeze({
     '/media/projects/arab-fund-relief/relief-family-meal.jpg',
   ],
 });
-const language = (() => {
-  try { return localStorage.getItem('caade_site_language') === 'en' ? 'en' : 'ar'; }
-  catch { return 'ar'; }
-})();
+const language = location.pathname.startsWith('/en/') ? 'en' : 'ar';
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -36,10 +33,30 @@ function renderDetail(item) {
   const summary = getText(item, isNews ? 'excerpt' : 'description');
   document.documentElement.lang = language;
   document.documentElement.dir = language === 'en' ? 'ltr' : 'rtl';
+  const languageToggle = document.querySelector('#languageToggle');
+  if (languageToggle) {
+    languageToggle.textContent = language === 'en' ? 'العربية' : 'English';
+    languageToggle.addEventListener('click', () => { location.href = `/${language === 'en' ? 'ar' : 'en'}/detail/${location.search}`; }, { once: true });
+  }
+  const backHome = document.querySelector('#detailBackHome');
+  if (backHome) {
+    backHome.href = `/${language}/`;
+    backHome.textContent = language === 'en' ? 'Back to website' : 'العودة إلى الموقع';
+  }
+  document.querySelectorAll('.brand,.footer-brand').forEach(link => { link.href = `/${language}/`; });
+  const footerLabels = language === 'en'
+    ? ['Home', 'About', 'Programmes', 'Projects', 'News', 'Impact stories', 'Photo gallery', 'Partners', 'Support us', 'Contact us']
+    : ['الرئيسية', 'من نحن', 'البرامج', 'المشاريع', 'الأخبار', 'قصص الأثر', 'معرض الصور', 'الشركاء', 'ادعمنا', 'تواصل معنا'];
+  document.querySelectorAll('.footer-sitemap a').forEach((link, index) => {
+    if (footerLabels[index]) link.textContent = footerLabels[index];
+    const page = link.getAttribute('href');
+    if (page === '/') link.href = `/${language}/`;
+    else if (/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)$/.test(page)) link.href = `/${language}/subpage/?page=${page.slice(1)}`;
+  });
   document.title = `${title} – ${language === 'en' ? 'Association' : 'الجمعية التعاونية'}`;
   container.replaceChildren();
   container.append(element('a', 'detail-back', language === 'en' ? '← Back to website' : '← العودة إلى الموقع'));
-  container.lastElementChild.href = '/#' + (isNews ? 'news' : 'projects');
+  container.lastElementChild.href = `/${language}/#${isNews ? 'news' : 'projects'}`;
   const article = element('article', 'detail-article');
   const projectImages = isNews ? [] : [item.image, ...(PROJECT_GALLERY_IMAGES[id] || []), ...(item.gallery || '').split(/\r?\n/)]
     .map(source => String(source || '').trim())
@@ -98,16 +115,16 @@ async function loadDetail() {
   if (!['news', 'projects'].includes(collection) || !id || !/^[A-Za-z0-9_-]{1,80}$/.test(id)) {
     throw new Error(language === 'en' ? 'This content could not be found.' : 'تعذر العثور على المحتوى المطلوب.');
   }
-  const response = await fetch(`/api/content/${collection}/${encodeURIComponent(id)}`);
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.error || (language === 'en' ? 'Unable to load the content.' : 'تعذر تحميل المحتوى.'));
-  renderDetail(result.item);
+  const data = await loadSiteContent();
+  const item = (data[collection] || []).find(entry => entry.id === id);
+  if (!item) throw new Error(language === 'en' ? 'This content could not be found.' : 'تعذر العثور على المحتوى المطلوب.');
+  renderDetail(item);
 }
 
 loadDetail().catch(error => {
   container.replaceChildren(element('p', 'empty-content', error.message));
   const back = element('a', 'btn button button-outline detail-back-button', language === 'en' ? 'Back to website' : 'العودة إلى الموقع');
-  back.href = '/';
+  back.href = `/${language}/`;
   container.append(back);
 });
 
