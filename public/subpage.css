@@ -52,6 +52,13 @@
 .subpage-gallery-item{margin:0;overflow:hidden;padding:9px;border:1px solid #e4ebe1;border-radius:15px;background:#fff;box-shadow:0 8px 24px #173d2c0a}
 .subpage-gallery-item img{display:block;width:100%;height:220px;object-fit:cover;border-radius:10px;background:#f1f5ed}
 .subpage-gallery-item figcaption{padding:10px 5px 3px;color:var(--deep);font-size:13px;text-align:center}
+.subpage-gallery-open{display:block;width:100%;padding:0;border:0;border-radius:10px;background:transparent;cursor:zoom-in}
+.subpage-gallery-open:focus-visible,.gallery-lightbox-close:focus-visible{outline:3px solid #8ab46f;outline-offset:3px}
+.gallery-lightbox{position:fixed;max-width:min(94vw,1100px);max-height:92vh;max-height:92dvh;padding:48px 16px 14px;border:1px solid #ffffff35;border-radius:18px;background:#10251bea;color:#fff;box-shadow:0 24px 80px #0008}
+.gallery-lightbox::backdrop{background:#07140ecc;backdrop-filter:blur(4px)}
+.gallery-lightbox-image{display:block;max-width:100%;max-height:calc(92vh - 100px);max-height:calc(92dvh - 100px);margin:auto;object-fit:contain}
+.gallery-lightbox-caption{margin:10px 0 0;text-align:center;line-height:1.6}
+.gallery-lightbox-close{position:absolute;top:8px;inset-inline-end:8px;display:grid;place-items:center;width:36px;height:36px;border:1px solid #ffffff50;border-radius:50%;background:#ffffff18;color:#fff;font-size:25px;line-height:1;cursor:pointer}
 .subpage-card-image{display:block;width:calc(100% + 46px);height:190px;margin:-23px -23px 17px;object-fit:cover}
 .subpage-story{border-inline-start:3px solid var(--leaf)}
 .subpage-attribution{display:block;margin-top:12px;color:#768577;font-size:13px}
@@ -112,3 +119,56 @@
 
 /* Use the same image frame in the dedicated photo gallery. */
 .subpage-gallery-item img{height:clamp(170px,24vw,230px);object-fit:contain;object-position:center}
+
+/* Collapse the long subpage navigation before it runs out of horizontal space. */
+@media(min-width:701px) and (max-width:1000px){
+  .subpage-header .header-inner{position:relative;min-height:74px}
+  .subpage-menu-toggle{display:grid;flex:0 0 44px;margin-inline-start:auto}
+  .subpage-nav{position:absolute;z-index:120;top:calc(100% + 8px);inset-inline:0;display:none;max-width:none;max-height:calc(100vh - 100px);max-height:calc(100dvh - 100px);overflow:auto;align-items:stretch;flex-direction:column;gap:0;padding:10px 16px;border:1px solid #e3eae0;border-radius:16px;background:#fff;box-shadow:0 18px 42px #173d2c1c}
+  .subpage-nav.is-open{display:flex}
+  .subpage-nav>a,.subpage-nav-dropdown>summary{display:block;width:100%;padding:11px 2px;border-bottom:1px solid #edf1eb;font-size:13px;text-align:start}
+  .subpage-nav-dropdown>div{position:static;min-width:0;padding:4px 10px;border:0;border-inline-start:2px solid #d5e3ce;border-radius:0;background:#f7f9f5;box-shadow:none}
+  .subpage-nav-dropdown>div a{padding:9px 10px}
+  .subpage-nav .language-toggle{align-self:flex-start;margin-top:12px}
+}
+
+/* Keep all subpage header and dropdown states on the site's dark palette. */
+.subpage-header .header-inner{background:linear-gradient(112deg,rgba(11,39,27,.97),rgba(28,91,52,.97) 58%,rgba(11,39,27,.97));border-color:#ffda6d45;box-shadow:0 8px 26px #071e143d}
+.subpage-header .brand-name,.subpage-header .subpage-nav>a,.subpage-header .subpage-nav-dropdown summary{color:#f3f5ef;text-shadow:none}
+.subpage-header .subpage-nav>a:hover,.subpage-header .subpage-nav>a[aria-current=page],.subpage-header .subpage-nav-dropdown summary:hover{color:#ffda6d}
+.subpage-header .subpage-nav-dropdown>div{border-color:#ffffff24;background:#123b29;box-shadow:0 16px 36px #071e1480}
+.subpage-header .subpage-nav-dropdown>div a{color:#f3f5ef}
+.subpage-header .subpage-nav-dropdown>div a:hover{background:#ffffff16;color:#ffda6d}
+.subpage-header .language-toggle,.subpage-header .subpage-menu-toggle{border-color:#ffffff50;background:#ffffff12;color:#fff}
+.subpage-header .subpage-menu-toggle span{background:#fff}
+@media(max-width:1000px){
+  .subpage-header .subpage-nav{border-color:#ffffff2a;background:#123b29;box-shadow:0 18px 42px #071e14a8}
+  .subpage-header .subpage-nav>a,.subpage-header .subpage-nav-dropdown>summary{border-color:#ffffff24;color:#f3f5ef}
+  .subpage-header .subpage-nav-dropdown>div{border-inline-start-color:#ffda6d75;background:#ffffff12;box-shadow:none}
+  .subpage-header .subpage-nav-dropdown>div a{color:#f3f5ef}
+  .subpage-header .subpage-nav .language-toggle{border-color:#ffffff50;background:#ffffff12;color:#fff}
+}
+
+/* Match the two-tier dark header on the homepage and content detail pages. */
+.subpage-header{background:#0b291b;border:0;box-shadow:0 8px 28px #071e1450}
+.subpage-header .header-inner,.site-header.is-over-light.subpage-header .header-inner{width:min(1280px,calc(100% - 56px));min-height:92px;margin-inline:auto;padding-inline:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.subpage-header .header-inner::after{display:none}
+.subpage-header .brand-mark{overflow:hidden;border:1px solid #ffffff35;border-radius:50%;background:#0b291b;box-shadow:0 1px 8px #0004}
+.subpage-header .brand-mark img{width:100%;height:100%;object-fit:contain}
+.subpage-hero-logo{border-color:#ffffff70;border-radius:22px;background:#0b291b;box-shadow:0 12px 34px #09261538}
+.subpage-header .brand-mark.has-logo{flex:0 0 72px;width:72px;height:72px}
+.subpage-header .subpage-nav-dropdown>div{min-width:310px;grid-template-columns:repeat(2,minmax(130px,1fr));gap:4px;padding:12px;border:1px solid #ffffff25;border-top:2px solid #ffda6d;border-radius:0 0 12px 12px;background:#123b29;box-shadow:0 18px 40px #071e1480}
+.subpage-header .subpage-nav-dropdown>div a{border-radius:6px;color:#e8f0e5;white-space:normal}
+.subpage-header .subpage-nav-dropdown>div a:hover{background:#ffffff12;color:#ffda6d}
+.subpage-body,.detail-body{padding-top:126px}
+@media(max-width:1000px){
+  .subpage-header .header-inner{min-height:78px}
+  .subpage-header .brand-mark.has-logo{flex-basis:64px;width:64px;height:64px}
+  .subpage-header .subpage-nav-dropdown>div{grid-template-columns:1fr;min-width:0}
+}
+@media(max-width:700px){
+  .subpage-header .header-utility,.subpage-header .header-utility-inner{min-height:30px}
+  .subpage-header .header-inner{width:calc(100% - 32px);min-height:72px}
+  .subpage-header.is-compact .header-inner{min-height:60px}
+  .subpage-body,.detail-body{padding-top:104px}
+}

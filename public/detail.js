@@ -27,10 +27,14 @@ function getText(item, key) {
   return language === 'en' ? item[`${key}En`] || item[key] || '' : item[key] || item[`${key}En`] || '';
 }
 
-function renderDetail(item) {
+function renderDetail(item, profile = {}) {
   const isNews = collection === 'news';
   const title = getText(item, 'title');
   const summary = getText(item, isNews ? 'excerpt' : 'description');
+  const logoValue=String(profile.logo||'').trim();
+  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/b24baa03-8373-4a32-9afb-d6d03d04755c.svg';
+  document.querySelectorAll('.brand-mark img').forEach(image=>{image.src=logoSrc;});
+  const favicon=document.querySelector('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}
   document.documentElement.lang = language;
   document.documentElement.dir = language === 'en' ? 'ltr' : 'rtl';
   const languageToggle = document.querySelector('#languageToggle');
@@ -38,6 +42,15 @@ function renderDetail(item) {
     languageToggle.textContent = language === 'en' ? 'العربية' : 'English';
     languageToggle.addEventListener('click', () => { location.href = `/${language === 'en' ? 'ar' : 'en'}/detail/${location.search}`; }, { once: true });
   }
+  const headerLabels={home:language==='en'?'Home':'',about:language==='en'?'About':'',programs:language==='en'?'Programmes':'',projects:language==='en'?'Projects':'',news:language==='en'?'News':'',gallery:language==='en'?'Photo gallery':'',support:language==='en'?'Support':'',contact:language==='en'?'Contact':''};
+  document.querySelectorAll('.detail-header [data-nav]').forEach(link=>{const key=link.dataset.nav;if(language==='en')link.textContent=headerLabels[key]||'';if(key==='home')link.href=`/${language}/`;else if(['about','programs','projects','news','gallery','support','contact'].includes(key))link.href=`/${language}/subpage/?page=${key}`;});
+  const menuButton=document.querySelector('#detailMenuToggle'),mainNav=document.querySelector('#detailNav');
+  const closeMenu=()=>{menuButton?.setAttribute('aria-expanded','false');menuButton?.setAttribute('aria-label',language==='en'?'Open menu':'فتح القائمة');mainNav?.classList.remove('is-open');document.body.classList.remove('menu-open');};
+  menuButton?.setAttribute('aria-label',language==='en'?'Open menu':'فتح القائمة');
+  menuButton?.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?(language==='en'?'Close menu':'إغلاق القائمة'):(language==='en'?'Open menu':'فتح القائمة'));mainNav?.classList.toggle('is-open',open);document.body.classList.toggle('menu-open',open);});
+  mainNav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+  document.addEventListener('click',event=>{if(mainNav?.classList.contains('is-open')&&!event.target.closest('.detail-header'))closeMenu();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
   const backHome = document.querySelector('#detailBackHome');
   if (backHome) {
     backHome.href = `/${language}/`;
@@ -118,7 +131,7 @@ async function loadDetail() {
   const data = await loadSiteContent();
   const item = (data[collection] || []).find(entry => entry.id === id);
   if (!item) throw new Error(language === 'en' ? 'This content could not be found.' : 'تعذر العثور على المحتوى المطلوب.');
-  renderDetail(item);
+  renderDetail(item, data.profile);
 }
 
 loadDetail().catch(error => {

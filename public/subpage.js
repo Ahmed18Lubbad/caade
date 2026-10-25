@@ -22,6 +22,22 @@ const $ = (selector, root=document) => root.querySelector(selector);
 function node(tag, className, value) { const el=document.createElement(tag); if(className) el.className=className; if(value!=null) el.textContent=value; return el; }
 function text(ar,en) { return language==='en' ? en : ar; }
 function get(item,key) { return language==='en' ? item?.[`${key}En`] || item?.[key] || '' : item?.[key] || item?.[`${key}En`] || ''; }
+let galleryDialog;
+function openGalleryImage(source, alt) {
+  if (!galleryDialog) {
+    galleryDialog=node('dialog','gallery-lightbox');
+    const close=node('button','gallery-lightbox-close','×');
+    close.type='button';close.setAttribute('aria-label',text('إغلاق الصورة','Close image'));
+    const image=node('img','gallery-lightbox-image');
+    const caption=node('p','gallery-lightbox-caption');
+    close.addEventListener('click',()=>galleryDialog.close());
+    galleryDialog.addEventListener('click',event=>{if(event.target===galleryDialog)galleryDialog.close();});
+    galleryDialog.append(close,image,caption);document.body.append(galleryDialog);
+  }
+  const image=$('.gallery-lightbox-image',galleryDialog),caption=$('.gallery-lightbox-caption',galleryDialog);
+  image.src=source;image.alt=alt;caption.textContent=alt;
+  if(!galleryDialog.open)galleryDialog.showModal();
+}
 function section(title) { const el=node('section','subpage-section'); el.append(node('h2','',title)); $('#pageContent').append(el); return el; }
 function renderAbout() {
   const p=data.profile, intro=section(text('نبذة الجمعية','About the Association'));
@@ -84,10 +100,15 @@ function renderPartners() {
 function renderCollection(collection, kind) {
   const titles={news:text('آخر الأخبار والأنشطة','Latest news and activities'),stories:text('حكايات من الميدان','Stories from the field'),gallery:text('صور توثق أنشطة الجمعية ومشاريعها','Photos documenting the Association’s work')};
   const s=section(titles[kind]), grid=node('div',kind==='gallery'?'subpage-gallery':'subpage-cards');s.append(grid);
-  const items=kind==='gallery'?[...(data[collection]||[]),...FEATURED_GALLERY_IMAGES]:data[collection]||[];
-  items.slice(0,4).forEach((item,index)=>{
+  const rawItems=kind==='gallery'?[...(data[collection]||[]),...FEATURED_GALLERY_IMAGES]:data[collection]||[];
+  const items=kind==='gallery'?rawItems.filter((item,index,all)=>item.image&&all.findIndex(candidate=>candidate.image===item.image)===index):rawItems;
+  (kind==='gallery'?items:items.slice(0,4)).forEach((item,index)=>{
     if(kind==='gallery'){
-      const figure=node('figure','subpage-gallery-item'),image=node('img','');image.src=item.image||'';image.alt=get(item,'title');image.loading='lazy';image.decoding='async';figure.append(image,node('figcaption','',get(item,'title')));grid.append(figure);return;
+      const figure=node('figure','subpage-gallery-item'),open=node('button','subpage-gallery-open'),image=node('img','');
+      open.type='button';open.setAttribute('aria-label',text(`فتح الصورة: ${get(item,'title')}`,`Open image: ${get(item,'title')}`));
+      image.src=item.image;image.alt=get(item,'title');image.loading='lazy';image.decoding='async';
+      open.append(image);open.addEventListener('click',()=>openGalleryImage(item.image,get(item,'title')));
+      figure.append(open,node('figcaption','',get(item,'title')));grid.append(figure);return;
     }
     const card=node('article',kind==='stories'?'subpage-card subpage-story':'subpage-card');
     if(item.image){const image=node('img','subpage-card-image');image.src=item.image;image.alt=get(item,'title');image.loading='lazy';image.decoding='async';card.append(image);}
@@ -127,6 +148,11 @@ const pages={
 };
 function render() {
   const page=pages[pageKey]||pages.about, p=data.profile||{};
+  const logoValue=String(p.logo||'').trim();
+  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/b24baa03-8373-4a32-9afb-d6d03d04755c.svg';
+  document.querySelectorAll('.brand-mark img').forEach(image=>{image.src=logoSrc;});
+  $('#subpageLogo').src=logoSrc;
+  const favicon=$('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}
   document.documentElement.lang=language;document.documentElement.dir=language==='en'?'ltr':'rtl';
   document.title=`${page.title[language==='en'?1:0]} – ${get(p,'nameEn')||data.name}`;
   $('#pageEyebrow').textContent=text('الجمعية التعاونية للتنمية الزراعية والبيئة – غزة','Cooperative Association for Agricultural Development and Environment – Gaza');

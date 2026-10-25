@@ -522,8 +522,6 @@ function renderGallery() {
   const grid = $('#galleryGrid');
   const more = $('#galleryMore');
   grid.replaceChildren();
-  galleryResizeObserver?.disconnect();
-  galleryViewItems = [];
   const items = (siteData.gallery || []).filter(item => safeImage(item.image));
   if (!items.length) {
     section.hidden = true;
@@ -531,15 +529,8 @@ function renderGallery() {
     return;
   }
   section.hidden = false;
-  const resizeTile = tile => {
-    const style = getComputedStyle(grid);
-    const rowHeight = parseFloat(style.gridAutoRows) || 1;
-    const rowGap = parseFloat(style.rowGap) || 0;
-    const span = Math.ceil((tile.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-    tile.style.gridRowEnd = 'span ' + Math.max(1, span);
-  };
-  galleryResizeObserver = 'ResizeObserver' in window ? new ResizeObserver(entries => entries.forEach(entry => resizeTile(entry.target))) : null;
-  items.slice(0, visibleGalleryCount).forEach(item => {
+  const track = make('div', 'gallery-track');
+  items.slice(0, 4).forEach(item => {
     const tile = make('figure', 'gallery-tile');
     const image = make('img');
     const source = safeImage(item.image);
@@ -547,17 +538,15 @@ function renderGallery() {
     image.loading = 'lazy';
     image.decoding = 'async';
     image.fetchPriority = 'low';
-    image.addEventListener('load', () => resizeTile(tile), { once: true });
     tile.append(image);
     const caption = localized(item, 'title');
     if (caption) tile.append(make('figcaption', '', caption));
-    grid.append(tile);
-    galleryViewItems.push(tile);
-    if (galleryResizeObserver) galleryResizeObserver.observe(tile);
-    else requestAnimationFrame(() => resizeTile(tile));
-    CAADEImageQuality.validate(image, source, 'gallery', () => { image.remove(); requestAnimationFrame(() => resizeTile(tile)); });
+    track.append(tile);
+    CAADEImageQuality.validate(image, source, 'gallery', () => image.remove());
   });
-  more.hidden = items.length <= visibleGalleryCount;
+  grid.append(track);
+  if (track.children.length) duplicateLoopCards(track);
+  more.hidden = false;
 }
 function renderPartners() {
   const grid = $('#partnerGrid');
@@ -630,7 +619,6 @@ $('#projectCategory')?.addEventListener('change', () => { visibleProjectsCount =
 $('#projectYear')?.addEventListener('change', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); applyLanguage($('#projectToolbar')); });
 $('#projectSearch')?.addEventListener('input', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); });
 $('#projectMore').addEventListener('click', () => { visibleProjectsCount += CONTENT_PAGE_SIZE; renderProjects(); });
-$('#galleryMore').addEventListener('click', () => { visibleGalleryCount += 12; renderGallery(); });
 
 let activeHeroImage = 0;
 let heroImageTimer;
@@ -724,7 +712,6 @@ function addSectionPageLinks() {
     ['programs', '/programs', 'استكشف جميع البرامج', 'Explore all programmes'],
     ['news', '/news', 'جميع الأخبار', 'All news'],
     ['stories', '/stories', 'جميع قصص الأثر', 'All impact stories'],
-    ['gallery', '/gallery', 'استكشف معرض الصور', 'Explore the photo gallery'],
     ['partners', '/partners', 'استعرض الشركاء', 'View partners'],
   ];
   links.forEach(([sectionId, href, labelAr, labelEn]) => {
