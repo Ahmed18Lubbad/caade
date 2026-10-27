@@ -1129,6 +1129,9 @@ body.menu-open{overflow:hidden}
 @media(max-width:1200px){.site-header .main-nav{border-color:rgba(255,218,109,.28);border-radius:14px;background:rgba(18,59,41,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}}
 @media(max-width:700px){.site-header .header-inner{border-radius:14px;padding-inline:12px}.site-header .nav-link,.site-header .nav-dropdown>summary{padding:11px 8px}}
 
+/* Lighten the logo mark surface without changing the header palette. */
+.site-header .brand-mark.has-logo{background:rgba(214,232,203,.86)}
+
 /* Keep the hero copy immediately below the fixed header. */
 .hero .hero-layout{align-items:start;padding-top:138px}
 .hero.has-hero-photos .hero-layout{align-items:start;padding-top:138px}
