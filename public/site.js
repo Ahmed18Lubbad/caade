@@ -35,6 +35,8 @@ const CAADEImageQuality = Object.freeze({
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+
+// Project-specific image fallbacks supplement gallery paths stored in JSON.
 const PROJECT_GALLERY_IMAGES = Object.freeze({
   'caade-project-04': [
     '/media/projects/association-activities/activity-07.jpg',
@@ -112,11 +114,11 @@ let currentLanguage = location.pathname === '/en' || location.pathname.startsWit
 
 const CONTENT_PAGE_SIZE = 4;
 let visibleNewsCount = CONTENT_PAGE_SIZE;
-let visibleProjectsCount = CONTENT_PAGE_SIZE;
 let visibleGalleryCount = 4;
 let galleryResizeObserver; let galleryViewItems = [];
 
 function normalizeData(data = {}) {
+  // Provide predictable collection shapes so rendering remains defensive.
   const normalized = { ...structuredClone(EMPTY_DATA), ...data };
   normalized.profile = { ...EMPTY_DATA.profile, ...(data.profile || {}) };
   ['programs', 'news', 'stories', 'gallery', 'projects', 'partners', 'heroImages'].forEach(key => { normalized[key] = Array.isArray(data[key]) ? data[key] : []; });
@@ -416,6 +418,7 @@ function renderNews() {
 }
 
 function renderProjects() {
+  // Render a compact project preview; the dedicated subpage contains the full collection.
   const section = document.querySelector('#projects');
   const grid = $('#projectGrid');
   grid.replaceChildren();
@@ -615,9 +618,9 @@ $('#newsCategory').addEventListener('change', () => { visibleNewsCount = CONTENT
 $('#newsOrder').addEventListener('change', renderNews);
 $('#newsSearch').addEventListener('input', () => { visibleNewsCount = CONTENT_PAGE_SIZE; renderNews(); });
 $('#newsMore').addEventListener('click', () => { visibleNewsCount += CONTENT_PAGE_SIZE; renderNews(); });
-$('#projectCategory')?.addEventListener('change', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); applyLanguage($('#projectToolbar')); });
-$('#projectYear')?.addEventListener('change', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); applyLanguage($('#projectToolbar')); });
-$('#projectSearch')?.addEventListener('input', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); });
+$('#projectCategory')?.addEventListener('change', () => { renderProjects(); applyLanguage($('#projectToolbar')); });
+$('#projectYear')?.addEventListener('change', () => { renderProjects(); applyLanguage($('#projectToolbar')); });
+$('#projectSearch')?.addEventListener('input', renderProjects);
 $('#projectMore').addEventListener('click', () => {
   window.location.href = `/${currentLanguage}/subpage/?page=projects`;
 });

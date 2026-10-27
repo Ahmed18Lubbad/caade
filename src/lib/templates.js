@@ -14,6 +14,8 @@ const templateFiles = {
   },
 };
 
+// Read the body of the static HTML templates and return only the markup
+// required by the client-side page renderer.
 export async function readTemplate(language, kind) {
   const filename = templateFiles[language]?.[kind];
   if (!filename) throw new Error(`Unknown page template: ${language}/${kind}`);

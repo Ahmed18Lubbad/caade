@@ -1,6 +1,8 @@
 // منطق الصفحات التعريفية الفرعية، مع تحميل بيانات الصفحة وعرضها.
 const pageKey = new URLSearchParams(location.search).get('page') || 'about';
 let language = location.pathname.startsWith('/en/') ? 'en' : 'ar';
+
+// Render the selected content collection inside the shared subpage shell.
 let data;
 const PROJECT_GALLERY_IMAGES = Object.freeze({
   'caade-project-04': ['/media/projects/association-activities/activity-06.jpg', '/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],

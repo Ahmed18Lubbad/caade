@@ -8,6 +8,7 @@ const scripts = {
   detail: ['/header-scroll.js', '/content.js', '/detail.js'],
 };
 
+// Load the legacy page scripts in dependency order after the template mounts.
 function loadScript(src) {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
@@ -20,6 +21,7 @@ function loadScript(src) {
 
 export default function LegacyPage({ html, language, kind }) {
   useEffect(() => {
+    // Keep document language, direction, and body-level page styles in sync.
     document.documentElement.lang = language;
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     document.body.className = html.bodyClass || '';
