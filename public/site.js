@@ -494,7 +494,7 @@ function renderProjects() {
   if (track.children.length) duplicateLoopCards(track);
   const count = $('#projectCount');
   if (count) count.textContent = currentLanguage === 'en' ? Math.min(filtered.length, 4) + ' of ' + filtered.length + ' projects' : 'عرض ' + Math.min(filtered.length, 4) + ' من ' + filtered.length + ' مشروع';
-  more.hidden = true;
+  more.hidden = false;
 }
 function renderStories() {
   const section = $('#stories');
@@ -618,7 +618,9 @@ $('#newsMore').addEventListener('click', () => { visibleNewsCount += CONTENT_PAG
 $('#projectCategory')?.addEventListener('change', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); applyLanguage($('#projectToolbar')); });
 $('#projectYear')?.addEventListener('change', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); applyLanguage($('#projectToolbar')); });
 $('#projectSearch')?.addEventListener('input', () => { visibleProjectsCount = CONTENT_PAGE_SIZE; renderProjects(); });
-$('#projectMore').addEventListener('click', () => { visibleProjectsCount += CONTENT_PAGE_SIZE; renderProjects(); });
+$('#projectMore').addEventListener('click', () => {
+  window.location.href = `/${currentLanguage}/subpage/?page=projects`;
+});
 
 let activeHeroImage = 0;
 let heroImageTimer;
@@ -648,6 +650,22 @@ function restartHeroImageRotation() {
   window.clearInterval(heroImageTimer);
   if ($$('.hero-photo', $('#heroImageTrack')).length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     heroImageTimer = window.setInterval(() => showHeroImage(activeHeroImage + 1), 5000);
+  }
+}
+
+function positionHeroImageControls() {
+  const hero = $('.hero');
+  const controls = $('#heroImageControls');
+  const copy = $('.hero-copy');
+  if (!hero || !controls || !copy || controls.hidden) return;
+  if (window.matchMedia('(max-width: 800px)').matches && hero.classList.contains('has-hero-photos')) {
+    const heroRect = hero.getBoundingClientRect();
+    const copyRect = copy.getBoundingClientRect();
+    controls.style.top = `${copyRect.bottom - heroRect.top + 12}px`;
+    controls.style.bottom = 'auto';
+  } else {
+    controls.style.removeProperty('top');
+    controls.style.removeProperty('bottom');
   }
 }
 
@@ -705,7 +723,10 @@ function renderHeroImages() {
   $('#heroPattern').setAttribute('aria-label', currentLanguage === 'en' ? 'Agricultural photo carousel' : 'عرض صور زراعية متتابعة');
   showHeroImage(Math.min(activeHeroImage, images.length - 1));
   restartHeroImageRotation();
+  positionHeroImageControls();
 }
+
+window.addEventListener('resize', positionHeroImageControls, { passive: true });
 
 function addSectionPageLinks() {
   const links = [
@@ -731,6 +752,25 @@ function addSectionPageLinks() {
 function renderSite() {
   updateOrganizationName();
   fillText('heroTitle', currentLanguage === 'en' ? siteData.profile.nameEn || siteData.nameEn || siteData.name : siteData.name, siteData.name);
+  const heroTitle = $('#heroTitle');
+  if (heroTitle && currentLanguage === 'ar') {
+    const title = heroTitle.textContent.trim();
+    const breakMarker = ' للتنمية ';
+    const breakIndex = title.indexOf(breakMarker);
+    if (breakIndex > 0) {
+      const firstLine = document.createElement('span');
+      const secondLine = document.createElement('span');
+      firstLine.className = 'hero-title-line';
+      secondLine.className = 'hero-title-line';
+      firstLine.textContent = title.slice(0, breakIndex + breakMarker.length).trim();
+      secondLine.textContent = title.slice(breakIndex + breakMarker.length).trim();
+      heroTitle.replaceChildren(
+        firstLine,
+        document.createElement('br'),
+        secondLine,
+      );
+    }
+  }
   fillText('heroDescription', localized(siteData.profile, 'heroIntro'), '');
   const heroAboutLink = $('#heroAboutLink');
   if (heroAboutLink) heroAboutLink.textContent = currentLanguage === 'en' ? 'Learn more about us →' : 'تعرّف على المزيد ←';

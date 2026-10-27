@@ -507,6 +507,16 @@ html[lang="en"] .brand-name{display:block;width:300px;max-width:300px;overflow:v
 /* Explicit logo state makes the larger mark apply consistently. */
 .brand-mark.has-logo{flex:0 0 104px;width:104px;height:104px;border:0;border-radius:0;background:transparent;color:inherit}
 .brand-mark.has-logo img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* Keep the long Arabic homepage title balanced within the hero. */
+.hero #heroTitle{font-size:clamp(22px,3.4vw,44px);line-height:1.25;text-wrap:balance}
+.hero #heroTitle .hero-title-line{display:inline-block;white-space:nowrap}
+
+.site-header,.detail-body .site-header{background:rgba(11,41,27,.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-header .header-utility{background:rgba(8,35,25,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.site-header.is-compact:not(.is-over-light) .header-inner,.site-header.is-compact.is-over-light .header-inner,.site-header.is-over-light.subpage-header .header-inner,.detail-body .site-header.is-compact .header-inner{background:linear-gradient(112deg,rgba(11,41,27,.16),rgba(28,91,52,.16) 58%,rgba(11,41,27,.16));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-header .header-inner{background:linear-gradient(112deg,rgba(11,41,27,.16),rgba(28,91,52,.16) 58%,rgba(11,41,27,.16))!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-header .header-utility{background:rgba(8,35,25,.2)!important}
 .site-header.is-compact .header-inner{min-height:68px}
 .site-header.is-compact .brand-mark.has-logo{flex-basis:62px;width:62px;height:62px}
 .site-header.is-compact .brand{gap:8px}
@@ -588,6 +598,7 @@ h1,h2,h3,h4,h5,h6{font-weight:700}
 .hero.has-hero-photos .hero-photo img{object-fit:cover;object-position:center;opacity:1}
 .hero.has-hero-photos .hero-photo::after{inset:0;background:linear-gradient(0deg,rgba(10,35,22,.48),rgba(10,35,22,.28) 58%,rgba(10,35,22,.34))}
 .hero.has-hero-photos .hero-copy{width:min(100%,760px);padding:clamp(20px,3vw,36px);border:1px solid #ffffff24;border-radius:22px;background:rgba(13,43,29,.2);box-shadow:0 18px 60px #071e1424;backdrop-filter:blur(3px)}
+.hero .hero-copy{transform:translateY(clamp(28px,5vw,72px))}
 .hero.has-hero-photos .hero-copy h1{max-width:740px;margin:0 0 18px;font-size:clamp(42px,5.4vw,72px);line-height:1.16;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 3px 24px #071e1470}
 .hero.has-hero-photos .hero-copy h1 em{display:inline-block;margin-top:6px;color:#ffda6d;text-shadow:0 2px 18px #071e1480}
 .hero.has-hero-photos .hero-description{max-width:620px;margin:0 0 24px;color:#f1f5ed;font-size:clamp(14px,1.35vw,17px);line-height:1.9;text-align:start;text-wrap:pretty;text-shadow:0 2px 12px #071e1490}
@@ -1087,3 +1098,71 @@ body.menu-open{overflow:hidden}
 .site-header.is-compact:not(.is-over-light) .header-inner,.site-header.is-compact.is-over-light .header-inner,.site-header.is-over-light.subpage-header .header-inner,.detail-body .site-header.is-compact .header-inner{background:linear-gradient(112deg,#0b291b,#1c5b34 58%,#0b291b);border-color:#ffda6d45;box-shadow:0 8px 26px #071e1450}
 .brand-mark.has-logo{overflow:hidden;border:1px solid #ffffff35;border-radius:50%;background:#0b291b;box-shadow:0 1px 8px #0004}
 .brand-mark.has-logo img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* Final shared transparency tuning for home, subpages, and detail pages. */
+.site-header,
+.detail-body .site-header{background:rgba(11,41,27,.08);box-shadow:0 8px 28px rgba(7,30,20,.18)}
+.site-header .header-utility{background:rgba(8,35,25,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.site-header .header-inner,
+.site-header:not(.is-compact):not(.subpage-header):not(.detail-header) .header-inner{background:linear-gradient(112deg,rgba(11,39,27,var(--header-opacity,.46)),rgba(28,91,52,var(--header-opacity,.46)) 58%,rgba(11,39,27,var(--header-opacity,.46)));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 32px rgba(7,30,20,.14)}
+.site-header.is-compact .header-inner,
+.site-header.is-over-light.subpage-header .header-inner,
+.detail-body .site-header .header-inner,
+.detail-body .site-header.is-compact .header-inner{background:linear-gradient(112deg,rgba(11,41,27,var(--header-light-opacity,.58)),rgba(28,91,52,var(--header-light-opacity,.58)) 58%,rgba(11,41,27,var(--header-light-opacity,.58)));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 26px rgba(7,30,20,.18)}
+.site-header.is-compact:not(.is-over-light) .header-inner{background:linear-gradient(112deg,rgba(11,41,27,var(--header-light-opacity,.58)),rgba(28,91,52,var(--header-light-opacity,.58)) 58%,rgba(11,41,27,var(--header-light-opacity,.58)))}
+
+/* Refined header polish: glass surface, balanced spacing, and clear interaction states. */
+.site-header{isolation:isolate}
+.site-header .header-utility{border-bottom-color:rgba(255,218,109,.18)}
+.site-header .header-inner{border:1px solid rgba(255,255,255,.13);border-radius:18px;padding-inline:clamp(16px,2vw,28px);box-shadow:0 14px 34px rgba(3,18,11,.18),inset 0 1px 0 rgba(255,255,255,.08)}
+.site-header .brand-mark.has-logo,.brand-mark{border-color:rgba(255,255,255,.28);box-shadow:0 5px 18px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.12)}
+.site-header .brand-name{letter-spacing:-.01em}
+.site-header .main-nav{align-items:center;gap:5px}
+.site-header .nav-link,.site-header .nav-dropdown>summary{padding:10px 12px;border-radius:10px;transition:color .18s ease,background-color .18s ease,transform .18s ease}
+.site-header .nav-link:hover,.site-header .nav-dropdown>summary:hover{background:rgba(255,255,255,.08);transform:translateY(-1px)}
+.site-header .nav-link.is-current,.site-header .nav-dropdown[open]>summary{background:rgba(255,218,109,.13);color:#ffda6d}
+.site-header .nav-cta{border:1px solid rgba(255,218,109,.48);border-radius:10px;box-shadow:0 7px 18px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.12);transition:background-color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.site-header .nav-cta:hover{border-color:#ffda6d;background:rgba(255,218,109,.2);box-shadow:0 9px 22px rgba(0,0,0,.2);transform:translateY(-1px)}
+.site-header .dropdown-panel{border-color:rgba(255,218,109,.34);border-radius:12px;background:rgba(18,59,41,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 42px rgba(3,18,11,.28)}
+.site-header .dropdown-panel a{padding:10px 11px;transition:background-color .18s ease,color .18s ease}
+.site-header .menu-toggle{border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+@media(max-width:1200px){.site-header .main-nav{border-color:rgba(255,218,109,.28);border-radius:14px;background:rgba(18,59,41,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}}
+@media(max-width:700px){.site-header .header-inner{border-radius:14px;padding-inline:12px}.site-header .nav-link,.site-header .nav-dropdown>summary{padding:11px 8px}}
+
+/* Keep the hero copy immediately below the fixed header. */
+.hero .hero-layout{align-items:start;padding-top:138px}
+.hero.has-hero-photos .hero-layout{align-items:start;padding-top:138px}
+.hero .hero-copy{transform:none}
+@media(max-width:1200px){
+  .hero .hero-layout,.hero.has-hero-photos .hero-layout{padding-top:116px}
+}
+
+/* Keep the fixed two-line Arabic title inside narrow phone screens. */
+@media(max-width:520px){
+  .hero #heroTitle .hero-title-line{font-size:clamp(20px,6vw,32px)}
+  .hero.has-hero-photos .hero-copy{width:100%;margin-inline:0}
+}
+@media(max-width:360px){
+  .hero #heroTitle .hero-title-line{font-size:clamp(18px,5.8vw,24px)}
+  .hero.has-hero-photos .hero-copy{padding-inline:12px}
+}
+
+@media(max-width:800px){
+  .hero.has-hero-photos .hero-image-controls{
+    left:0;
+    right:0;
+    top:auto;
+    bottom:auto;
+    width:100%;
+    justify-content:center;
+    transform:none;
+  }
+  .hero.has-hero-photos .hero-image-dots{
+    max-width:calc(100% - 32px);
+    max-height:none;
+    flex-direction:row;
+    overflow-x:auto;
+    overflow-y:hidden;
+  }
+  .hero.has-hero-photos .hero-image-dot.is-active::before{width:22px;height:7px}
+}
