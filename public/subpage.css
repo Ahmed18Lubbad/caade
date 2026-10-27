@@ -1,6 +1,6 @@
 /* تنسيقات الصفحات التعريفية الفرعية. */
-.subpage-body{background:#f8faf6;padding-top:86px}
-.subpage-header{background:#fff;border-bottom:1px solid #e5ebe2;box-shadow:0 5px 20px #173d2c0a}
+.subpage-body{background:#f8faf6;padding-top:0}
+.subpage-header{position:absolute;top:0;inset-inline:0;z-index:100;background:#fff;border-bottom:1px solid #e5ebe2;box-shadow:0 5px 20px #173d2c0a}
 .subpage-header .brand-name,.subpage-header .nav-link{color:#244532;text-shadow:none}
 .subpage-header .language-toggle{border-color:#dce5dc;background:#fff;color:#244532}
 .subpage-header .brand-mark{background:#fff;border:0}
@@ -23,6 +23,10 @@
 .subpage-section h2{margin:0 0 18px;color:#214b31;font-size:clamp(22px,3vw,30px)}
 .subpage-copy{max-width:900px;color:#4f6053;font-size:16px;line-height:2.1;white-space:pre-line}
 .subpage-facts,.subpage-cards,.subpage-projects,.board-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.partner-subpage-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.partner-subpage-logo{display:block;width:100%;height:74px;object-fit:contain;margin-bottom:14px}
+.partner-subpage-taawon{background:#b51f3a}
+.partner-subpage-taawon h2,.partner-subpage-taawon p{color:#fff}
 .subpage-fact,.subpage-card,.subpage-project,.board-card{padding:23px;border:1px solid #e3eae0;border-radius:16px;background:#fff;box-shadow:0 10px 30px #173d2c08}
 .subpage-fact span,.subpage-project time,.subpage-card .program-number{display:block;margin-bottom:8px;color:#6b806c;font-size:12px;font-weight:700}
 .subpage-fact strong{display:block;color:#234d32;font-size:20px}
@@ -39,7 +43,7 @@
 .partners-lead{padding:22px 26px;border-radius:14px;background:#edf4e8;color:#3e5b45;line-height:2}
 .empty-page{padding:30px;border:1px dashed #bdcbbb;border-radius:14px;color:#68756a;text-align:center}
 @media(max-width:900px){.subpage-nav{gap:12px}.subpage-nav>a{font-size:12px}.subpage-facts,.subpage-cards,.subpage-projects,.board-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.subpage-body{padding-top:72px}.subpage-header .header-inner{min-height:72px}.subpage-nav{overflow-x:auto;max-width:66vw;padding-block:6px}.subpage-nav>a{font-size:11px}.subpage-hero{padding:45px 0 40px}.subpage-hero .container{grid-template-columns:minmax(0,1fr) 74px;gap:16px}.subpage-hero-logo{width:74px;height:74px;padding:5px;border-radius:16px}.subpage-hero #pageIntro{font-size:15px}.subpage-content{padding-block:34px 58px}.subpage-facts,.subpage-cards,.subpage-projects,.board-grid{grid-template-columns:1fr}.subpage-footer .container{align-items:flex-start;flex-direction:column}}
+@media(max-width:700px){.subpage-header .header-inner{min-height:72px}.subpage-nav{overflow-x:auto;max-width:66vw;padding-block:6px}.subpage-nav>a{font-size:11px}.subpage-hero{padding:45px 0 40px}.subpage-hero .container{grid-template-columns:minmax(0,1fr) 74px;gap:16px}.subpage-hero-logo{width:74px;height:74px;padding:5px;border-radius:16px}.subpage-hero #pageIntro{font-size:15px}.subpage-content{padding-block:34px 58px}.subpage-facts,.subpage-cards,.subpage-projects,.board-grid{grid-template-columns:1fr}.subpage-footer .container{align-items:flex-start;flex-direction:column}}
 .subpage-project-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;overflow:hidden;aspect-ratio:16/9;border-radius:14px;background:#e9eee5}
 .subpage-project-gallery img{display:block;width:100%;height:100%;min-height:0;object-fit:cover}
 .subpage-nav-dropdown{position:relative;white-space:nowrap}
@@ -151,7 +155,7 @@
 
 /* Match the two-tier dark header on the homepage and content detail pages. */
 .subpage-header{background:#0b291b;border:0;box-shadow:0 8px 28px #071e1450}
-.subpage-header .header-inner,.site-header.is-over-light.subpage-header .header-inner{width:min(1280px,calc(100% - 56px));min-height:92px;margin-inline:auto;padding-inline:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.subpage-header .header-inner,.site-header.is-over-light.subpage-header .header-inner{width:min(1040px,calc(100% - 160px));min-height:64px;margin-inline:auto;padding-inline:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .subpage-header .header-inner::after{display:none}
 .subpage-header .brand-mark{overflow:hidden;border:1px solid #ffffff35;border-radius:50%;background:#0b291b;box-shadow:0 1px 8px #0004}
 .subpage-header .brand-mark img{width:100%;height:100%;object-fit:contain}
@@ -159,11 +163,12 @@
 .subpage-header .header-inner{background:linear-gradient(112deg,rgba(11,41,27,.16),rgba(28,91,52,.16) 58%,rgba(11,41,27,.16))!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .subpage-header .header-utility{background:rgba(8,35,25,.2)!important}
 .subpage-hero-logo{border-color:#ffffff70;border-radius:22px;background:#0b291b;box-shadow:0 12px 34px #09261538}
-.subpage-header .brand-mark.has-logo{flex:0 0 72px;width:72px;height:72px}
+.subpage-header .brand-mark.has-logo{flex:0 0 56px;width:56px;height:56px}
 .subpage-header .subpage-nav-dropdown>div{min-width:310px;grid-template-columns:repeat(2,minmax(130px,1fr));gap:4px;padding:12px;border:1px solid #ffffff25;border-top:2px solid #ffda6d;border-radius:0 0 12px 12px;background:#123b29;box-shadow:0 18px 40px #071e1480}
 .subpage-header .subpage-nav-dropdown>div a{border-radius:6px;color:#e8f0e5;white-space:normal}
 .subpage-header .subpage-nav-dropdown>div a:hover{background:#ffffff12;color:#ffda6d}
-.subpage-body,.detail-body{padding-top:126px}
+.subpage-body{padding-top:0}
+.detail-body{padding-top:126px}
 @media(max-width:1000px){
   .subpage-header .header-inner{min-height:78px}
   .subpage-header .brand-mark.has-logo{flex-basis:64px;width:64px;height:64px}
@@ -173,7 +178,8 @@
   .subpage-header .header-utility,.subpage-header .header-utility-inner{min-height:30px}
   .subpage-header .header-inner{width:calc(100% - 32px);min-height:72px}
   .subpage-header.is-compact .header-inner{min-height:60px}
-  .subpage-body,.detail-body{padding-top:104px}
+  .subpage-body{padding-top:0}
+  .detail-body{padding-top:104px}
 }
 
 /* Keep subpage headers transparent like the homepage header. */

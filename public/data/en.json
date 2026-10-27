@@ -736,7 +736,12 @@
       "url": ""
     }
   ],
-  "partners": [],
+  "partners": [
+    { "id": "anera", "name": "ANERA", "logo": "/media/partners/anera.jpg", "url": "https://anera.org/" },
+    { "id": "oxfam", "name": "Oxfam", "logo": "/media/partners/oxfam.png", "url": "https://www.oxfam.org/" },
+    { "id": "giz", "name": "GIZ", "logo": "/media/partners/giz-official.svg", "url": "https://www.giz.de/" },
+    { "id": "taawon", "name": "Taawon", "logo": "/media/partners/taawon.png", "url": "https://www.taawon.org/" }
+  ],
   "heroImages": [
     {
       "id": "38487e3d-b36c-453c-aca2-a7c740a23106",

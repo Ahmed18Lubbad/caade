@@ -1072,7 +1072,7 @@ body.menu-open{overflow:hidden}
 .detail-body .site-header .brand-mark.has-logo{flex-basis:72px;width:72px;height:72px}
 .detail-body .site-header.is-compact .brand-mark.has-logo{flex-basis:56px;width:56px;height:56px}
 .detail-body .brand-name{color:#f3f5ef;text-shadow:none}
-.subpage-body{padding-top:126px}
+.subpage-body{padding-top:0}
 .detail-body{padding-top:126px}
 @media(max-width:1200px){
   .site-header .header-inner,.detail-body .site-header .header-inner,.detail-body .site-header.is-compact .header-inner{width:calc(100% - 40px);min-height:78px;padding-inline:0}
@@ -1088,7 +1088,8 @@ body.menu-open{overflow:hidden}
   .site-header .header-inner,.detail-body .site-header .header-inner,.detail-body .site-header.is-compact .header-inner{width:calc(100% - 32px);min-height:72px}
   .site-header.is-compact .header-inner,.detail-body .site-header.is-compact .header-inner{min-height:60px}
   .detail-body .site-header .header-inner{padding-inline:0}
-  .subpage-body,.detail-body{padding-top:104px}
+  .subpage-body{padding-top:0}
+  .detail-body{padding-top:104px}
   .site-header .main-nav{top:calc(100% + 6px)}
   .site-header .dropdown-panel{grid-template-columns:1fr;min-width:0}
 }
@@ -1131,6 +1132,7 @@ body.menu-open{overflow:hidden}
 
 /* Lighten the logo mark surface without changing the header palette. */
 .site-header .brand-mark.has-logo{background:rgba(214,232,203,.86)}
+.partner-logo.partner-taawon{background:#b51f3a}
 
 /* Keep the hero copy immediately below the fixed header. */
 .hero .hero-layout{align-items:start;padding-top:138px}

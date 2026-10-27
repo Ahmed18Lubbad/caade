@@ -97,7 +97,42 @@ function renderPartners() {
     ['أنيرا (ANERA)','جهة ممولة وشريك في المشاريع'],['هيئة المستقبل للتنمية','شريك في تنفيذ مشروع'],['الوكالة السويدية للتعاون الإنمائي الدولي (Sida)','جهة ممولة'],['مجموعة غزة للثقافة','جهة منفذة'],['الإغاثة الإسلامية – فلسطين','جهة منفذة'],['الإغاثة الإسلامية – الولايات المتحدة','جهة ممولة'],['الوكالة الألمانية للتعاون الدولي (GIZ)','جهة ممولة'],['أوكسفام','شريك وجهة منفذة'],['المركز الفلسطيني للتنمية الاقتصادية والاجتماعية','جهة منفذة'],['الوكالة الإسبانية للتعاون الإنمائي (AECID)','جهة ممولة'],['الاتحاد الأوروبي','جهة ممولة'],['جمعية تنمية المرأة الريفية','جهة منفذة'],['مؤسسة التعاون (Taawon)','جهة ممولة'],['مركز شؤون المرأة','شريك في مشروع'],['الصندوق العربي للإنماء الاقتصادي والاجتماعي – الكويت','جهة ممولة']
   ];
   const grid=node('div','subpage-cards');s.append(grid);
-  organizations.slice(0,4).forEach(([name,role])=>{const card=node('article','subpage-card');card.append(node('h2','',name),node('p','',role));grid.append(card);});
+  const officialPartners=data.partners||[];
+  const partnerLogos=[
+    '/media/partners/anera.jpg',
+    '/media/partners/future-development-commission.png',
+    '/media/partners/sida.png',
+    '/media/partners/gaza-culture-development-group.jpg',
+    '/media/partners/islamic-relief.png',
+    '/media/partners/islamic-relief.png',
+    '/media/partners/giz-official.svg',
+    '/media/partners/oxfam.png',
+    '/media/partners/esdc.jpg',
+    '/media/partners/aecid.png',
+    '/media/partners/european-union.png',
+    '/media/partners/rural-womens-development-society.png',
+    '/media/partners/taawon.png',
+    '/media/partners/womens-affairs-center.png',
+    '/media/partners/arab-fund.png'
+  ];
+  const partners=organizations.map(([name,role],index)=>{
+    const arabicLogoIndexes={0:'anera',6:'giz',7:'oxfam',12:'taawon'};
+    const official=language==='en'
+      ? officialPartners.find(partner=>name.toLowerCase().includes(String(partner.name||'').toLowerCase())||String(partner.name||'').toLowerCase().includes(name.toLowerCase()))
+      : officialPartners.find(partner=>partner.id===arabicLogoIndexes[index]);
+    return {name,role,logo:partnerLogos[index],...(official||{})};
+  });
+  partners.forEach(item=>{
+    const card=node('article',`subpage-card partner-subpage-card partner-subpage-${item.id||''}`);
+    const logoSrc=String(item.logo||'').trim();
+    if(logoSrc){
+      const image=node('img','partner-subpage-logo');
+      image.src=logoSrc;image.alt=get(item,'name')||item.name||'';image.loading='lazy';image.decoding='async';card.append(image);
+    }
+    const partnerRole=language==='en'?'Partner and supporting organization':'\u062c\u0647\u0629 \u0634\u0631\u064a\u0643\u0629 \u0648\u062f\u0627\u0639\u0645\u0629';
+    card.append(node('h2','',get(item,'name')||item.name||''),node('p','',item.role||partnerRole));
+    grid.append(card);
+  });
 }
 function renderCollection(collection, kind) {
   const titles={news:text('آخر الأخبار والأنشطة','Latest news and activities'),stories:text('حكايات من الميدان','Stories from the field'),gallery:text('صور توثق أنشطة الجمعية ومشاريعها','Photos documenting the Association’s work')};
@@ -156,6 +191,8 @@ function render() {
   $('#subpageLogo').src=logoSrc;
   const favicon=$('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}
   document.documentElement.lang=language;document.documentElement.dir=language==='en'?'ltr':'rtl';
+  // Keep the document title in the active interface language.
+  document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
   document.title=`${page.title[language==='en'?1:0]} – ${get(p,'nameEn')||data.name}`;
   $('#pageEyebrow').textContent=text('الجمعية التعاونية للتنمية الزراعية والبيئة – غزة','Cooperative Association for Agricultural Development and Environment – Gaza');
   $('#pageTitle').textContent=page.title[language==='en'?1:0];$('#pageIntro').textContent=page.intro[language==='en'?1:0];
@@ -166,6 +203,7 @@ function render() {
   document.querySelectorAll('[data-nav]').forEach(el=>{const k=el.dataset.nav;el.textContent=labels[k];if(k===pageKey)el.setAttribute('aria-current','page');});
   $('#languageToggle').textContent=language==='en'?'العربية':'English';$('#languageToggle').setAttribute('aria-label',language==='en'?'Switch to Arabic':'Switch to English');
   $('#pageContent').replaceChildren();page.render();
+  document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
 }
 $('#languageToggle').addEventListener('click',()=>{const target=language==='ar'?'en':'ar';location.href=`/${target}/subpage/${location.search}`;});
 loadSiteContent().then(result=>{data=result;render();document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href.startsWith('/#'))link.href=`/${language}/${href.slice(1)}`;else if(href==='/'||href==='/index.html')link.href=`/${language}/`;else if(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)\/?$/.test(href)){const page=href.replaceAll('/','');link.href=`/${language}/subpage/?page=${page}`;}else if(/^\/(news|projects)\/[A-Za-z0-9_-]+$/.test(href)){const [,collection,id]=href.split('/');link.href=`/${language}/detail/?collection=${collection}&id=${encodeURIComponent(id)}`;}});}).catch(()=>{$('#pageContent').replaceChildren(node('p','empty-page',text('تعذر تحميل محتوى الصفحة. حاول تحديثها.','Page content could not be loaded. Please refresh.')));});
