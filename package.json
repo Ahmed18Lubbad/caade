@@ -8,7 +8,10 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build"
+    "build": "next build",
+    "lint": "node scripts/lint.mjs",
+    "check": "node scripts/check-content.mjs && npm run lint",
+    "format": "prettier --write \"app/**/*.{js,jsx}\" \"src/**/*.{js,jsx}\" \"scripts/**/*.mjs\""
   },
   "dependencies": {
     "next": "16.4.3",

@@ -1,5 +1,5 @@
 /* الأنماط العامة للموقع: الهوية البصرية والتخطيط والاستجابة للشاشات. */
-:root{--forest:#1C743A;--deep:rgb(45, 138, 82);--leaf:#3B863D;--moss:#5DA744;--bright:#92C543;--gold:#ffda6d;--black:#000000;--cream:#F6F8F3;--paper:#fff;--ink:#202820;--muted:#68756a;--line:#E2E9E0;--sans:'Tajawal','Manrope',sans-serif;--shadow:0 18px 48px #164f2d14;--bs-primary:#1C743A;--bs-primary-rgb:28,116,58;--bs-success:#3B863D;--bs-success-rgb:59,134,61;--bs-body-font-family:var(--sans);--bs-border-radius:.8rem;--section-block:clamp(64px,7vw,96px);--section-title:clamp(1.9rem,3.4vw,2.75rem);--card-title:1.0625rem;--layout-gap:clamp(14px,2vw,22px)}
+:root{--forest:#173d2c;--deep:#234c36;--leaf:#356b40;--moss:#688b4f;--bright:#91a65c;--gold:#c08d38;--black:#000;--cream:#f6f1e7;--paper:#fffdf8;--ink:#26372d;--muted:#657269;--line:#e1d8c5;--sans:'Tajawal','Manrope',sans-serif;--shadow:0 18px 48px #173d2c14;--bs-primary:#173d2c;--bs-primary-rgb:23,61,44;--bs-success:#356b40;--bs-success-rgb:53,107,64;--bs-body-font-family:var(--sans);--bs-border-radius:.8rem;--section-block:clamp(64px,7vw,96px);--section-title:clamp(1.9rem,3.4vw,2.75rem);--card-title:1.0625rem;--layout-gap:clamp(14px,2vw,22px)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:92px}
 body{margin:0;min-width:320px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:clip}
@@ -1171,3 +1171,45 @@ body.menu-open{overflow:hidden}
   }
   .hero.has-hero-photos .hero-image-dot.is-active::before{width:22px;height:7px}
 }
+ .legacy-status{position:fixed;z-index:300;inset-inline:16px;top:16px;width:max-content;max-width:calc(100% - 32px);margin:auto;padding:10px 16px;border-radius:999px;background:#173d2cf2;color:#fff;font-size:13px;box-shadow:0 10px 28px #071e1440}
+.legacy-status--error{background:#9d342a}
+.site-floating-actions{position:fixed;z-index:220;inset-inline-end:18px;bottom:18px;display:flex;align-items:center;gap:8px}
+.floating-action{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 14px;border:1px solid #ffffff3d;border-radius:999px;background:#173d2cf2;color:#fff;text-decoration:none;font-size:12px;font-weight:700;box-shadow:0 10px 26px #071e1440;transition:transform .2s,background .2s}
+.floating-action:hover{transform:translateY(-2px);background:#24663b}
+.floating-action--primary{background:#c48a27;color:#fff}
+.floating-action--top{width:42px;padding:0;cursor:pointer;font-size:20px}
+.floating-action:focus-visible{outline:3px solid #ffdf84;outline-offset:3px}
+.not-found{display:grid;place-items:center;align-content:center;gap:12px;min-height:100vh;padding:32px;text-align:center;background:#f6faf3;color:#173d2c}
+.not-found h1{margin:0;font-size:clamp(28px,5vw,50px)}
+.not-found p:not(.eyebrow){max-width:520px;color:#59685c;line-height:1.8}
+.not-found .button{display:inline-flex;padding:12px 20px;border-radius:999px;background:#24663b;color:#fff;text-decoration:none}
+/* Palestinian palette refinement: layout remains unchanged; only visual tokens are adjusted. */
+.utility-bar{background:#234c36}
+.site-header .header-inner{background:linear-gradient(112deg,rgba(23,61,44,.9),rgba(53,107,64,.86) 58%,rgba(23,61,44,.9));border-color:#c08d3838;border-bottom-color:#c08d3866}
+.site-header .nav-link:hover,.site-header .nav-link.is-current,.site-header .nav-dropdown summary:hover{color:#edcd78}
+.site-header .nav-cta,.button-gold{background:#c08d38;color:#fff}.site-header .nav-cta:hover,.button-gold:hover{background:#a9772d}
+.hero{background:radial-gradient(ellipse at 78% 12%,#ffffff12,transparent 34%),linear-gradient(118deg,#123624,#2f7144 60%,#547746)}
+.stories-section{background:linear-gradient(120deg,#173d2c,#234c36)}
+.hero-landscape{background:linear-gradient(180deg,#efe3c4 0%,#d9c99e 46%,#91a65c 47%,#356b40 100%)}
+.hero-landscape::before{background:#688b4f;box-shadow:0 28px 0 #356b40}.hero-landscape::after{background:repeating-linear-gradient(168deg,transparent 0 17px,#e9d8b5 18px 20px,transparent 21px 33px),linear-gradient(180deg,#356b40,#173d2c)}
+.intro-section,.program-section,.news-section{background:#fffdf8}.identity-panel{background:#f6f1e7;border-color:#e1d8c5}.program-card,.impact-card,.editorial-card{border-color:#e6ddca}.program-card:nth-child(2){border-bottom-color:#c08d38}.program-card:nth-child(3){border-bottom-color:#91a65c}.program-card:nth-child(4){border-bottom-color:#234c36}
+.impact-band{background:linear-gradient(180deg,#f6f1e7,#fffdf8 90%)}.impact-card::before{background:linear-gradient(90deg,#356b40,#c08d38)}
+.contact-banner{background:radial-gradient(ellipse at 10% 10%,#ffffff12,transparent 35%),linear-gradient(115deg,#2f7144,#173d2c)}
+.site-footer{background:linear-gradient(145deg,#173d2c 0%,#0f2b1f 100%)}
+/* Editorial Palestinian pattern background: softened so content stays the focus. */
+body{background-color:#f4eee3;background-image:linear-gradient(rgba(248,243,233,.64),rgba(248,243,233,.64)),url('/media/palestinian-pattern-background.jpg');background-position:center top;background-size:cover;background-attachment:fixed;background-repeat:no-repeat}
+.impact-band,.intro-section,.program-section,.news-section,.projects-section,.gallery-section,.partners-section{background-color:rgba(255,253,248,.70)}
+.impact-band{background-image:linear-gradient(rgba(246,241,231,.74),rgba(255,253,248,.70))}
+.identity-panel,.program-card,.impact-card,.editorial-card,.support-card{background-color:rgba(255,253,248,.91)}
+/* One consistent sand background for all light content sections. */
+main>section:not(.hero):not(.stories-section){background-color:rgba(248,243,233,.70)!important}
+@media(max-width:700px){body{background-attachment:scroll;background-size:auto 100vh}}
+/* Make the logo watermark clearer while keeping it subtle behind the content. */
+body::after{opacity:.035;background-size:min(38vw,420px);mix-blend-mode:multiply}
+
+/* Palestinian pattern adapted for the footer without changing its layout. */
+.site-footer{background-color:#173d2c;background-image:linear-gradient(rgba(15,43,31,.82),rgba(10,33,24,.92)),url('/media/palestinian-pattern-background.jpg');background-position:center 52%;background-size:cover;background-repeat:no-repeat}
+.site-footer .footer-bottom-wrap{background:rgba(7,25,18,.78)}
+
+/* Restore the original clean gradient for the impact statistics section. */
+.impact-band{background:linear-gradient(180deg,#f6f1e7,#fffdf8 90%)!important}

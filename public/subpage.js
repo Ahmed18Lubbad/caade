@@ -25,7 +25,16 @@ function node(tag, className, value) { const el=document.createElement(tag); if(
 function text(ar,en) { return language==='en' ? en : ar; }
 function get(item,key) { return language==='en' ? item?.[`${key}En`] || item?.[key] || '' : item?.[key] || item?.[`${key}En`] || ''; }
 let galleryDialog;
-function openGalleryImage(source, alt) {
+let galleryItems = [];
+let galleryIndex = 0;
+function showGalleryItem(index) {
+  if (!galleryDialog || !galleryItems.length) return;
+  galleryIndex = (index + galleryItems.length) % galleryItems.length;
+  const item = galleryItems[galleryIndex];
+  const image=$('.gallery-lightbox-image',galleryDialog),caption=$('.gallery-lightbox-caption',galleryDialog);
+  image.src=item.image;image.alt=item.alt;caption.textContent=item.alt;
+}
+function openGalleryImage(source, alt, items = []) {
   if (!galleryDialog) {
     galleryDialog=node('dialog','gallery-lightbox');
     const close=node('button','gallery-lightbox-close','×');
@@ -34,10 +43,17 @@ function openGalleryImage(source, alt) {
     const caption=node('p','gallery-lightbox-caption');
     close.addEventListener('click',()=>galleryDialog.close());
     galleryDialog.addEventListener('click',event=>{if(event.target===galleryDialog)galleryDialog.close();});
+    galleryDialog.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showGalleryItem(galleryIndex + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+    });
     galleryDialog.append(close,image,caption);document.body.append(galleryDialog);
   }
-  const image=$('.gallery-lightbox-image',galleryDialog),caption=$('.gallery-lightbox-caption',galleryDialog);
-  image.src=source;image.alt=alt;caption.textContent=alt;
+  galleryItems = items.length ? items : [{ image: source, alt }];
+  galleryIndex = Math.max(0, galleryItems.findIndex(item => item.image === source));
+  showGalleryItem(galleryIndex);
   if(!galleryDialog.open)galleryDialog.showModal();
 }
 function section(title) { const el=node('section','subpage-section'); el.append(node('h2','',title)); $('#pageContent').append(el); return el; }
@@ -134,6 +150,70 @@ function renderPartners() {
     grid.append(card);
   });
 }
+function galleryCategory(item) {
+  const source = `${item.category || ''} ${item.title || ''} ${item.description || ''}`.toLowerCase();
+  if (/farm|farmer|مزارع|مزارعين/.test(source)) return 'farmers';
+  if (/relief|aid|food|إغاث|غذاء|مساعدات/.test(source)) return 'relief';
+  if (/environment|soil|water|بيئ|تربة|مياه/.test(source)) return 'environment';
+  return 'projects';
+}
+
+function enhanceGallery(items, section, grid) {
+  if (!items.length) return;
+  const filters = [
+    ['all', text('كل الصور', 'All photos')], ['projects', text('المشاريع', 'Projects')],
+    ['farmers', text('المزارعون', 'Farmers')], ['relief', text('الإغاثة', 'Relief')],
+    ['environment', text('البيئة', 'Environment')],
+  ];
+  const toolbar = node('div', 'gallery-filters');
+  toolbar.setAttribute('role', 'toolbar');
+  filters.forEach(([value, label], index) => {
+    const button = node('button', `gallery-filter${index === 0 ? ' is-active' : ''}`, label);
+    button.type = 'button'; button.dataset.filter = value; button.setAttribute('aria-pressed', String(index === 0));
+    toolbar.append(button);
+  });
+
+  const stage = node('article', 'gallery-stage');
+  const open = node('button', 'gallery-stage-open'); open.type = 'button';
+  const image = node('img', 'gallery-stage-image');
+  const meta = node('div', 'gallery-stage-meta');
+  const title = node('h3', 'gallery-stage-title');
+  const description = node('p', 'gallery-stage-description');
+  const location = node('p', 'gallery-stage-location');
+  const date = node('time', 'gallery-stage-date');
+  meta.append(title, description, location, date); open.append(image); stage.append(open, meta);
+
+  const thumbnails = node('div', 'gallery-thumbnails');
+  const setStage = (item) => {
+    image.src = item.image; image.alt = get(item, 'title'); title.textContent = get(item, 'title');
+    description.textContent = get(item, 'description') || get(item, 'excerpt') || text('مشهد من أنشطة الجمعية ومشاريعها الميدانية.', 'A field moment from the Association’s projects and activities.');
+    const place = item.location || item.area || item.community || item.beneficiaries;
+    location.textContent = place ? `⌖ ${place}` : '';
+    location.hidden = !place;
+    const year = item.date || item.year || item.id?.match(/20\d{2}/)?.[0] || '';
+    date.textContent = year; date.dateTime = year;
+    open.setAttribute('aria-label', text(`تكبير الصورة: ${get(item, 'title')}`, `Enlarge image: ${get(item, 'title')}`));
+    open.onclick = () => openGalleryImage(item.image, get(item, 'title'), items.map(candidate => ({ image: candidate.image, alt: get(candidate, 'title') })));
+  };
+  setStage(items[0]);
+  items.forEach((item, index) => {
+    const thumb = node('button', `gallery-thumbnail${index === 0 ? ' is-active' : ''}`); thumb.type = 'button';
+    thumb.dataset.category = galleryCategory(item); thumb.setAttribute('aria-label', get(item, 'title'));
+    const thumbImage = node('img', ''); thumbImage.src = item.image; thumbImage.alt = ''; thumbImage.loading = 'lazy'; thumbImage.decoding = 'async';
+    thumb.append(thumbImage); thumb.onclick = () => { setStage(item); thumbnails.querySelectorAll('button').forEach(button => button.classList.remove('is-active')); thumb.classList.add('is-active'); };
+    thumbnails.append(thumb);
+  });
+
+  grid.querySelectorAll('.subpage-gallery-item').forEach((figure, index) => { figure.dataset.category = galleryCategory(items[index]); });
+  toolbar.querySelectorAll('button').forEach(button => button.onclick = () => {
+    const filter = button.dataset.filter;
+    toolbar.querySelectorAll('button').forEach(item => { item.classList.toggle('is-active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
+    grid.querySelectorAll('.subpage-gallery-item').forEach(figure => { figure.hidden = filter !== 'all' && figure.dataset.category !== filter; });
+    thumbnails.querySelectorAll('.gallery-thumbnail').forEach(thumb => { thumb.hidden = filter !== 'all' && thumb.dataset.category !== filter; });
+  });
+  section.insertBefore(toolbar, grid); section.insertBefore(stage, grid); section.insertBefore(thumbnails, grid);
+}
+
 function renderCollection(collection, kind) {
   const titles={news:text('آخر الأخبار والأنشطة','Latest news and activities'),stories:text('حكايات من الميدان','Stories from the field'),gallery:text('صور توثق أنشطة الجمعية ومشاريعها','Photos documenting the Association’s work')};
   const s=section(titles[kind]), grid=node('div',kind==='gallery'?'subpage-gallery':'subpage-cards');s.append(grid);
@@ -144,7 +224,7 @@ function renderCollection(collection, kind) {
       const figure=node('figure','subpage-gallery-item'),open=node('button','subpage-gallery-open'),image=node('img','');
       open.type='button';open.setAttribute('aria-label',text(`فتح الصورة: ${get(item,'title')}`,`Open image: ${get(item,'title')}`));
       image.src=item.image;image.alt=get(item,'title');image.loading='lazy';image.decoding='async';
-      open.append(image);open.addEventListener('click',()=>openGalleryImage(item.image,get(item,'title')));
+      open.append(image);open.addEventListener('click',()=>openGalleryImage(item.image,get(item,'title'),items.map(candidate=>({image:candidate.image,alt:get(candidate,'title')}))));
       figure.append(open,node('figcaption','',get(item,'title')));grid.append(figure);return;
     }
     const card=node('article',kind==='stories'?'subpage-card subpage-story':'subpage-card');
@@ -157,6 +237,8 @@ function renderCollection(collection, kind) {
     grid.append(card);
   });
   if(!items.length)grid.append(node('p','empty-page',text('لا يوجد محتوى منشور في هذا القسم حاليًا.','There is no published content in this section yet.')));
+  if(kind==='gallery') enhanceGallery(items, s, grid);
+  if(!items.length) grid.append(node('p','empty-page',text('لا يوجد محتوى منشور في هذا القسم حاليًا.','There is no published content in this section yet.')));
 }
 function renderSupport(){
   const s=section(text('طرق دعم الجمعية','Ways to support the Association')),grid=node('div','subpage-cards');s.append(grid);
