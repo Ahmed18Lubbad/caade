@@ -213,7 +213,9 @@ function applyLanguage(root = document.body) {
   });
   document.title = isEnglish ? (siteData.profile.nameEn || 'Agricultural and Environmental Development Cooperative Association – Gaza') : siteData.name;
   const description = $('meta[name="description"]');
-  if (description) description.content = isEnglish ? 'Official website of the Agricultural and Environmental Development Cooperative Association.' : `الموقع الرسمي لـ ${siteData.name}`;
+  if (description) description.content = isEnglish
+    ? 'CAADE is a Palestinian cooperative in Gaza supporting farmers, food security, livelihoods, and sustainable agriculture in North Gaza.'
+    : 'الجمعية التعاونية للتنمية الزراعية والبيئة في غزة (CAADE): جمعية فلسطينية تدعم المزارعين والأمن الغذائي وسبل العيش والزراعة المستدامة في شمال غزة.';
   const toggle = $('#languageToggle');
   if (toggle) {
     toggle.textContent = isEnglish ? 'العربية' : 'English';
@@ -276,7 +278,8 @@ function updateOrganizationName() {
     }
   });
   document.title = siteData.name;
-  $('meta[name="description"]').content = `الموقع الرسمي لـ ${siteData.name}`;
+  const description = $('meta[name="description"]');
+  if (description) description.content = 'الجمعية التعاونية للتنمية الزراعية والبيئة في غزة (CAADE): جمعية فلسطينية تدعم المزارعين والأمن الغذائي وسبل العيش والزراعة المستدامة في شمال غزة.';
 }
 
 function fillText(id, value, placeholder) {
