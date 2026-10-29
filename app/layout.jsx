@@ -14,10 +14,10 @@ export const metadata = {
     siteName,
     title: siteName,
     description: siteDescription,
-    images: [{ url: '/media/caade-logo-mark.svg', width: 512, height: 512, alt: 'شعار الجمعية' }],
+    images: [{ url: '/media/caade-gaza-logo.svg', width: 900, height: 900, alt: 'شعار الجمعية' }],
   },
-  twitter: { card: 'summary_large_image', title: siteName, description: siteDescription, images: ['/media/caade-logo-mark.svg'] },
-  icons: { icon: '/media/caade-logo-mark.svg' },
+  twitter: { card: 'summary_large_image', title: siteName, description: siteDescription, images: ['/media/caade-gaza-logo.svg'] },
+  icons: { icon: '/media/caade-gaza-logo.svg' },
 };
 
 export default function RootLayout({ children }) {

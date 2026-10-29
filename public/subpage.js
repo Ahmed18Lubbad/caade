@@ -268,7 +268,7 @@ const pages={
 function render() {
   const page=pages[pageKey]||pages.about, p=data.profile||{};
   const logoValue=String(p.logo||'').trim();
-  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/b24baa03-8373-4a32-9afb-d6d03d04755c.svg';
+  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/caade-gaza-logo.svg';
   document.querySelectorAll('.brand-mark img').forEach(image=>{image.src=logoSrc;});
   $('#subpageLogo').src=logoSrc;
   const favicon=$('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}

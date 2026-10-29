@@ -3,7 +3,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:92px}
 body{margin:0;min-width:320px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:clip}
-body::after{content:'';position:fixed;z-index:35;inset:0;pointer-events:none;background-image:var(--site-watermark,none);background-repeat:no-repeat;background-position:center;background-size:min(34vw,360px);opacity:.07}
+body::after{content:'';position:fixed;z-index:35;inset:0;pointer-events:none;background-image:var(--site-watermark,url('/media/caade-gaza-logo.svg'));background-repeat:no-repeat;background-position:center;background-size:min(34vw,360px);opacity:.07}
 button,a{font:inherit;-webkit-tap-highlight-color:transparent}
 a{color:inherit;text-decoration:none}
 button{color:inherit}
@@ -1133,6 +1133,10 @@ body.menu-open{overflow:hidden}
 /* Lighten the logo mark surface without changing the header palette. */
 .site-header .brand-mark.has-logo{background:rgba(214,232,203,.86)}
 .partner-logo.partner-taawon{background:#b51f3a}
+
+/* Let the logo blend directly into the header surface. */
+.site-header .brand-mark.has-logo,
+.site-header .brand-mark.has-logo img{background:transparent;border-color:transparent;box-shadow:none}
 
 /* Keep the hero copy immediately below the fixed header. */
 .hero .hero-layout{align-items:start;padding-top:138px}
