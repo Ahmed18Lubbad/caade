@@ -2,7 +2,8 @@ const siteName = 'الجمعية التعاونية للتنمية الزراع�
 const siteDescription = 'الموقع الرسمي للجمعية التعاونية للتنمية الزراعية والبيئة في غزة.';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://caade-gaza-web.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://caade.vercel.app'),
+  verification: { google: 'pRS-SKDGcrIjB7ECG2lW1Y4HmAE5-sLL5bBQUb6s32I' },
   title: { default: siteName, template: `%s | ${siteName}` },
   description: siteDescription,
   applicationName: siteName,
