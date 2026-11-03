@@ -64,6 +64,87 @@ const PROJECT_GALLERY_IMAGES = Object.freeze({
     '/media/projects/arab-fund-relief/relief-family-meal.jpg',
   ],
 });
+const DEFAULT_SDGS_BY_ID = Object.freeze({
+  'strategic-1': [
+    { code: 'SDG 8', name: 'العمل اللائق والنمو الاقتصادي', nameEn: 'Decent Work and Economic Growth' },
+    { code: 'SDG 16', name: 'السلام والعدل والمؤسسات القوية', nameEn: 'Peace, Justice and Strong Institutions' },
+    { code: 'SDG 17', name: 'الشراكات من أجل تحقيق الأهداف', nameEn: 'Partnerships for the Goals' },
+  ],
+  'strategic-2': [
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 12', name: 'الإنتاج والاستهلاك المسؤول', nameEn: 'Responsible Consumption and Production' },
+    { code: 'SDG 13', name: 'الإجراءات المتعلقة بالمناخ', nameEn: 'Climate Action' },
+  ],
+  'strategic-3': [
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 8', name: 'العمل اللائق والنمو الاقتصادي', nameEn: 'Decent Work and Economic Growth' },
+    { code: 'SDG 9', name: 'الصناعة والابتكار والبنية التحتية', nameEn: 'Industry, Innovation and Infrastructure' },
+  ],
+  'strategic-4': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 8', name: 'العمل اللائق والنمو الاقتصادي', nameEn: 'Decent Work and Economic Growth' },
+    { code: 'SDG 10', name: 'الحد من عدم المساواة', nameEn: 'Reduced Inequalities' },
+  ],
+  'strategic-5': [
+    { code: 'SDG 6', name: 'المياه النظيفة والصرف الصحي', nameEn: 'Clean Water and Sanitation' },
+    { code: 'SDG 12', name: 'الإنتاج والاستهلاك المسؤول', nameEn: 'Responsible Consumption and Production' },
+    { code: 'SDG 13', name: 'الإجراءات المتعلقة بالمناخ', nameEn: 'Climate Action' },
+    { code: 'SDG 15', name: 'الحياة على الأرض', nameEn: 'Life on Land' },
+  ],
+  'caade-project-01': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+  ],
+  'caade-project-02': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+  ],
+  'caade-project-03': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 8', name: 'العمل اللائق والنمو الاقتصادي', nameEn: 'Decent Work and Economic Growth' },
+  ],
+  'caade-project-04': [
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 9', name: 'الصناعة والابتكار والبنية التحتية', nameEn: 'Industry, Innovation and Infrastructure' },
+    { code: 'SDG 12', name: 'الإنتاج والاستهلاك المسؤول', nameEn: 'Responsible Consumption and Production' },
+  ],
+  'caade-project-05': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+  ],
+  'caade-project-06': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+  ],
+  'caade-project-07': [
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 8', name: 'العمل اللائق والنمو الاقتصادي', nameEn: 'Decent Work and Economic Growth' },
+    { code: 'SDG 9', name: 'الصناعة والابتكار والبنية التحتية', nameEn: 'Industry, Innovation and Infrastructure' },
+  ],
+  'caade-project-08': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+    { code: 'SDG 10', name: 'الحد من عدم المساواة', nameEn: 'Reduced Inequalities' },
+  ],
+  'caade-project-09': [
+    { code: 'SDG 4', name: 'التعليم الجيد', nameEn: 'Quality Education' },
+    { code: 'SDG 10', name: 'الحد من عدم المساواة', nameEn: 'Reduced Inequalities' },
+    { code: 'SDG 11', name: 'المدن والمجتمعات المستدامة', nameEn: 'Sustainable Cities and Communities' },
+  ],
+  'caade-project-10': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+    { code: 'SDG 10', name: 'الحد من عدم المساواة', nameEn: 'Reduced Inequalities' },
+  ],
+});
 const PROJECT_PHOTO_GALLERY = Object.freeze([
   { image: '/media/projects/arab-fund-relief/relief-distribution-main.jpg', title: 'توزيع المساعدات للأسر في غزة', titleEn: 'Aid distribution to families in Gaza' },
   { image: '/media/projects/arab-fund-relief/relief-distribution-wide.jpg', title: 'مشاهد من مشروع الإغاثة في غزة', titleEn: 'Scenes from the Gaza relief project' },
@@ -145,6 +226,61 @@ function make(tag, className = '', text = '') {
 function localized(item, field) {
   if (currentLanguage === 'en') return item?.[`${field}En`] || item?.[field] || '';
   return item?.[field] || item?.[`${field}En`] || '';
+}
+
+function getSdgs(item = {}) {
+  if (Array.isArray(item.sdgs) && item.sdgs.length) return item.sdgs;
+  const fallback = DEFAULT_SDGS_BY_ID[item.id];
+  return Array.isArray(fallback) ? fallback : [];
+}
+
+function sdgImageUrl(goal) {
+  const numeric = String(goal?.code || goal?.id || '').match(/\d+/)?.[0];
+  const number = numeric ? Number(numeric) : null;
+  if (!number || number < 1 || number > 17) return '';
+  return `https://www.un.org/sustainabledevelopment/ar/wp-content/uploads/sites/2/2018/07/A_SDG-goals_icons-individual-rgb-${number}.png`;
+}
+
+function formatGoal(goal) {
+  if (!goal || typeof goal === 'string') {
+    const text = goal || '';
+    return text.trim();
+  }
+  const code = (goal.code || goal.id || '').trim();
+  const label = currentLanguage === 'en' ? (goal.nameEn || goal.name || code) : (goal.name || goal.nameEn || code);
+  if (!code && !label) return '';
+  if (!code || label === code) return label;
+  return `${code} • ${label}`;
+}
+
+function appendSdgs(container, item) {
+  const goals = getSdgs(item);
+  if (!goals.length) return;
+  const list = make('ul', 'sdg-list');
+  const heading = make('li', 'sdg-heading', currentLanguage === 'en' ? 'Sustainable Development Goals' : 'أهداف التنمية المستدامة');
+  list.append(heading);
+  goals.forEach(goal => {
+    const chip = make('li', 'sdg-badge');
+    const code = (goal.code || goal.id || '').trim();
+    const label = currentLanguage === 'en' ? (goal.nameEn || goal.name || code) : (goal.name || goal.nameEn || code);
+    const icon = make('img', 'sdg-badge-icon');
+    const iconSrc = sdgImageUrl(goal);
+    icon.src = iconSrc || 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+    icon.alt = label || code || 'SDG';
+    icon.loading = 'lazy';
+    icon.decoding = 'async';
+    if (!iconSrc) icon.style.display = 'none';
+    else icon.onerror = () => { icon.style.display = 'none'; };
+    const codeSpan = make('span', 'sdg-badge-code', code || 'SDG');
+    const labelSpan = make('span', 'sdg-badge-label', label || code || '');
+    chip.append(icon, codeSpan, labelSpan);
+    chip.title = currentLanguage === 'en'
+      ? `${goal.nameEn || goal.name || code || ''} (${code || ''})`
+      : `${goal.name || goal.nameEn || code || ''} (${code || ''})`;
+    chip.setAttribute('aria-label', chip.title);
+    list.append(chip);
+  });
+  container.append(list);
 }
 
 function imageAlt(item, detailField) {
@@ -252,8 +388,7 @@ function normalizeLocalLinks(root = document) {
 
 function updateOrganizationName() {
   document.querySelectorAll('[data-organization-name]').forEach(node => { node.textContent = siteData.name; });
-  const watermarkSrc = String(siteData.profile.logo || '').trim();
-  document.documentElement.style.setProperty('--site-watermark', watermarkSrc.startsWith('/media/') ? `url("${watermarkSrc}")` : 'none');
+  document.documentElement.style.removeProperty('--site-watermark');
   const favicon = $('#siteFavicon');
   const logoSrc = safeImage(siteData.profile.logo);
   if (favicon) {
@@ -287,6 +422,24 @@ function fillText(id, value, placeholder) {
   if (node) node.textContent = value || placeholder;
 }
 
+function renderAboutText() {
+  const node = document.getElementById('aboutCopy');
+  if (!node) return;
+  const raw = localized(siteData.profile, 'about') || '';
+  const sections = raw.split(/\n\s*\n(?=\d+\.\s)/).filter(Boolean);
+  if (!sections.length) {
+    fillText('aboutCopy', raw, currentLanguage === 'en' ? 'Add the association profile in data/en.json.' : 'أضف نبذة الجمعية في data/ar.json.');
+    return;
+  }
+  node.innerHTML = sections.map((section, index) => {
+    const lines = section.split(/\n+/).map(line => line.trim()).filter(Boolean);
+    const heading = lines.shift() || '';
+    const paragraphs = lines.map(line => `<p>${line}</p>`).join('');
+    const className = index === 1 ? 'about-story-block about-origin-block' : 'about-story-block';
+    return `<div class="${className}"><strong>${heading}</strong>${paragraphs}</div>`;
+  }).join('');
+}
+
 function renderPrograms() {
   const section = document.querySelector('#programs');
   const grid = $('#programGrid');
@@ -303,6 +456,7 @@ function renderPrograms() {
     card.append(make('span', 'program-number', String(index + 1).padStart(2, '0')));
     card.append(make('h3', '', localized(item, 'title')));
     card.append(make('p', '', localized(item, 'description')));
+    appendSdgs(card, item);
     const link = make('a', '', '↗');
     link.href = '#contact';
     link.setAttribute('aria-label', `${currentLanguage === 'en' ? 'Ask about' : 'استفسر عن'} ${localized(item, 'title')}`);
@@ -483,6 +637,7 @@ function renderProjects() {
     card.append(make('h3', '', localized(item, 'title')));
     if (item.date) card.append(make('time', '', item.date));
     if (localized(item, 'description')) card.append(make('p', '', localized(item, 'description')));
+    appendSdgs(card, item);
     const detail = make('a', 'detail-link', currentLanguage === 'en' ? 'Project details →' : 'تفاصيل المشروع ←');
     detail.href = '/projects/' + encodeURIComponent(item.id);
     card.append(detail);
@@ -798,7 +953,7 @@ function renderSite() {
   fillText('heroDescription', localized(siteData.profile, 'heroIntro'), '');
   const heroAboutLink = $('#heroAboutLink');
   if (heroAboutLink) heroAboutLink.textContent = currentLanguage === 'en' ? 'Learn more about us →' : 'تعرّف على المزيد ←';
-  fillText('aboutCopy', localized(siteData.profile, 'about'), currentLanguage === 'en' ? 'Add the association profile in data/en.json.' : 'أضف نبذة الجمعية في data/ar.json.');
+  renderAboutText();
   fillText('visionCopy', localized(siteData.profile, 'vision'), currentLanguage === 'en' ? 'Add the vision in data/en.json.' : 'أضف الرؤية في data/ar.json.');
   fillText('missionCopy', localized(siteData.profile, 'mission'), currentLanguage === 'en' ? 'Add the mission in data/en.json.' : 'أضف الرسالة في data/ar.json.');
   fillText('valuesCopy', localized(siteData.profile, 'values'), currentLanguage === 'en' ? 'Add the values in data/en.json.' : 'أضف القيم في data/ar.json.');

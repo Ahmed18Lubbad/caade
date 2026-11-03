@@ -27,6 +27,45 @@ function getText(item, key) {
   return language === 'en' ? item[`${key}En`] || item[key] || '' : item[key] || item[`${key}En`] || '';
 }
 
+function getSdgGoals(item = []) {
+  if (Array.isArray(item.sdgs) && item.sdgs.length) return item.sdgs;
+  return [];
+}
+
+function sgdIconUrl(goal) {
+  const numeric = String(goal?.code || goal?.id || '').match(/\d+/)?.[0];
+  const number = numeric ? Number(numeric) : null;
+  if (!number || number < 1 || number > 17) return '';
+  return `https://www.un.org/sustainabledevelopment/ar/wp-content/uploads/sites/2/2018/07/A_SDG-goals_icons-individual-rgb-${number}.png`;
+}
+
+function renderSdgSection(item) {
+  if (collection === 'news') return;
+  const goals = getSdgGoals(item);
+  if (!goals.length) return;
+  const block = element('div', 'detail-sdg-block');
+  const heading = element('h2', 'detail-sdg-title', language === 'en' ? 'Sustainable Development Goals' : 'أهداف التنمية المستدامة');
+  const list = element('ul', 'detail-sdg-list');
+  goals.forEach(goal => {
+    const chip = element('li', 'detail-sdg-item');
+    const code = (goal.code || goal.id || '').trim();
+    const label = language === 'en' ? (goal.nameEn || goal.name || code) : (goal.name || goal.nameEn || code);
+    const icon = element('img', 'detail-sdg-icon');
+    const iconSrc = sgdIconUrl(goal);
+    icon.src = iconSrc;
+    icon.alt = label || code || 'SDG';
+    icon.loading = 'lazy';
+    icon.decoding = 'async';
+    icon.onerror = () => { icon.style.display = 'none'; };
+    const codeNode = element('span', 'detail-sdg-code', code || 'SDG');
+    const labelNode = element('span', 'detail-sdg-label', label || code || '');
+    chip.append(icon, codeNode, labelNode);
+    list.append(chip);
+  });
+  block.append(heading, list);
+  return block;
+}
+
 function renderDetail(item, profile = {}) {
   const isNews = collection === 'news';
   const title = getText(item, 'title');
@@ -112,6 +151,8 @@ function renderDetail(item, profile = {}) {
     body.split(/\r?\n/).filter(Boolean).forEach(paragraph => copy.append(element('p', '', paragraph)));
     article.append(copy);
   }
+  const sdgSection = renderSdgSection(item);
+  if (sdgSection) article.append(sdgSection);
   if (item.url && /^https?:\/\//i.test(item.url)) {
     const source = element('a', 'btn button button-outline detail-source', language === 'en' ? 'Visit the external source ↗' : 'زيارة الرابط الخارجي ↗');
     source.href = item.url;

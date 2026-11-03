@@ -56,6 +56,45 @@ function openGalleryImage(source, alt, items = []) {
   showGalleryItem(galleryIndex);
   if(!galleryDialog.open)galleryDialog.showModal();
 }
+function getSdgGoals(item = []) {
+  if (Array.isArray(item.sdgs) && item.sdgs.length) return item.sdgs;
+  return [];
+}
+
+function sdgIconUrl(goal) {
+  const numeric = String(goal?.code || goal?.id || '').match(/\d+/)?.[0];
+  const number = numeric ? Number(numeric) : null;
+  if (!number || number < 1 || number > 17) return '';
+  return `https://www.un.org/sustainabledevelopment/ar/wp-content/uploads/sites/2/2018/07/A_SDG-goals_icons-individual-rgb-${number}.png`;
+}
+
+function renderSdgBlock(item) {
+  const goals = getSdgGoals(item);
+  if (!goals.length) return null;
+  const block = node('div', 'subpage-sdg-block');
+  block.append(node('h3', 'subpage-sdg-title', text('أهداف التنمية المستدامة', 'Sustainable Development Goals')));
+  const list = node('div', 'subpage-sdg-list');
+  goals.forEach(goal => {
+    const itemNode = node('div', 'subpage-sdg-item');
+    const code = (goal.code || goal.id || '').trim();
+    const label = language === 'en' ? (goal.nameEn || goal.name || code) : (goal.name || goal.nameEn || code);
+    const icon = node('img', 'subpage-sdg-icon');
+    const iconSrc = sdgIconUrl(goal);
+    icon.src = iconSrc || 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+    icon.alt = label || code || 'SDG';
+    icon.loading = 'lazy';
+    icon.decoding = 'async';
+    if (!iconSrc) icon.style.display = 'none';
+    else icon.onerror = () => { icon.style.display = 'none'; };
+    const meta = node('div', 'subpage-sdg-meta');
+    meta.append(node('span', 'subpage-sdg-code', code || 'SDG'), node('span', 'subpage-sdg-label', label || code || ''));
+    itemNode.append(icon, meta);
+    list.append(itemNode);
+  });
+  block.append(list);
+  return block;
+}
+
 function section(title) { const el=node('section','subpage-section'); el.append(node('h2','',title)); $('#pageContent').append(el); return el; }
 function renderAbout() {
   const p=data.profile, intro=section(text('نبذة الجمعية','About the Association'));
@@ -76,7 +115,7 @@ function renderBoard() {
 }
 function renderPrograms() {
   const s=section(text('البرامج الاستراتيجية','Strategic programmes'));const grid=node('div','subpage-cards');s.append(grid);
-  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');card.append(node('span','program-number',`${String(i+1).padStart(2,'0')} / ${text('برنامج استراتيجي','STRATEGIC PROGRAMME')}`),node('h2','',get(program,'title')),node('p','',get(program,'description')));grid.append(card);});
+  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');card.append(node('span','program-number',`${String(i+1).padStart(2,'0')} / ${text('برنامج استراتيجي','STRATEGIC PROGRAMME')}`),node('h2','',get(program,'title')),node('p','',get(program,'description')));const sdgBlock=renderSdgBlock(program); if (sdgBlock) card.append(sdgBlock); grid.append(card);});
 }
 function renderProjects() {
   const s=section(text('المشاريع والتدخلات','Projects and interventions'));const grid=node('div','subpage-projects');s.append(grid);
@@ -97,10 +136,21 @@ function renderProjects() {
       image.loading='lazy';
       image.decoding='async';
       card.append(image);
+    } else {
+      const artwork=node('div','subpage-project-art subpage-project-art--placeholder');
+      const image=node('img','subpage-project-logo');
+      const logo=String(data.profile?.logo||'/media/caade-gaza-logo.svg').trim();
+      image.src=logo.startsWith('/media/')||/^https:\/\//i.test(logo)?logo:'/media/caade-gaza-logo.svg';
+      image.alt=text('شعار الجمعية','Association logo');
+      image.loading='lazy';
+      image.decoding='async';
+      artwork.append(image);
+      card.append(artwork);
     }
     card.append(node('span','subpage-pill',get(project,'category')||text('مشروع','Project')));
     if(year) card.append(node('time','',year));
     card.append(node('h2','',get(project,'title')),node('p','',get(project,'description')));
+    const sdgBlock=renderSdgBlock(project); if (sdgBlock) card.append(sdgBlock);
     const link=node('a','detail-link',text('تفاصيل المشروع ←','Project details →'));link.href=`/projects/${encodeURIComponent(project.id)}`;card.append(link);grid.append(card);
   });
 }
