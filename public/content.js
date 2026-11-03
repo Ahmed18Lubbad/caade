@@ -1,11 +1,12 @@
 // Loads the two editable language files and restores paired fields used by the pages.
 async function loadSiteContent() {
-  const [arResponse, enResponse] = await Promise.all([
+  const [arResponse, enResponse, fieldGalleryResponse] = await Promise.all([
     fetch('/data/ar.json'),
     fetch('/data/en.json'),
+    fetch('/data/field-gallery.json'),
   ]);
-  if (!arResponse.ok || !enResponse.ok) throw new Error('Unable to load the language content files.');
-  const [ar, en] = await Promise.all([arResponse.json(), enResponse.json()]);
+  if (!arResponse.ok || !enResponse.ok || !fieldGalleryResponse.ok) throw new Error('Unable to load the language content files.');
+  const [ar, en, fieldGallery] = await Promise.all([arResponse.json(), enResponse.json(), fieldGalleryResponse.json()]);
 
   function combine(arValue, enValue) {
     if (arValue === undefined) return enValue;
@@ -50,5 +51,8 @@ async function loadSiteContent() {
     return arValue === undefined ? enValue : arValue;
   }
 
-  return combine(ar, en);
+  const combined = combine(ar, en);
+  combined.gallery = [...(combined.gallery || []), ...fieldGallery];
+  combined.heroImages = [...(combined.heroImages || []), ...fieldGallery.filter(item => item.featured)];
+  return combined;
 }
