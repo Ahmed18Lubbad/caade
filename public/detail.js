@@ -83,6 +83,17 @@ function renderDetail(item, profile = {}) {
   }
   const headerLabels={home:language==='en'?'Home':'',about:language==='en'?'About':'',programs:language==='en'?'Programmes':'',projects:language==='en'?'Projects':'',news:language==='en'?'News':'',gallery:language==='en'?'Photo gallery':'',support:language==='en'?'Support':'',contact:language==='en'?'Contact':''};
   document.querySelectorAll('.detail-header [data-nav]').forEach(link=>{const key=link.dataset.nav;if(language==='en')link.textContent=headerLabels[key]||'';if(key==='home')link.href=`/${language}/`;else if(['about','programs','projects','news','gallery','support','contact'].includes(key))link.href=`/${language}/subpage/?page=${key}`;});
+  if (language === 'en') {
+    const utility = document.querySelectorAll('.detail-header .header-utility-links a');
+    if (utility[0]) { utility[0].textContent = 'News'; utility[0].href = '/en/subpage/?page=news'; }
+    if (utility[1]) { utility[1].textContent = 'Contact us'; utility[1].href = '/en/subpage/?page=contact'; }
+    const detailNav = document.querySelector('.detail-header .detail-nav');
+    if (detailNav) detailNav.setAttribute('aria-label', 'Main navigation');
+    const brandName = document.querySelector('.detail-header [data-detail-name]');
+    if (brandName) brandName.textContent = 'Agricultural and Environmental Development Cooperative Association – Gaza';
+    const backTop = document.querySelector('.footer-bottom a');
+    if (backTop) backTop.textContent = 'Back to top ↑';
+  }
   const menuButton=document.querySelector('#detailMenuToggle'),mainNav=document.querySelector('#detailNav');
   const closeMenu=()=>{menuButton?.setAttribute('aria-expanded','false');menuButton?.setAttribute('aria-label',language==='en'?'Open menu':'فتح القائمة');mainNav?.classList.remove('is-open');document.body.classList.remove('menu-open');};
   menuButton?.setAttribute('aria-label',language==='en'?'Open menu':'فتح القائمة');

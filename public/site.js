@@ -324,6 +324,7 @@ function applyLanguage(root = document.body) {
   const isEnglish = currentLanguage === 'en';
   document.documentElement.lang = isEnglish ? 'en' : 'ar';
   document.documentElement.dir = isEnglish ? 'ltr' : 'rtl';
+  document.body.classList.toggle('english-layout', isEnglish);
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   let node;
   while ((node = walker.nextNode())) {
@@ -427,6 +428,10 @@ function renderAboutText() {
   if (!node) return;
   const raw = localized(siteData.profile, 'about') || '';
   const sections = raw.split(/\n\s*\n(?=\d+\.\s)/).filter(Boolean);
+  const origin = localized(siteData.profile, 'origin');
+  if (origin && sections[1]) {
+    sections[1] = `2. ${currentLanguage === 'en' ? 'Establishment and origins' : 'النشأة والتأسيس'}\n\n${origin}`;
+  }
   if (!sections.length) {
     fillText('aboutCopy', raw, currentLanguage === 'en' ? 'Add the association profile in data/en.json.' : 'أضف نبذة الجمعية في data/ar.json.');
     return;
@@ -450,7 +455,8 @@ function renderPrograms() {
   }
   section.hidden = false;
   const track = make('div', 'program-track');
-  siteData.programs.slice(0, 4).forEach((item, index) => {
+  const programItems = currentLanguage === 'en' ? siteData.programs : siteData.programs.slice(0, 4);
+  programItems.forEach((item, index) => {
     const card = make('article', 'program-card');
     card.append(make('span', 'program-icon', item.icon || '✳'));
     card.append(make('span', 'program-number', String(index + 1).padStart(2, '0')));
@@ -609,7 +615,8 @@ function renderProjects() {
   if (!filtered.length) {
     grid.append(make('p', 'empty-content', currentLanguage === 'en' ? 'No projects match the selected filters.' : 'لا توجد نتائج مطابقة للفلاتر.'));
   }
-  filtered.slice(0, 4).forEach(item => {
+  const projectItems = currentLanguage === 'en' ? filtered : filtered.slice(0, 4);
+  projectItems.forEach(item => {
     const card = make('article', 'project-card');
     const imageSrc = safeImage(item.image);
     const gallerySources = [...(PROJECT_GALLERY_IMAGES[item.id] || []), ...(item.gallery || '').split(/\r?\n/)]
@@ -654,7 +661,7 @@ function renderProjects() {
   grid.append(track);
   if (track.children.length) duplicateLoopCards(track);
   const count = $('#projectCount');
-  if (count) count.textContent = currentLanguage === 'en' ? Math.min(filtered.length, 4) + ' of ' + filtered.length + ' projects' : 'عرض ' + Math.min(filtered.length, 4) + ' من ' + filtered.length + ' مشروع';
+  if (count) count.textContent = currentLanguage === 'en' ? projectItems.length + ' of ' + filtered.length + ' projects' : 'عرض ' + Math.min(filtered.length, 4) + ' من ' + filtered.length + ' مشروع';
   more.hidden = false;
 }
 function renderStories() {
@@ -691,7 +698,8 @@ function renderGallery() {
   }
   section.hidden = false;
   const track = make('div', 'gallery-track');
-  items.slice(0, 4).forEach(item => {
+  const galleryItems = currentLanguage === 'en' ? items : items.slice(0, 4);
+  galleryItems.forEach(item => {
     const tile = make('figure', 'gallery-tile');
     const image = make('img');
     const source = safeImage(item.image);
@@ -706,7 +714,10 @@ function renderGallery() {
     CAADEImageQuality.validate(image, source, 'gallery', () => image.remove());
   });
   grid.append(track);
-  if (track.children.length) duplicateLoopCards(track);
+  if (track.children.length) {
+    duplicateLoopCards(track);
+    track.style.setProperty('--carousel-duration', `${Math.max(90, galleryItems.length * 18)}s`);
+  }
   more.hidden = false;
 }
 function renderPartners() {
@@ -928,6 +939,47 @@ function addSectionPageLinks() {
   });
 }
 
+function applyEnglishHomepageLabels() {
+  if (currentLanguage !== 'en') return;
+  const set = (selector, value) => { const element = document.querySelector(selector); if (element) element.textContent = value; };
+  const setAll = (selector, values) => document.querySelectorAll(selector).forEach((element, index) => { if (values[index] !== undefined) element.textContent = values[index]; });
+  set('.skip-link', 'Skip to content');
+  set('.header-utility-links a[data-nav="news"]', 'News');
+  set('.header-utility-links a[data-nav="contact"]', 'Contact us');
+  set('.main-nav > a[href="#home"]', 'Home');
+  set('.main-nav .nav-dropdown:nth-of-type(1) summary', 'About us');
+  setAll('.main-nav .nav-dropdown:nth-of-type(1) .dropdown-panel a', ['About the Association', 'Vision and mission']);
+  set('.main-nav > a[href="/#programs"]', 'Programmes');
+  set('.main-nav > a[href="/#projects"]', 'Projects');
+  set('.main-nav .nav-dropdown:nth-of-type(2) summary', 'News & media');
+  setAll('.main-nav .nav-dropdown:nth-of-type(2) .dropdown-panel a', ['News', 'Impact stories', 'Photo gallery']);
+  set('.main-nav > a[href="/partners"]', 'Partners');
+  set('.nav-cta', 'Become a partner ↗');
+  set('.hero-landscape', '');
+  set('.feature-kicker', 'From the field');
+  set('.feature-card strong', 'Association news and initiatives');
+  document.querySelector('.feature-card a')?.setAttribute('aria-label', 'Go to news');
+  set('.visual-note', 'We plant today, to grow together');
+  set('.impact-heading .eyebrow', 'Our impact in numbers');
+  set('.impact-heading h2', 'A journey of development');
+  const impactTitle = document.querySelector('.impact-heading h2'); if (impactTitle) impactTitle.innerHTML = 'A journey of development <em>creating lasting impact</em>';
+  set('.impact-heading > p:last-child', 'A snapshot of the Association’s journey, projects, and service to the community.');
+  setAll('.impact-label', ['years of work', 'projects and initiatives', 'families reached through projects']);
+  set('.program-section .eyebrow', 'Areas of work'); set('.program-section h2', 'Strategic programmes'); set('.program-section .section-summary', 'This section presents the Association’s approved programmes and areas of work.');
+  set('.news-section .eyebrow', 'Latest updates'); set('.news-section h2', 'News and events');
+  setAll('#newsToolbar label span', ['Category', 'Date order', 'Search']); set('#newsCategory option', 'All categories'); set('#newsOrder option[value="newest"]', 'Newest first'); set('#newsOrder option[value="oldest"]', 'Oldest first'); document.querySelector('#newsSearch')?.setAttribute('placeholder', 'Search news'); set('#newsMore', 'Show more');
+  set('.projects-section .eyebrow', 'Our projects'); set('.projects-section h2', 'Featured projects'); set('.projects-section .section-summary', 'Projects and activities added by the Association will appear here.'); set('#projectMore', 'Show more');
+  set('.support-section .eyebrow', 'Support us'); set('.support-section h2', 'To strengthen agriculture'); const supportTitle = document.querySelector('.support-section h2'); if (supportTitle) supportTitle.innerHTML = 'To strengthen agriculture<br><em>and sustainable development</em>'; set('.support-section .section-summary', 'Your support enables the Association to carry out more agricultural and environmental projects and improve the lives of families and communities.');
+  setAll('.stories-heading .eyebrow, .stories-heading h2, .stories-heading > p, .stories-heading a, .story-placeholder p', ['Stories from the field', 'Impact stories', 'Told by the people behind them', 'Add stories and testimonials with the authors’ consent and approved wording.', 'Share a story', 'No stories have been published yet.']);
+  set('.gallery-section .eyebrow', 'Moments from the field'); set('.gallery-section h2', 'Photo gallery'); set('.gallery-section .text-link', 'Explore the gallery ←'); set('#galleryMore', 'View more'); set('.gallery-section .section-footnote', 'Photos documenting the Association’s activities and projects.');
+  set('.partners-section .eyebrow', 'Creating impact together'); set('.partners-section h2', 'Partners and supporters'); set('.partners-section .section-summary', 'Partner names and logos added through the content management panel will appear here.');
+  document.querySelector('.partner-slots')?.setAttribute('aria-label', 'Association partners');
+  document.querySelector('.footer-sitemap nav')?.setAttribute('aria-label', 'Site map');
+  set('.footer-identity > p', 'Working together for sustainable agricultural and environmental development in Gaza.');
+  setAll('.footer-sitemap nav a', ['Home', 'About us', 'Programmes', 'Projects', 'News', 'Impact stories', 'Photo gallery', 'Partners', 'Support us', 'Contact us']);
+  set('.footer-contact .eyebrow', 'Contact us'); set('#footerContactTitle', 'Let’s work together'); set('.footer-contact-heading > p', 'We welcome your questions, suggestions, and partnership requests.'); set('.location-card h3', 'Location and office hours'); set('#mapLink', 'Open location in maps ↗'); set('.footer-bottom a', 'Back to top ↑');
+}
+
 function renderSite() {
   updateOrganizationName();
   fillText('heroTitle', currentLanguage === 'en' ? siteData.profile.nameEn || siteData.nameEn || siteData.name : siteData.name, siteData.name);
@@ -969,6 +1021,7 @@ function renderSite() {
   }
   normalizeLocalLinks();
   applyLanguage();
+  applyEnglishHomepageLabels();
 }
 
 const heroSection = $('.hero');

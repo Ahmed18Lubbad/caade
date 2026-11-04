@@ -20,6 +20,20 @@ const FEATURED_GALLERY_IMAGES = [
   {image:'/media/projects/association-activities/activity-36.jpg',title:'من أنشطة التصنيع الزراعي',titleEn:'Agricultural processing activities'},
   {image:'/media/projects/association-activities/activity-37.jpg',title:'معدات ومخرجات المشروع الزراعي',titleEn:'Agricultural project equipment and outputs'},
 ];
+// Lead with the largest, clearest field photographs in the decorative gallery layout.
+const GALLERY_QUALITY_PRIORITY = new Map([
+  '/media/field-2026/photo-001.jpg',
+  '/media/field-2026/photo-005.jpg',
+  '/media/field-2026/photo-004.jpg',
+  '/media/field-2026/photo-002.jpg',
+  '/media/field-2026/photo-003.jpg',
+  '/media/field-2026/photo-016.jpg',
+  '/media/field-2026/photo-090.jpeg',
+  '/media/field-2026/photo-013.jpg',
+  '/media/field-2026/photo-014.jpg',
+  '/media/field-2026/photo-015.jpg',
+  '/media/field-2026/photo-008.jpg',
+].map((image, index) => [image, index]));
 const $ = (selector, root=document) => root.querySelector(selector);
 function node(tag, className, value) { const el=document.createElement(tag); if(className) el.className=className; if(value!=null) el.textContent=value; return el; }
 function text(ar,en) { return language==='en' ? en : ar; }
@@ -97,14 +111,29 @@ function renderSdgBlock(item) {
 
 function section(title) { const el=node('section','subpage-section'); el.append(node('h2','',title)); $('#pageContent').append(el); return el; }
 function renderAbout() {
-  const p=data.profile, intro=section(text('نبذة الجمعية','About the Association'));
-  intro.append(node('div','subpage-copy',get(p,'about')));
-  const facts=section(text('بيانات أساسية','Key facts')); const grid=node('div','subpage-facts'); facts.append(grid);
-  (data.institutionFacts||[]).forEach(fact=>{const card=node('article','subpage-fact');card.append(node('span','',get(fact,'label')),node('strong','',get(fact,'value')));grid.append(card);});
-  const identity=section(text('الرؤية والرسالة','Vision and mission')); const cards=node('div','subpage-cards'); identity.append(cards);
-  [[text('رؤيتنا','Our vision'),get(p,'vision')],[text('رسالتنا','Our mission'),get(p,'mission')]].forEach(([title,copy])=>{const c=node('article','subpage-card');c.append(node('h2','',title),node('p','',copy));cards.append(c);});
-  const values=section(text('قيم الجمعية','Association values')); const list=node('ul','subpage-values'); values.append(list);
-  String(get(p,'values')).split(/[؛;،,]/).map(v=>v.trim()).filter(Boolean).slice(0,4).forEach(value=>list.append(node('li','',value)));
+  const p=data.profile||{};
+  const aboutSections=String(get(p,'about')||'').split(/\n\s*\n(?=\d+\.\s)/).filter(Boolean);
+  const aboutText=aboutSections[0]?.split(/\n+/).slice(1).join('\n\n').trim()||get(p,'about');
+  const originText=get(p,'origin')||aboutSections[1]?.split(/\n+/).slice(1).join('\n\n').trim();
+  const profileSection=section(text('معلومات الجمعية','Association profile'));
+  const grid=node('div','feature-story-grid subpage-feature-story-grid'); profileSection.append(grid);
+  const cards=[
+    [text('من نحن','About us'),aboutText,'↗'],
+    [text('النشأة والتأسيس','Establishment and origins'),originText,'✳'],
+    [text('رسالتنا','Our mission'),get(p,'mission'),'✦'],
+    [text('قيمنا','Our values'),get(p,'values'),'⌖'],
+    [text('الرؤيا','Our vision'),get(p,'vision'),'↗'],
+  ];
+  cards.forEach(([title,copy],index)=>{
+    const card=node('article','feature-story-card subpage-feature-story-card');
+    card.dataset.index=String(index+1).padStart(2,'0');
+    const number=node('span','feature-story-index',String(index+1).padStart(2,'0')); number.setAttribute('aria-hidden','true');
+    const body=node('div','feature-story-copy'); body.append(node('h3','',title));
+    String(copy||'').split(/\n+/).map(value=>value.trim()).filter(Boolean).forEach(value=>body.append(node('p','',value)));
+    card.append(number,body); grid.append(card);
+  });
+  const facts=section(text('بيانات أساسية','Key facts')); const factsGrid=node('div','subpage-facts'); facts.append(factsGrid);
+  (data.institutionFacts||[]).forEach(fact=>{const card=node('article','subpage-fact');card.append(node('span','',get(fact,'label')),node('strong','',get(fact,'value')));factsGrid.append(card);});
   renderBoard();
 }
 function renderBoard() {
@@ -207,6 +236,7 @@ function galleryCategory(item) {
   if (/environment|soil|water|بيئ|تربة|مياه/.test(source)) return 'environment';
   return 'projects';
 }
+function galleryQualityRank(item) { return GALLERY_QUALITY_PRIORITY.get(item.image) ?? GALLERY_QUALITY_PRIORITY.size; }
 
 function enhanceGallery(items, section, grid) {
   if (!items.length) return;
@@ -268,7 +298,7 @@ function renderCollection(collection, kind) {
   const titles={news:text('آخر الأخبار والأنشطة','Latest news and activities'),stories:text('حكايات من الميدان','Stories from the field'),gallery:text('صور توثق أنشطة الجمعية ومشاريعها','Photos documenting the Association’s work')};
   const s=section(titles[kind]), grid=node('div',kind==='gallery'?'subpage-gallery':'subpage-cards');s.append(grid);
   const rawItems=kind==='gallery'?[...(data[collection]||[]),...FEATURED_GALLERY_IMAGES]:data[collection]||[];
-  const items=kind==='gallery'?rawItems.filter((item,index,all)=>item.image&&all.findIndex(candidate=>candidate.image===item.image)===index):rawItems;
+  const items=kind==='gallery'?rawItems.filter((item,index,all)=>item.image&&all.findIndex(candidate=>candidate.image===item.image)===index).sort((a,b)=>galleryQualityRank(a)-galleryQualityRank(b)):rawItems;
   (kind==='gallery'?items:items.slice(0,4)).forEach((item,index)=>{
     if(kind==='gallery'){
       const figure=node('figure','subpage-gallery-item'),open=node('button','subpage-gallery-open'),image=node('img','');
@@ -323,6 +353,16 @@ function render() {
   $('#subpageLogo').src=logoSrc;
   const favicon=$('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}
   document.documentElement.lang=language;document.documentElement.dir=language==='en'?'ltr':'rtl';
+  if (language === 'en') {
+    const skip = document.querySelector('.skip-link'); if (skip) skip.textContent = 'Skip to content';
+    const utility = document.querySelectorAll('.header-utility-links a');
+    if (utility[0]) { utility[0].textContent = 'News'; utility[0].href = '/en/subpage/?page=news'; }
+    if (utility[1]) { utility[1].textContent = 'Contact us'; utility[1].href = '/en/subpage/?page=contact'; }
+    const brand = document.querySelector('.subpage-header .brand'); if (brand) brand.setAttribute('aria-label', 'Homepage');
+    const nav = document.querySelector('#subpageNav'); if (nav) nav.setAttribute('aria-label', 'Main navigation');
+    const menu = document.querySelector('#subpageMenuToggle'); if (menu) menu.setAttribute('aria-label', 'Open menu');
+    const notice = document.querySelector('.subpage-nav-dropdown summary'); if (notice) notice.textContent = 'News & media';
+  }
   // Keep the document title in the active interface language.
   document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
   document.title=`${page.title[language==='en'?1:0]} – ${get(p,'nameEn')||data.name}`;
@@ -330,10 +370,17 @@ function render() {
   $('#pageTitle').textContent=page.title[language==='en'?1:0];$('#pageIntro').textContent=page.intro[language==='en'?1:0];
   $('#subpageLogo').alt=text('شعار الجمعية التعاونية للتنمية الزراعية والبيئة – غزة','Logo of the Cooperative Association for Agricultural Development and Environment – Gaza');
   document.querySelectorAll('[data-name]').forEach(el=>el.textContent=language==='en'?(p.nameEn||data.name):data.name);
+  if(language==='en'){
+    const footerLabels=['Home','About us','Programmes','Projects','News','Impact stories','Photo gallery','Partners','Support us','Contact us'];
+    document.querySelectorAll('.footer-sitemap nav a').forEach((el,index)=>{if(footerLabels[index])el.textContent=footerLabels[index];});
+    const footerTagline=$('#footerTagline');if(footerTagline)footerTagline.textContent='Working together for sustainable agricultural and environmental development in Gaza.';
+    const backToTop=document.querySelector('.footer-bottom a');if(backToTop)backToTop.textContent='Back to top ↑';
+  }
   document.querySelectorAll('[data-home-label]').forEach(el=>el.textContent=text('الرئيسية','Home'));
   const labels={home:text('الرئيسية','Home'),about:text('من نحن','About'),programs:text('البرامج','Programmes'),projects:text('المشاريع','Projects'),partners:text('الشركاء','Partners'),news:text('الأخبار','News'),stories:text('قصص الأثر','Impact stories'),gallery:text('الصور','Photos'),support:text('ادعمنا','Support'),contact:text('تواصل معنا','Contact')};
   document.querySelectorAll('[data-nav]').forEach(el=>{const k=el.dataset.nav;el.textContent=labels[k];if(k===pageKey)el.setAttribute('aria-current','page');});
   $('#languageToggle').textContent=language==='en'?'العربية':'English';$('#languageToggle').setAttribute('aria-label',language==='en'?'Switch to Arabic':'Switch to English');
+  $('#pageContent').classList.toggle('english-layout', language === 'en');
   $('#pageContent').replaceChildren();page.render();
   document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
 }

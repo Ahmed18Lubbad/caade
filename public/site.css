@@ -169,6 +169,32 @@ html[dir="ltr"] .identity-panel-header h3{letter-spacing:.08em}
 .feature-story-card:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(19,41,31,.08)}
 .feature-story-index{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#edf4ea;color:var(--deep);font-size:12px;font-weight:800;letter-spacing:.08em;box-shadow:inset 0 0 0 1px rgba(23,61,44,.06)}
 .feature-story-copy{min-width:0}
+.subpage-content.english-layout .feature-story-grid{direction:rtl}
+.subpage-content.english-layout .feature-story-card{direction:ltr}
+body.english-layout .program-grid,
+body.english-layout .impact-grid,
+body.english-layout .editorial-grid,
+body.english-layout .project-placeholder-grid,
+body.english-layout .gallery-grid,
+body.english-layout .support-grid,
+body.english-layout .partner-slots{direction:rtl}
+body.english-layout .program-grid > *,
+body.english-layout .impact-grid > *,
+body.english-layout .editorial-grid > *,
+body.english-layout .project-placeholder-grid > *,
+body.english-layout .gallery-grid > *,
+body.english-layout .support-grid > *,
+body.english-layout .partner-slots > *{direction:ltr}
+body.english-layout .hero-layout,
+body.english-layout .impact-inner,
+body.english-layout .feature-story-grid,
+body.english-layout .stories-layout,
+body.english-layout .partners-layout{direction:rtl}
+body.english-layout .hero-layout > *,
+body.english-layout .impact-inner > *,
+body.english-layout .feature-story-grid > *,
+body.english-layout .stories-layout > *,
+body.english-layout .partners-layout > *{direction:ltr}
 .feature-story-card h3{margin:0 0 10px;color:var(--deep);font-size:1.1rem;line-height:1.6;font-weight:700}
 .feature-story-card p{margin:0;color:#4b5c55;font-size:.92rem;line-height:1.9;word-break:break-word;overflow-wrap:anywhere;white-space:normal}
 .feature-story-card p + p{margin-top:12px}
@@ -1035,21 +1061,25 @@ img,video,iframe{max-width:100%}
 
 /* Homepage project and programme carousels */
 #programGrid,.project-placeholder-grid,#galleryGrid{display:block;overflow:hidden;}
-.program-track,.project-track,.gallery-track{display:flex;width:max-content;gap:var(--layout-gap,18px);animation:homepage-carousel 42s linear infinite;will-change:transform}
+.program-track,.project-track,.gallery-track{display:flex;width:max-content;gap:0;animation:homepage-carousel var(--carousel-duration,90s) linear infinite;animation-play-state:running;will-change:transform}
+.program-track>*,.project-track>*,.gallery-track>*{margin-inline-end:var(--layout-gap,18px)}
 .program-card,.project-placeholder-grid .project-card,.gallery-tile{flex:0 0 calc((min(100vw - 56px, 1180px) - 2 * var(--layout-gap, 18px))/3);width:calc((min(100vw - 56px, 1180px) - 2 * var(--layout-gap, 18px))/3)}
 #programGrid:hover .program-track,#programGrid:focus-within .program-track,.project-placeholder-grid:hover .project-track,.project-placeholder-grid:focus-within .project-track,#galleryGrid:hover .gallery-track,#galleryGrid:focus-within .gallery-track{animation-play-state:paused}
 @keyframes homepage-carousel{from{transform:translateX(0)}to{transform:translateX(50%)}}
 html[dir="ltr"] .program-track,html[dir="ltr"] .project-track,html[dir="ltr"] .gallery-track{animation-name:homepage-carousel-ltr}
 @keyframes homepage-carousel-ltr{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+body.english-layout .program-track,body.english-layout .project-track,body.english-layout .gallery-track{direction:rtl;flex-direction:row;animation-name:homepage-carousel}
+body.english-layout .program-track > *,body.english-layout .project-track > *,body.english-layout .gallery-track > *{direction:ltr}
 @media(max-width:800px){.program-card,.project-placeholder-grid .project-card,.gallery-tile{flex-basis:calc((min(100vw - 40px,680px) - var(--layout-gap, 18px))/2);width:calc((min(100vw - 40px,680px) - var(--layout-gap, 18px))/2)}}
 @media(max-width:560px){.program-card,.project-placeholder-grid .project-card,.gallery-tile{flex-basis:min(100vw - 32px,680px);width:min(100vw - 32px,680px)}}
 
 /* Use a consistent image frame in the homepage photo gallery. */
 .gallery-tile{margin-bottom:0}
-.gallery-tile img{width:100%;height:clamp(170px,24vw,230px);max-height:none;aspect-ratio:auto;object-fit:contain;object-position:center}
+.gallery-tile img{width:100%;height:clamp(170px,24vw,230px);max-height:none;aspect-ratio:auto;object-fit:cover;object-position:center}
 @media(prefers-reduced-motion:reduce){
   .program-track,.project-track,.gallery-track{display:grid;width:100%;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));animation:none;transform:none}
   .program-track>[aria-hidden="true"],.project-track>[aria-hidden="true"],.gallery-track>[aria-hidden="true"]{display:none}
+  .program-track>*,.project-track>*,.gallery-track>*{margin-inline-end:0}
   .program-card,.project-placeholder-grid .project-card,.gallery-tile{width:auto;flex-basis:auto}
 }
 

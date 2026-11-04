@@ -44,7 +44,7 @@ const organizationSchema = {
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://caade.vercel.app'),
   verification: { google: 'pRS-SKDGcrIjB7ECG2lW1Y4HmAE5-sLL5bBQUb6s32I' },
-  title: { default: siteName, template: `%s | ${siteName}` },
+  title: { default: siteName, template: '%s' },
   description: siteDescription,
   keywords: siteKeywords,
   applicationName: siteName,

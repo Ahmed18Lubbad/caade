@@ -110,6 +110,22 @@
 .subpage-menu-toggle:focus-visible,.subpage-nav a:focus-visible,.subpage-nav summary:focus-visible{outline:3px solid #8ab46f;outline-offset:3px}
 .subpage-hero{background:radial-gradient(ellipse at 12% 10%,#ffffff13,transparent 38%),linear-gradient(118deg,#123d27,#1c743a 62%,#347a3d)}
 .subpage-content{max-width:1180px}
+.subpage-content.english-layout .feature-story-grid{direction:rtl}
+.subpage-content.english-layout .feature-story-card{direction:ltr}
+.subpage-content.english-layout .subpage-facts,
+.subpage-content.english-layout .subpage-cards,
+.subpage-content.english-layout .subpage-projects,
+.subpage-content.english-layout .board-grid,
+.subpage-content.english-layout .subpage-gallery,
+.subpage-content.english-layout .gallery-filters,
+.subpage-content.english-layout .gallery-thumbnails{direction:rtl}
+.subpage-content.english-layout .subpage-facts > *,
+.subpage-content.english-layout .subpage-cards > *,
+.subpage-content.english-layout .subpage-projects > *,
+.subpage-content.english-layout .board-grid > *,
+.subpage-content.english-layout .subpage-gallery > *,
+.subpage-content.english-layout .gallery-filters > *,
+.subpage-content.english-layout .gallery-thumbnails > *{direction:ltr}
 .subpage-section{margin-bottom:54px}
 .subpage-fact,.subpage-card,.subpage-project,.board-card{border-color:#e4ebe1;border-radius:18px;box-shadow:0 12px 32px #173d2c0a;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
 .subpage-card:hover,.subpage-project:hover,.board-card:hover{transform:translateY(-3px);border-color:#cdddc8;box-shadow:0 18px 38px #173d2c12}
@@ -145,8 +161,39 @@
   .shared-page-footer .footer-sitemap nav{column-gap:10px}
 }
 
-/* Use the same image frame in the dedicated photo gallery. */
-.subpage-gallery-item img{height:clamp(170px,24vw,230px);object-fit:contain;object-position:center}
+/* Use one decorative, consistent image frame in the dedicated photo gallery. */
+.subpage-gallery-item{position:relative}
+.subpage-gallery-item::before{position:absolute;z-index:1;top:0;inset-inline:18%;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#8ab66a,#d4ad4c);content:"";pointer-events:none}
+.subpage-gallery-open{aspect-ratio:4/3;overflow:hidden}
+.subpage-gallery-item img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+/* Turn the highest-quality opening images into a light bento-style decorative lead. */
+.subpage-gallery-item:first-child{grid-column:span 2}
+.subpage-gallery-item:first-child .subpage-gallery-open{aspect-ratio:16/9}
+.subpage-gallery-item:nth-child(-n+11)::after{position:absolute;inset-inline:22%;bottom:0;height:3px;border-radius:4px 4px 0 0;background:linear-gradient(90deg,#d4ad4c,#8ab66a);content:"";pointer-events:none}
+@media(max-width:700px){.subpage-gallery-item:first-child{grid-column:auto}.subpage-gallery-item:first-child .subpage-gallery-open{aspect-ratio:4/3}}
+
+/* Keep the dedicated gallery as one consistent decorative grid; the lightbox remains available on click. */
+.subpage-content .gallery-stage,.subpage-content .gallery-thumbnails{display:none}
+
+/* Full-bleed editorial mosaic inspired by the supplied gallery reference. */
+.subpage-content .subpage-gallery{grid-template-columns:repeat(8,minmax(0,1fr));gap:1px;padding:0;border:1px solid transparent;border-radius:4px;background:transparent;box-shadow:none}
+.subpage-content .subpage-gallery-item,.subpage-content .subpage-gallery-item:first-child{grid-column:auto;position:relative;aspect-ratio:1;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+.subpage-content .subpage-gallery-item::before{display:none}
+.subpage-content .subpage-gallery-item::after{display:none}
+.subpage-content .subpage-gallery-open,.subpage-content .subpage-gallery-item:first-child .subpage-gallery-open{position:relative;width:100%;height:100%;aspect-ratio:1;border-radius:0;overflow:hidden}
+.subpage-content .subpage-gallery-open::after{position:absolute;z-index:2;inset:0;background:linear-gradient(145deg,#fff4 0%,transparent 42%,#173d2c18 100%);content:"";pointer-events:none;mix-blend-mode:soft-light}
+.subpage-content .gallery-filters{position:relative;z-index:40}
+.subpage-content .gallery-filter{position:relative;z-index:41;pointer-events:auto}
+.subpage-content .subpage-gallery-item img{width:100%;height:100%;border-radius:0;object-fit:cover;object-position:center;filter:brightness(1.035) contrast(1.06) saturate(.88);transition:filter .25s ease,transform .35s ease}
+.subpage-content .subpage-gallery-item:hover,.subpage-content .subpage-gallery-item:focus-within{z-index:20;overflow:visible}
+.subpage-content .subpage-gallery-item:hover .subpage-gallery-open,.subpage-content .subpage-gallery-item:focus-within .subpage-gallery-open{position:relative;z-index:21;border-radius:5px;box-shadow:0 14px 30px #07140e55}
+.subpage-content .subpage-gallery-item:hover img,.subpage-content .subpage-gallery-item:focus-within img{filter:brightness(1.045) contrast(1.08) saturate(.96);transform:scale(1.025)}
+.subpage-content .subpage-gallery-item figcaption{position:absolute;z-index:2;right:0;bottom:0;left:0;padding:18px 8px 8px;background:linear-gradient(transparent,#07110bd9);color:#fff;font-size:11px;line-height:1.4;text-align:center;opacity:0;transform:translateY(5px);transition:opacity .2s ease,transform .2s ease}
+.subpage-content .subpage-gallery-item:hover figcaption,.subpage-content .subpage-gallery-item:focus-within figcaption{opacity:1;transform:none}
+@media(max-width:1100px){.subpage-content .subpage-gallery{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:700px){.subpage-content .subpage-gallery{grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;padding:0}.subpage-content .subpage-gallery-item figcaption{display:none}}
+@media(max-width:430px){.subpage-content .subpage-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* Collapse the long subpage navigation before it runs out of horizontal space. */
 @media(min-width:701px) and (max-width:1000px){
@@ -249,9 +296,9 @@ main .subpage-content,.detail-page{background-color:rgba(248,243,233,.72)}
 .subpage-projects .subpage-project>.subpage-project-gallery img{min-height:0}
 .subpage-projects .subpage-project>.subpage-project-art{position:relative;display:grid;place-items:center;isolation:isolate;width:calc(100% + 48px);height:190px;margin:-24px -24px 20px;overflow:hidden;background:linear-gradient(135deg,#dce9d5,#f3f6ed 52%,#d4e1ca)}
 .subpage-projects .subpage-project-art--placeholder{background:radial-gradient(ellipse at 50% 120%,#91b77e55 0 31%,transparent 32%),linear-gradient(135deg,#e5eedf,#f6f8f2 52%,#dce8d4)}
-.subpage-projects .subpage-project-art--placeholder::before{position:absolute;inset:14% 29%;border:1px solid #70976838;border-radius:50%;content:"";transform:rotate(-24deg)}
-.subpage-projects .subpage-project-logo{position:relative;z-index:1;display:block;width:min(54%,220px);height:min(74%,128px);object-fit:contain;filter:drop-shadow(0 8px 18px #173d2c18);transition:transform .35s ease}
-.subpage-projects .subpage-project:hover .subpage-project-logo{transform:scale(1.045)}
+.subpage-projects .subpage-project-art--placeholder::before{position:absolute;inset:14% 29%;border:1px solid #70976838;border-radius:50%;content:"";transform:none}
+.subpage-projects .subpage-project-logo{position:relative;z-index:1;display:block;width:min(54%,220px);height:min(74%,128px);object-fit:contain;transform:rotate(0deg);filter:drop-shadow(0 8px 18px #173d2c18);transition:transform .35s ease}
+.subpage-projects .subpage-project:hover .subpage-project-logo{transform:rotate(0deg) scale(1.045)}
 .subpage-projects .subpage-project .subpage-pill{margin:0 0 10px}
 .subpage-projects .subpage-project time{margin:0 0 8px}
 .subpage-projects .subpage-project h2{margin:0 0 10px;line-height:1.6}
