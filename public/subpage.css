@@ -1,7 +1,9 @@
 /* تنسيقات الصفحات التعريفية الفرعية. */
 .subpage-body{background:#f8faf6;padding-top:0}
 .subpage-header{position:absolute;top:0;inset-inline:0;z-index:100;background:#fff;border-bottom:1px solid #e5ebe2;box-shadow:0 5px 20px #173d2c0a}
+.subpage-header .header-inner{width:100%;max-width:none;margin-inline:0;padding-inline:clamp(18px,4vw,56px);border-radius:0;border-inline:0}
 .subpage-header .brand-name,.subpage-header .nav-link{color:#244532;text-shadow:none}
+html[lang="en"] .subpage-header .brand-name{white-space:normal;overflow-wrap:normal;line-height:1.2}
 .subpage-header .language-toggle{border-color:#dce5dc;background:#fff;color:#244532}
 .subpage-header .brand-mark{background:#fff;border:0}
 .subpage-header .brand-mark img{width:100%;height:100%}
@@ -137,6 +139,19 @@
 .detail-body{padding-top:104px;background:#f8faf6}
 .detail-page{min-height:calc(100vh - 240px)}
 @media(max-width:900px){.shared-page-footer .footer-main{grid-template-columns:1fr}.shared-page-footer .footer-sitemap nav{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1100px){
+  .subpage-header .header-inner{position:relative;gap:16px;min-height:78px}
+  .subpage-header .brand{min-width:0;flex:1 1 auto}
+  .subpage-header .brand-name{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .subpage-menu-toggle{display:grid;flex:0 0 44px;margin-inline-start:auto}
+  .subpage-nav{position:absolute;z-index:120;top:calc(100% + 8px);inset-inline:0;display:none;max-width:none;max-height:calc(100vh - 100px);max-height:calc(100dvh - 100px);overflow:auto;align-items:stretch;flex-direction:column;gap:0;padding:10px 16px;border:1px solid #e3eae0;border-radius:16px;background:#fff;box-shadow:0 18px 42px #173d2c1c}
+  .subpage-nav.is-open{display:flex}
+  .subpage-nav>a,.subpage-nav-dropdown>summary{display:block;width:100%;padding:11px 2px;border-bottom:1px solid #edf1eb;font-size:13px;text-align:start}
+  .subpage-nav-dropdown{white-space:normal}
+  .subpage-nav-dropdown>div{position:static;min-width:0;padding:4px 10px;border:0;border-inline-start:2px solid #d5e3ce;border-radius:0;background:#f7f9f5;box-shadow:none}
+  .subpage-nav-dropdown>div a{padding:9px 10px}
+  .subpage-nav .language-toggle{align-self:flex-start;margin-top:12px}
+}
 @media(max-width:700px){
   .subpage-menu-toggle{display:grid;flex:0 0 44px;margin-inline-start:auto}
   .subpage-nav{position:absolute;z-index:120;top:calc(100% + 8px);inset-inline:0;display:none;max-width:none;max-height:calc(100vh - 100px);max-height:calc(100dvh - 100px);overflow:auto;align-items:stretch;flex-direction:column;gap:0;padding:10px 16px;border:1px solid #e3eae0;border-radius:16px;background:#fff;box-shadow:0 18px 42px #173d2c1c}
@@ -285,6 +300,17 @@ main .subpage-content,.detail-page{background-color:rgba(248,243,233,.72)}
 
 /* Keep the footer treatment consistent across internal pages. */
 .shared-page-footer,.subpage-footer{background-color:#173d2c;background-image:none}
+
+/* Extend the desktop header background behind the complete navigation. */
+@media(min-width:701px){
+  .subpage-header .header-inner{
+    width:100%!important;
+    max-width:none!important;
+    margin-inline:0!important;
+    padding-inline:clamp(24px,4vw,56px)!important;
+    border-radius:0!important;
+  }
+}
 .shared-page-footer .footer-bottom-wrap,.subpage-footer .footer-bottom-wrap{background:rgba(7,25,18,.78)}
 
 /* Project cards: balanced spacing and consistent vertical rhythm. */
