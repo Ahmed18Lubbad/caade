@@ -1070,12 +1070,14 @@ async function loadSiteData() {
 }
 
 const revealItems = $$('.program-card,.editorial-card,.gallery-tile,.project-placeholder-grid article,.identity-row');
+const sectionRevealItems = $$('main > section:not(.hero)');
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.documentElement.classList.add('has-reveal');
+  document.documentElement.classList.add('has-reveal','has-section-reveal');
   const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
   }), { threshold: 0.12 });
   revealItems.forEach(item => { item.classList.add('will-reveal'); revealObserver.observe(item); });
+  sectionRevealItems.forEach(item => { item.classList.add('will-reveal-section'); revealObserver.observe(item); });
 }
 
 loadSiteData();

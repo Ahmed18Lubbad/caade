@@ -382,7 +382,17 @@ function render() {
   $('#languageToggle').textContent=language==='en'?'العربية':'English';$('#languageToggle').setAttribute('aria-label',language==='en'?'Switch to Arabic':'Switch to English');
   $('#pageContent').classList.toggle('english-layout', language === 'en');
   $('#pageContent').replaceChildren();page.render();
+  initSectionReveal();
   document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
+}
+function initSectionReveal(){
+  const sections=document.querySelectorAll('#pageContent>.subpage-section');
+  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){return;}
+  document.documentElement.classList.add('has-section-reveal');
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}
+  }),{threshold:.12});
+  sections.forEach(section=>{section.classList.add('will-reveal-section');observer.observe(section);});
 }
 $('#languageToggle').addEventListener('click',()=>{const target=language==='ar'?'en':'ar';location.href=`/${target}/subpage/${location.search}`;});
 loadSiteContent().then(result=>{data=result;render();document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href.startsWith('/#'))link.href=`/${language}/${href.slice(1)}`;else if(href==='/'||href==='/index.html')link.href=`/${language}/`;else if(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)\/?$/.test(href)){const page=href.replaceAll('/','');link.href=`/${language}/subpage/?page=${page}`;}else if(/^\/(news|projects)\/[A-Za-z0-9_-]+$/.test(href)){const [,collection,id]=href.split('/');link.href=`/${language}/detail/?collection=${collection}&id=${encodeURIComponent(id)}`;}});}).catch(()=>{$('#pageContent').replaceChildren(node('p','empty-page',text('تعذر تحميل محتوى الصفحة. حاول تحديثها.','Page content could not be loaded. Please refresh.')));});

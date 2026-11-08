@@ -22,6 +22,12 @@ html[lang="en"] .subpage-header .brand-name{white-space:normal;overflow-wrap:nor
 .subpage-footer .container{display:flex;justify-content:space-between;gap:20px;align-items:center}
 .subpage-footer a{color:#ffdf84}
 .subpage-section{margin-bottom:48px}
+.has-section-reveal .subpage-section .subpage-card,.has-section-reveal .subpage-section .subpage-fact,.has-section-reveal .subpage-section .subpage-project,.has-section-reveal .subpage-section .board-card,.has-section-reveal .subpage-section .subpage-gallery-item{opacity:0;transform:translateY(18px)}
+.has-section-reveal .subpage-section.is-visible .subpage-card,.has-section-reveal .subpage-section.is-visible .subpage-fact,.has-section-reveal .subpage-section.is-visible .subpage-project,.has-section-reveal .subpage-section.is-visible .board-card,.has-section-reveal .subpage-section.is-visible .subpage-gallery-item{animation:caade-content-enter .7s cubic-bezier(.22,.8,.24,1) both}
+.has-section-reveal .subpage-section.is-visible :is(.subpage-card,.subpage-fact,.subpage-project,.board-card,.subpage-gallery-item):nth-child(2){animation-delay:.08s}
+.has-section-reveal .subpage-section.is-visible :is(.subpage-card,.subpage-fact,.subpage-project,.board-card,.subpage-gallery-item):nth-child(3){animation-delay:.16s}
+.has-section-reveal .subpage-section.is-visible :is(.subpage-card,.subpage-fact,.subpage-project,.board-card,.subpage-gallery-item):nth-child(4){animation-delay:.24s}
+.has-section-reveal .subpage-section.is-visible :is(.subpage-card,.subpage-fact,.subpage-project,.board-card,.subpage-gallery-item):nth-child(5){animation-delay:.32s}
 .subpage-section h2{margin:0 0 18px;color:#214b31;font-size:clamp(22px,3vw,30px)}
 .subpage-copy{max-width:900px;color:#4f6053;font-size:16px;line-height:2.1;white-space:pre-line}
 .subpage-facts,.subpage-cards,.subpage-projects,.board-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
