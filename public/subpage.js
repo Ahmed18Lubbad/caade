@@ -144,7 +144,7 @@ function renderBoard() {
 }
 function renderPrograms() {
   const s=section(text('البرامج الاستراتيجية','Strategic programmes'));const grid=node('div','subpage-cards');s.append(grid);
-  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');card.append(node('span','program-number',`${String(i+1).padStart(2,'0')} / ${text('برنامج استراتيجي','STRATEGIC PROGRAMME')}`),node('h2','',get(program,'title')),node('p','',get(program,'description')));const sdgBlock=renderSdgBlock(program); if (sdgBlock) card.append(sdgBlock); grid.append(card);});
+  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');card.append(node('span','program-number',String(i+1).padStart(2,'0')),node('h2','',get(program,'title')),node('p','',get(program,'description')));const sdgBlock=renderSdgBlock(program); if (sdgBlock) card.append(sdgBlock); grid.append(card);});
 }
 function renderProjects() {
   const s=section(text('المشاريع والتدخلات','Projects and interventions'));const grid=node('div','subpage-projects');s.append(grid);

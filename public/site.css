@@ -1407,3 +1407,37 @@ body::after{opacity:.035;background-size:min(38vw,420px);mix-blend-mode:multiply
   .hero-layout{padding-inline:0}
   .floating-action:not(.floating-action--top){display:none}
 }
+
+/* Keep detail-page navigation visually identical to the homepage header. */
+.detail-body .site-header{background:rgba(11,41,27,.08)!important;box-shadow:0 8px 28px rgba(7,30,20,.18)!important}
+.detail-body .site-header .header-inner,
+.detail-body .site-header.is-compact .header-inner{
+  width:min(1280px,calc(100% - 56px));
+  max-width:1280px;
+  min-height:86px;
+  margin-inline:auto;
+  padding-inline:clamp(16px,2vw,28px);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:18px;
+  background:linear-gradient(112deg,rgba(11,39,27,var(--header-opacity,.46)),rgba(28,91,52,var(--header-opacity,.46)) 58%,rgba(11,39,27,var(--header-opacity,.46)))!important;
+  box-shadow:0 14px 34px rgba(3,18,11,.18),inset 0 1px 0 rgba(255,255,255,.08)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+.detail-body .header-inner::after{display:block}
+@media(max-width:1050px){
+  .detail-body .brand-name{font-size:11px;line-height:1.45}
+}
+@media(max-width:700px){
+  .detail-body .site-header .header-inner,.detail-body .site-header.is-compact .header-inner{
+    width:calc(100% - 32px);
+    min-height:72px;
+    padding-inline:12px;
+    border-radius:14px;
+    box-shadow:0 10px 32px rgba(7,30,20,.14),inset 0 1px 0 rgba(255,255,255,.08)!important;
+  }
+  .detail-body .brand-mark.has-logo{flex-basis:64px;width:64px;height:64px}
+}
+@media(max-width:520px){
+  .detail-body .brand-name{font-size:10px;line-height:1.35}
+}
