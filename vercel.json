@@ -23,6 +23,24 @@
     { "source": "/ar/gallery", "destination": "/ar/subpage/?page=gallery", "permanent": true },
     { "source": "/ar/partners", "destination": "/ar/subpage/?page=partners", "permanent": true },
     { "source": "/ar/support", "destination": "/ar/subpage/?page=support", "permanent": true },
-    { "source": "/ar/contact", "destination": "/ar/subpage/?page=contact", "permanent": true }
+    { "source": "/ar/contact", "destination": "/ar/subpage/?page=contact", "permanent": true },
+    { "source": "/about/", "destination": "/ar/subpage/?page=about", "permanent": true },
+    { "source": "/programs/", "destination": "/ar/subpage/?page=programs", "permanent": true },
+    { "source": "/projects/", "destination": "/ar/subpage/?page=projects", "permanent": true },
+    { "source": "/news/", "destination": "/ar/subpage/?page=news", "permanent": true },
+    { "source": "/stories/", "destination": "/ar/subpage/?page=stories", "permanent": true },
+    { "source": "/gallery/", "destination": "/ar/subpage/?page=gallery", "permanent": true },
+    { "source": "/partners/", "destination": "/ar/subpage/?page=partners", "permanent": true },
+    { "source": "/support/", "destination": "/ar/subpage/?page=support", "permanent": true },
+    { "source": "/contact/", "destination": "/ar/subpage/?page=contact", "permanent": true },
+    { "source": "/ar/about/", "destination": "/ar/subpage/?page=about", "permanent": true },
+    { "source": "/ar/programs/", "destination": "/ar/subpage/?page=programs", "permanent": true },
+    { "source": "/ar/projects/", "destination": "/ar/subpage/?page=projects", "permanent": true },
+    { "source": "/ar/news/", "destination": "/ar/subpage/?page=news", "permanent": true },
+    { "source": "/ar/stories/", "destination": "/ar/subpage/?page=stories", "permanent": true },
+    { "source": "/ar/gallery/", "destination": "/ar/subpage/?page=gallery", "permanent": true },
+    { "source": "/ar/partners/", "destination": "/ar/subpage/?page=partners", "permanent": true },
+    { "source": "/ar/support/", "destination": "/ar/subpage/?page=support", "permanent": true },
+    { "source": "/ar/contact/", "destination": "/ar/subpage/?page=contact", "permanent": true }
   ]
 }
