@@ -168,8 +168,8 @@ function renderProjects() {
     } else {
       const artwork=node('div','subpage-project-art subpage-project-art--placeholder');
       const image=node('img','subpage-project-logo');
-      const logo=String(data.profile?.logo||'/media/caade-gaza-logo.svg').trim();
-      image.src=logo.startsWith('/media/')||/^https:\/\//i.test(logo)?logo:'/media/caade-gaza-logo.svg';
+      const logo=String(data.profile?.logo||'/media/caade-logo.png').trim();
+      image.src=logo.startsWith('/media/')||/^https:\/\//i.test(logo)?logo:'/media/caade-logo.png';
       image.alt=text('شعار الجمعية','Association logo');
       image.loading='lazy';
       image.decoding='async';
@@ -348,7 +348,7 @@ const pages={
 function render() {
   const page=pages[pageKey]||pages.about, p=data.profile||{};
   const logoValue=String(p.logo||'').trim();
-  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/caade-gaza-logo.svg';
+  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/caade-logo.png';
   document.querySelectorAll('.brand-mark img').forEach(image=>{image.src=logoSrc;});
   $('#subpageLogo').src=logoSrc;
   const favicon=$('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}

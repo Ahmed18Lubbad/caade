@@ -377,7 +377,7 @@ function normalizeLocalLinks(root = document) {
   const prefix = currentLanguage === 'en' ? '/en' : '/ar';
   root.querySelectorAll('a[href^="/"]').forEach(link => {
     const href = link.getAttribute('href');
-    if (/^\/(?:ar|en)(?:\/|$)/.test(href) || /^\/(?:media|data|vendor|favicon\.svg|site\.|subpage\.|detail\.)/.test(href)) return;
+    if (/^\/(?:ar|en)(?:\/|$)/.test(href) || /^\/(?:media|data|vendor|favicon\.(?:png|ico)|site\.|subpage\.|detail\.)/.test(href)) return;
     if (href === '/') { link.href = `${prefix}/`; return; }
     if (href.startsWith('/#')) { link.href = `${prefix}/${href.slice(1)}`; return; }
     const detail = href.match(/^\/(news|projects)\/([A-Za-z0-9_-]{1,80})$/);
@@ -393,9 +393,9 @@ function updateOrganizationName() {
   const favicon = $('#siteFavicon');
   const logoSrc = safeImage(siteData.profile.logo);
   if (favicon) {
-    favicon.href = logoSrc || '/favicon.svg';
+    favicon.href = logoSrc || '/favicon.png';
     if (logoSrc) favicon.removeAttribute('type');
-    else favicon.type = 'image/svg+xml';
+    else favicon.type = 'image/png';
   }
   document.querySelectorAll('.brand-mark').forEach(mark => {
     const src = safeImage(siteData.profile.logo);

@@ -18,7 +18,7 @@ const organizationSchema = {
   name: siteName,
   alternateName: ['CAADE', 'الجمعية التعاونية للتنمية الزراعية والبيئة في غزة'],
   url: 'https://caade.vercel.app/',
-  logo: 'https://caade.vercel.app/media/caade-gaza-logo.svg',
+  logo: 'https://caade.vercel.app/media/caade-logo.png',
   description: siteDescription,
   email: 'caade.coop@gmail.com',
   telephone: '+970599807090',
@@ -56,10 +56,10 @@ export const metadata = {
     siteName,
     title: siteName,
     description: siteDescription,
-    images: [{ url: '/media/caade-gaza-logo.svg', width: 900, height: 900, alt: 'شعار الجمعية' }],
+    images: [{ url: '/media/caade-logo.png', width: 800, height: 800, alt: 'شعار الجمعية' }],
   },
-  twitter: { card: 'summary_large_image', title: siteName, description: siteDescription, images: ['/media/caade-gaza-logo.svg'] },
-  icons: { icon: '/media/caade-gaza-logo.svg' },
+  twitter: { card: 'summary_large_image', title: siteName, description: siteDescription, images: ['/media/caade-logo.png'] },
+  icons: { icon: [{ url: '/favicon.ico', sizes: 'any' }, { url: '/favicon.png', type: 'image/png' }], apple: '/media/caade-logo.png' },
 };
 
 export default function RootLayout({ children }) {

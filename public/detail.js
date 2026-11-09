@@ -71,7 +71,7 @@ function renderDetail(item, profile = {}) {
   const title = getText(item, 'title');
   const summary = getText(item, isNews ? 'excerpt' : 'description');
   const logoValue=String(profile.logo||'').trim();
-  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/caade-gaza-logo.svg';
+  const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/caade-logo.png';
   document.querySelectorAll('.brand-mark img').forEach(image=>{image.src=logoSrc;});
   const favicon=document.querySelector('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}
   document.documentElement.lang = language;

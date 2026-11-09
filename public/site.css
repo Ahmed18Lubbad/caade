@@ -3,7 +3,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:92px}
 body{margin:0;min-width:320px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:clip}
-body::after{content:'';position:fixed;z-index:35;inset:0;pointer-events:none;background-image:url('/media/caade-gaza-logo.svg');background-repeat:no-repeat;background-position:center;background-size:min(34vw,360px);opacity:.035;mix-blend-mode:multiply}
+body::after{content:'';position:fixed;z-index:35;inset:0;pointer-events:none;background-image:url('/media/caade-logo.png');background-repeat:no-repeat;background-position:center;background-size:min(34vw,360px);opacity:.035;mix-blend-mode:multiply}
 button,a{font:inherit;-webkit-tap-highlight-color:transparent}
 a{color:inherit;text-decoration:none}
 button{color:inherit}
