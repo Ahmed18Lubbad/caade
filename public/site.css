@@ -1450,3 +1450,10 @@ body::after{opacity:.035;background-size:min(38vw,420px);mix-blend-mode:multiply
   html[lang="ar"] .site-header .brand-name,html[lang="ar"] .site-header.is-compact .brand-name{font-size:clamp(14px,1.15vw,16px)}
   .subpage-header .subpage-nav>a,.subpage-header .subpage-nav-dropdown summary{font-size:clamp(14px,1.1vw,15px)}
 }
+
+/* Header spans 97% of the viewport width on all screens */
+.site-header .header-inner,
+.site-header.subpage-header .header-inner,
+.subpage-header .header-inner,
+.detail-body .site-header .header-inner,
+.detail-body .site-header.is-compact .header-inner{width:97%!important;max-width:none!important;margin-inline:auto!important}
