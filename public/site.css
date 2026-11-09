@@ -1441,3 +1441,12 @@ body::after{opacity:.035;background-size:min(38vw,420px);mix-blend-mode:multiply
 @media(max-width:520px){
   .detail-body .brand-name{font-size:10px;line-height:1.35}
 }
+
+/* Larger header typography on desktop */
+@media(min-width:1201px){
+  .site-header .nav-link,.site-header .nav-dropdown summary{font-size:clamp(13px,1.1vw,15px)}
+  .site-header .language-toggle{font-size:clamp(12.5px,1vw,14px)}
+  .site-header .nav-cta{font-size:clamp(12.5px,1vw,14px)}
+  html[lang="ar"] .site-header .brand-name,html[lang="ar"] .site-header.is-compact .brand-name{font-size:clamp(14px,1.15vw,16px)}
+  .subpage-header .subpage-nav>a,.subpage-header .subpage-nav-dropdown summary{font-size:clamp(14px,1.1vw,15px)}
+}
