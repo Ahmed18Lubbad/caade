@@ -1031,19 +1031,12 @@ function restartHeroImageRotation() {
 }
 
 function positionHeroImageControls() {
-  const hero = $('.hero');
   const controls = $('#heroImageControls');
-  const copy = $('.hero-copy');
-  if (!hero || !controls || !copy || controls.hidden) return;
-  if (window.matchMedia('(max-width: 800px)').matches && hero.classList.contains('has-hero-photos')) {
-    const heroRect = hero.getBoundingClientRect();
-    const copyRect = copy.getBoundingClientRect();
-    controls.style.top = `${copyRect.bottom - heroRect.top + 12}px`;
-    controls.style.bottom = 'auto';
-  } else {
-    controls.style.removeProperty('top');
-    controls.style.removeProperty('bottom');
-  }
+  if (!controls) return;
+  controls.style.removeProperty('top');
+  controls.style.removeProperty('bottom');
+  controls.style.removeProperty('left');
+  controls.style.removeProperty('right');
 }
 
 function renderHeroImages() {
