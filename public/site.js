@@ -923,24 +923,16 @@ function renderGallery() {
 function renderPartners() {
   const grid = $('#partnerGrid');
   grid.replaceChildren();
-  const partnerCatalog = [
-    { id: 'anera', name: 'أنيرا (ANERA)', nameEn: 'ANERA', logo: '/media/partners/anera.jpg', url: 'https://anera.org/' },
-    { id: 'future-development-commission', name: 'هيئة المستقبل للتنمية', nameEn: 'Future Development Commission', logo: '/media/partners/future-development-commission.png', url: 'https://fdc.ps/' },
-    { id: 'sida', name: 'الوكالة السويدية للتعاون الإنمائي الدولي (Sida)', nameEn: 'Swedish International Development Cooperation Agency (Sida)', logo: '/media/partners/sida.png', url: 'https://www.sida.se/' },
-    { id: 'gaza-culture-development-group', name: 'مجموعة غزة للثقافة والتنمية', nameEn: 'Gaza Culture and Development Group', logo: '/media/partners/gaza-culture-development-group.jpg', url: 'https://www.gcdgroup.org/' },
-    { id: 'islamic-relief-palestine', name: 'الإغاثة الإسلامية – فلسطين', nameEn: 'Islamic Relief Palestine', logo: '/media/partners/islamic-relief.png', url: 'https://islamic-relief.org/' },
-    { id: 'islamic-relief-usa', name: 'الإغاثة الإسلامية – الولايات المتحدة', nameEn: 'Islamic Relief USA', logo: '/media/partners/islamic-relief.png', url: 'https://islamic-relief.org/' },
-    { id: 'giz', name: 'الوكالة الألمانية للتعاون الدولي (GIZ)', nameEn: 'GIZ', logo: '/media/partners/giz-official.svg', url: 'https://www.giz.de/' },
-    { id: 'oxfam', name: 'أوكسفام', nameEn: 'Oxfam', logo: '/media/partners/oxfam.png', url: 'https://www.oxfam.org/' },
-    { id: 'esdc', name: 'المركز الفلسطيني للتنمية الاقتصادية والاجتماعية', nameEn: 'Economic & Social Development Center of Palestine', logo: '/media/partners/esdc.jpg' },
-    { id: 'aecid', name: 'الوكالة الإسبانية للتعاون الإنمائي الدولي (AECID)', nameEn: 'Spanish Agency for International Development Cooperation (AECID)', logo: '/media/partners/aecid.png', url: 'https://www.aecid.es/' },
-    { id: 'european-union', name: 'الاتحاد الأوروبي', nameEn: 'European Union', logo: '/media/partners/european-union.png', url: 'https://european-union.europa.eu/' },
-    { id: 'rural-womens-development-society', name: 'جمعية تنمية المرأة الريفية', nameEn: 'Rural Women’s Development Society', logo: '/media/partners/rural-womens-development-society.png' },
-    { id: 'taawon', name: 'مؤسسة التعاون (Taawon)', nameEn: 'Taawon (Welfare Association)', logo: '/media/partners/taawon.png', url: 'https://www.taawon.org/' },
-    { id: 'womens-affairs-center', name: 'مركز شؤون المرأة', nameEn: 'Women’s Affairs Center', logo: '/media/partners/womens-affairs-center.png', url: 'https://wac.ps/' },
-    { id: 'arab-fund', name: 'الصندوق العربي للإنماء الاقتصادي والاجتماعي – الكويت', nameEn: 'Arab Fund for Economic and Social Development – Kuwait', logo: '/media/partners/arab-fund.png', url: 'https://arabsfund.org/' },
-  ];
-  const partners = [...siteData.partners, ...partnerCatalog.filter(item => !siteData.partners.some(existing => existing.id === item.id))];
+  // Deduplicate partners by unique logo and id so no logo ever repeats
+  const seen = new Set();
+  const partners = (siteData.partners || []).filter(item => {
+    if (!item || !item.logo) return false;
+    const key = (item.logo || '') + '|' + (item.id || '');
+    if (seen.has(item.logo) || seen.has(key)) return false;
+    seen.add(item.logo);
+    seen.add(key);
+    return true;
+  });
   if (!partners.length) {
     $('#partners').hidden = true;
     grid.append(make('p', 'empty-content', 'ستظهر أسماء الشركاء هنا عند إضافتها.'));

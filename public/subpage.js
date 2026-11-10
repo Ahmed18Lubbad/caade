@@ -189,9 +189,9 @@ function renderPartners() {
   const s=section(text('الجهات الواردة في سجل المشاريع','Organizations named in the project portfolio'));
   s.append(node('p','partners-lead',text('تضم القائمة الجهات الممولة والمنفذة والشريكة المذكورة في بيانات المشاريع المنشورة، ولا تعني وحدها وجود اتفاقية شراكة حالية.','This list includes funders, implementers, and partners named in the published project records. Inclusion does not by itself imply a current partnership agreement.')));
   const organizations=language==='en' ? [
-    ['ANERA','Funder and project partner'],['Al-Mustaqbal Foundation for Development','Project partner'],['Swedish International Development Cooperation Agency (Sida)','Funder'],['Gaza Culture Group','Implementing partner'],['Islamic Relief Palestine','Implementing partner'],['Islamic Relief USA','Funder'],['GIZ','Funder'],['Oxfam','Project and implementation partner'],['Palestinian Center for Economic and Social Development','Implementing partner'],['Spanish Agency for International Development Cooperation (AECID)','Funder'],['European Union','Funder'],['Rural Women’s Development Society','Implementing partner'],['Taawon (Welfare Association)','Funder'],['Women’s Affairs Center','Project partner'],['Arab Fund for Economic and Social Development – Kuwait','Funder']
+    ['ANERA','Funder and project partner'],['Al-Mustaqbal Foundation for Development','Project partner'],['Swedish International Development Cooperation Agency (Sida)','Funder'],['Gaza Culture Group','Implementing partner'],['Islamic Relief','Funder and implementing partner'],['GIZ','Funder'],['Oxfam','Project and implementation partner'],['Palestinian Center for Economic and Social Development','Implementing partner'],['Spanish Agency for International Development Cooperation (AECID)','Funder'],['European Union','Funder'],['Rural Women’s Development Society','Implementing partner'],['Taawon (Welfare Association)','Funder'],['Women’s Affairs Center','Project partner'],['Arab Fund for Economic and Social Development – Kuwait','Funder']
   ] : [
-    ['أنيرا (ANERA)','جهة ممولة وشريك في المشاريع'],['هيئة المستقبل للتنمية','شريك في تنفيذ مشروع'],['الوكالة السويدية للتعاون الإنمائي الدولي (Sida)','جهة ممولة'],['مجموعة غزة للثقافة','جهة منفذة'],['الإغاثة الإسلامية – فلسطين','جهة منفذة'],['الإغاثة الإسلامية – الولايات المتحدة','جهة ممولة'],['الوكالة الألمانية للتعاون الدولي (GIZ)','جهة ممولة'],['أوكسفام','شريك وجهة منفذة'],['المركز الفلسطيني للتنمية الاقتصادية والاجتماعية','جهة منفذة'],['الوكالة الإسبانية للتعاون الإنمائي (AECID)','جهة ممولة'],['الاتحاد الأوروبي','جهة ممولة'],['جمعية تنمية المرأة الريفية','جهة منفذة'],['مؤسسة التعاون (Taawon)','جهة ممولة'],['مركز شؤون المرأة','شريك في مشروع'],['الصندوق العربي للإنماء الاقتصادي والاجتماعي – الكويت','جهة ممولة']
+    ['أنيرا (ANERA)','جهة ممولة وشريك في المشاريع'],['هيئة المستقبل للتنمية','شريك في تنفيذ مشروع'],['الوكالة السويدية للتعاون الإنمائي الدولي (Sida)','جهة ممولة'],['مجموعة غزة للثقافة','جهة منفذة'],['الإغاثة الإسلامية','جهة ممولة وشريك تنفيذي'],['الوكالة الألمانية للتعاون الدولي (GIZ)','جهة ممولة'],['أوكسفام','شريك وجهة منفذة'],['المركز الفلسطيني للتنمية الاقتصادية والاجتماعية','جهة منفذة'],['الوكالة الإسبانية للتعاون الإنمائي (AECID)','جهة ممولة'],['الاتحاد الأوروبي','جهة ممولة'],['جمعية تنمية المرأة الريفية','جهة منفذة'],['مؤسسة التعاون (Taawon)','جهة ممولة'],['مركز شؤون المرأة','شريك في مشروع'],['الصندوق العربي للإنماء الاقتصادي والاجتماعي – الكويت','جهة ممولة']
   ];
   const grid=node('div','subpage-cards');s.append(grid);
   const officialPartners=data.partners||[];
@@ -200,7 +200,6 @@ function renderPartners() {
     '/media/partners/future-development-commission.png',
     '/media/partners/sida.png',
     '/media/partners/gaza-culture-development-group.jpg',
-    '/media/partners/islamic-relief.png',
     '/media/partners/islamic-relief.png',
     '/media/partners/giz-official.svg',
     '/media/partners/oxfam.png',
