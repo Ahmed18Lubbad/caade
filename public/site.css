@@ -864,7 +864,7 @@ h1,h2,h3,h4,h5,h6{font-weight:700}
 .hero-image-controls>button{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;padding:0;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:rgba(18,58,43,.55);color:#fff;font-size:18px;line-height:1;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,transform .2s}
 .hero-image-controls>button:hover{background:var(--forest);transform:scale(1.06)}
 .hero-image-dots{display:flex;align-items:center;justify-content:center;gap:6px;max-width:calc(100% - 82px);overflow:hidden}
-.hero-image-dot{flex:0 0 7px;width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.65);cursor:pointer;transition:width .25s,background .25s}
+.hero-image-dot{position:relative;z-index:7;flex:0 0 7px;width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.65);cursor:pointer;pointer-events:auto;transition:width .25s,background .25s}
 .hero-image-dot.is-active{width:20px;border-radius:5px;background:var(--gold)}
 .hero-image-controls button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.hero-photo{transition:none;transform:none}}
@@ -876,7 +876,7 @@ h1,h2,h3,h4,h5,h6{font-weight:700}
 .hero-layout{position:relative;z-index:2}
 .scroll-cue{z-index:2}
 .hero-image-track{position:absolute;inset:0}
-.hero-image-controls{position:absolute;z-index:4;inset-inline:0;bottom:58px;display:flex;align-items:center;justify-content:center;gap:10px;pointer-events:none}
+.hero-image-controls{position:absolute;z-index:6;inset-inline:0;bottom:58px;display:flex;align-items:center;justify-content:center;gap:10px;pointer-events:auto}
 .hero-image-controls[hidden]{display:none}
 .hero-image-controls>button{display:grid;place-items:center;width:36px;height:36px;border:1px solid #fff9;border-radius:50%;background:#102c1dcc;color:#fff;font-size:22px;cursor:pointer;backdrop-filter:blur(8px)}
 .hero-image-dots{pointer-events:auto}
