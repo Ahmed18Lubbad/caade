@@ -1,3 +1,4 @@
+[hidden]{display:none!important}
 /* تنسيقات الصفحات التعريفية الفرعية. */
 .subpage-body{background:#f8faf6;padding-top:0}
 .subpage-header{position:absolute;top:0;inset-inline:0;z-index:100;background:#fff;border-bottom:1px solid #e5ebe2;box-shadow:0 5px 20px #173d2c0a}

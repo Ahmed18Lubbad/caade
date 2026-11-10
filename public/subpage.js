@@ -8,8 +8,10 @@ const PROJECT_GALLERY_IMAGES = Object.freeze({
   'caade-project-04': ['/media/projects/association-activities/activity-06.jpg', '/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],
   'caade-project-06': ['/media/projects/association-activities/activity-16.jpg', '/media/projects/association-activities/activity-17.jpg', '/media/projects/association-activities/activity-18.jpg', '/media/projects/association-activities/activity-19.jpg'],
   'caade-project-07': ['/media/projects/association-activities/activity-34.jpg', '/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
-  'caade-project-08': ['/media/projects/food-assistance/food-04.jpg', '/media/projects/food-assistance/food-05.jpg', '/media/projects/food-assistance/food-06.jpg', '/media/projects/food-assistance/food-07.jpg'],
-  'caade-project-10': ['/media/projects/arab-fund-relief/relief-distribution-main.jpg', '/media/projects/arab-fund-relief/relief-distribution-wide.jpg', '/media/projects/arab-fund-relief/relief-food-packs.jpg', '/media/projects/arab-fund-relief/relief-family-meal.jpg'],
+  'caade-project-08': ['/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
+  'caade-project-09': ['/media/projects/food-assistance/food-01.jpg', '/media/projects/food-assistance/food-02.jpg', '/media/projects/food-assistance/food-03.jpg'],
+  'caade-project-10': ['/media/projects/food-assistance/food-04.jpg', '/media/projects/food-assistance/food-05.jpg', '/media/projects/food-assistance/food-06.jpg', '/media/projects/food-assistance/food-07.jpg'],
+  'caade-project-11': ['/media/projects/arab-fund-relief/relief-distribution-main.jpg', '/media/projects/arab-fund-relief/relief-distribution-wide.jpg', '/media/projects/arab-fund-relief/relief-food-packs.jpg', '/media/projects/arab-fund-relief/relief-family-meal.jpg'],
 });
 const FEATURED_GALLERY_IMAGES = [
   {image:'/media/projects/arab-fund-relief/relief-distribution-main.jpg',title:'توزيع مساعدات للأسر في غزة',titleEn:'Aid distribution to families in Gaza'},
@@ -373,7 +375,7 @@ function render() {
   if(language==='en'){
     const footerLabels=['Home','About us','Programmes','Projects','News','Impact stories','Photo gallery','Partners','Support us','Contact us'];
     document.querySelectorAll('.footer-sitemap nav a').forEach((el,index)=>{if(footerLabels[index])el.textContent=footerLabels[index];});
-    const footerTagline=$('#footerTagline');if(footerTagline)footerTagline.textContent='Working together for sustainable agricultural and environmental development in Gaza.';
+    const footerTagline=$('#footerTagline');if(footerTagline)footerTagline.textContent=language==='en'?'Through Cooperation, We Produce | Through Solidarity, We Grow | Through Sustainability, We Thrive':'بالتعاون ننتج | بالتكافل ننمو | بالاستدامة نرتقي';
     const backToTop=document.querySelector('.footer-bottom a');if(backToTop)backToTop.textContent='Back to top ↑';
   }
   document.querySelectorAll('[data-home-label]').forEach(el=>el.textContent=text('الرئيسية','Home'));
@@ -382,6 +384,39 @@ function render() {
   $('#languageToggle').textContent=language==='en'?'العربية':'English';$('#languageToggle').setAttribute('aria-label',language==='en'?'Switch to Arabic':'Switch to English');
   $('#pageContent').classList.toggle('english-layout', language === 'en');
   $('#pageContent').replaceChildren();page.render();
+  const sectionsToCheck = ['programs', 'news', 'stories', 'gallery', 'projects', 'partners'];
+  sectionsToCheck.forEach(key => {
+    const items = (data[key] || []).filter(item => {
+      if (!item) return false;
+      if (typeof item === 'object') return Object.values(item).some(val => val && String(val).trim().length > 0);
+      return String(item).trim().length > 0;
+    });
+    const hasData = items.length > 0;
+    document.querySelectorAll(`[data-nav="${key}"], a[href*="page=${key}"], a[href="/${key}"], a[href="/${key}/"], a[href="/en/${key}"], a[href="/en/${key}/"]`).forEach(el => {
+      el.hidden = !hasData;
+      if (!hasData) {
+        el.setAttribute('hidden', '');
+        el.style.display = 'none';
+      } else {
+        el.removeAttribute('hidden');
+        el.style.removeProperty('display');
+      }
+    });
+  });
+  document.querySelectorAll('.subpage-nav-dropdown').forEach(dropdown => {
+    const childLinks = [...dropdown.querySelectorAll('div a')];
+    const visibleLinks = childLinks.filter(l => !l.hidden && l.style.display !== 'none');
+    if (childLinks.length > 0 && visibleLinks.length === 0) {
+      dropdown.hidden = true;
+      dropdown.style.display = 'none';
+      dropdown.setAttribute('hidden', '');
+    } else {
+      dropdown.hidden = false;
+      dropdown.style.removeProperty('display');
+      dropdown.removeAttribute('hidden');
+    }
+  });
+
   initSectionReveal();
   document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
 }

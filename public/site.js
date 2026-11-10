@@ -54,14 +54,27 @@ const PROJECT_GALLERY_IMAGES = Object.freeze({
     '/media/projects/association-activities/activity-37.jpg',
   ],
   'caade-project-08': [
-    '/media/projects/food-assistance/food-05.jpg',
-    '/media/projects/food-assistance/food-06.jpg',
-    '/media/projects/food-assistance/food-07.jpg',
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 8', name: 'العمل اللائق والنمو الاقتصادي', nameEn: 'Decent Work and Economic Growth' },
+    { code: 'SDG 12', name: 'الإنتاج والاستهلاك المسؤول', nameEn: 'Responsible Consumption and Production' },
+  ],
+  'caade-project-09': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
   ],
   'caade-project-10': [
-    '/media/projects/arab-fund-relief/relief-distribution-wide.jpg',
-    '/media/projects/arab-fund-relief/relief-food-packs.jpg',
-    '/media/projects/arab-fund-relief/relief-family-meal.jpg',
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+    { code: 'SDG 10', name: 'الحد من عدم المساواة', nameEn: 'Reduced Inequalities' },
+  ],
+  'caade-project-11': [
+    { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },
+    { code: 'SDG 2', name: 'القضاء على الجوع', nameEn: 'Zero Hunger' },
+    { code: 'SDG 3', name: 'الصحة الجيدة والرفاه', nameEn: 'Good Health and Well-being' },
+    { code: 'SDG 10', name: 'الحد من عدم المساواة', nameEn: 'Reduced Inequalities' },
   ],
 });
 const DEFAULT_SDGS_BY_ID = Object.freeze({
@@ -163,6 +176,18 @@ const EN_TRANSLATIONS = {
   'المعرفة تنمو': 'Knowledge grows', 'بالعمل المشترك': 'through collaboration', 'تعرّف على مجالات التنمية الزراعية والبيئية من خلال أقسام الموقع.': 'Explore agricultural and environmental development through the sections of this website.', 'برامج ومجالات العمل': 'Programs and areas of work', 'إلى المجتمع': 'to the community', 'تابع الأخبار والأنشطة والمشاريع التي تُنشر عبر المنصة.': 'Follow the news, activities, and projects published on this platform.',
 };
 Object.assign(EN_TRANSLATIONS, {
+  'مشروعًا تم تنفيذه': 'implemented projects',
+  'مستفيد مباشر': 'direct beneficiaries',
+  'تطوير قدرات': 'Capacity Development',
+  'إغاثة طارئة': 'Emergency Relief',
+  'تمكين اقتصادي': 'Economic Empowerment',
+  'تنمية زراعية': 'Agricultural Development',
+  'حماية بيئية': 'Environmental Protection',
+  'إغاثة طارئة وتنمية': 'Emergency Relief and Development',
+  'دعم مزارعين': 'Farmer Support',
+  'استصلاح أراضٍ': 'Land Reclamation',
+  'أمن غذائي': 'Food Security',
+  'مساعدات غذائية': 'Food Assistance',
   'حالات استفادة أسرية عبر المشاريع': 'household assistance instances across projects',
   'تشمل الأرقام الأسر المستفيدة المسجلة في المشاريع، إضافة إلى 535 مستفيدًا مباشرًا في مشاريع أخرى؛ ولا تمثل أعدادًا موحدة لأشخاص فريدين.': 'These figures include household assistance recorded across projects, plus 535 direct beneficiaries in other projects; they are not deduplicated counts of unique people.',
   'اتصل بنا': 'Contact', 'الاتصال الهاتفي': 'Call us', 'المعرفة تنمو': 'Knowledge grows', 'بالعمل المشترك': 'through collaboration', 'إلى المجتمع': 'to the community',
@@ -445,6 +470,184 @@ function renderAboutText() {
   }).join('');
 }
 
+
+function initImpactCounter() {
+  const section = document.querySelector('.impact-band');
+  if (!section) return;
+
+  const animateNumber = (elementId, targetVal) => {
+    const el = document.getElementById(elementId);
+    if (!el || !targetVal) return;
+    const rawNumber = parseInt(String(targetVal).replace(/[^0-9]/g, ''), 10);
+    if (isNaN(rawNumber)) {
+      el.textContent = targetVal;
+      return;
+    }
+    const hasPlus = String(targetVal).includes('+');
+    const hasComma = String(targetVal).includes(',');
+    const duration = 1600;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(ease * rawNumber);
+      let formatted = hasComma ? current.toLocaleString('en-US') : String(current);
+      if (hasPlus) formatted += '+';
+      el.textContent = formatted;
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = targetVal;
+      }
+    }
+    requestAnimationFrame(update);
+  };
+
+  let hasAnimated = false;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+        animateNumber('statYears', siteData.profile.statYears);
+        animateNumber('statProjects', siteData.profile.statProjects);
+        animateNumber('statBeneficiaries', siteData.profile.statBeneficiaries);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(section);
+}
+
+function attachCarouselNav(sectionSelector, gridSelector, trackSelector) {
+  const section = document.querySelector(sectionSelector);
+  if (!section || section.hidden) return;
+  const heading = section.querySelector('.section-heading');
+  const grid = section.querySelector(gridSelector);
+  if (!heading || !grid) return;
+  let nav = heading.querySelector('.carousel-nav');
+  if (nav) return;
+
+  nav = make('div', 'carousel-nav');
+  nav.setAttribute('aria-label', currentLanguage === 'en' ? 'Carousel controls' : 'التحكم في الشريط');
+
+  const prevBtn = make('button', 'carousel-btn carousel-prev');
+  prevBtn.type = 'button';
+  prevBtn.setAttribute('aria-label', currentLanguage === 'en' ? 'Previous slide' : 'السابق');
+  prevBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>';
+
+  const pauseBtn = make('button', 'carousel-btn carousel-pause');
+  pauseBtn.type = 'button';
+  pauseBtn.setAttribute('aria-label', currentLanguage === 'en' ? 'Pause movement' : 'إيقاف الحركة');
+  pauseBtn.innerHTML = '<svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="7 4 19 12 7 20 7 4"/></svg>';
+
+  const nextBtn = make('button', 'carousel-btn carousel-next');
+  nextBtn.type = 'button';
+  nextBtn.setAttribute('aria-label', currentLanguage === 'en' ? 'Next slide' : 'التالي');
+  nextBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+
+  nav.append(prevBtn, pauseBtn, nextBtn);
+  heading.append(nav);
+
+  let isPaused = false;
+  pauseBtn.addEventListener('click', () => {
+    const track = grid.querySelector(trackSelector);
+    if (!track) return;
+    isPaused = !isPaused;
+    track.style.animationPlayState = isPaused ? 'paused' : 'running';
+    pauseBtn.querySelector('.icon-pause').style.display = isPaused ? 'none' : 'block';
+    pauseBtn.querySelector('.icon-play').style.display = isPaused ? 'block' : 'none';
+    pauseBtn.setAttribute('aria-label', isPaused ? (currentLanguage === 'en' ? 'Resume movement' : 'استئناف الحركة') : (currentLanguage === 'en' ? 'Pause movement' : 'إيقاف الحركة'));
+  });
+
+  const shiftTrack = (direction) => {
+    const track = grid.querySelector(trackSelector);
+    if (!track || !track.firstElementChild) return;
+    track.style.animationPlayState = 'paused';
+    pauseBtn.querySelector('.icon-pause').style.display = 'none';
+    pauseBtn.querySelector('.icon-play').style.display = 'block';
+    isPaused = true;
+
+    const cardWidth = track.firstElementChild.getBoundingClientRect().width + 18;
+    const isRtl = document.documentElement.dir !== 'ltr' && !document.body.classList.contains('english-layout');
+    const delta = direction === 'next' ? (isRtl ? cardWidth : -cardWidth) : (isRtl ? -cardWidth : cardWidth);
+
+    const computed = window.getComputedStyle(track);
+    let currentX = 0;
+    if (computed.transform && computed.transform !== 'none') {
+      const matrix = computed.transform.match(/matrix.*\((.+)\)/);
+      if (matrix) {
+        const parts = matrix[1].split(',');
+        currentX = parseFloat(parts[4]) || 0;
+      }
+    }
+    track.style.animation = 'none';
+    track.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+    track.style.transform = 'translateX(' + (currentX + delta) + 'px)';
+  };
+
+  nextBtn.addEventListener('click', () => shiftTrack('next'));
+  prevBtn.addEventListener('click', () => shiftTrack('prev'));
+}
+
+function initScrollReveal() {
+  const elements = document.querySelectorAll('.intro-section, .identity-panel, .impact-band, .program-section, .news-section, .projects-section, .gallery-section, .partners-section, .support-section, .footer-contact');
+  elements.forEach(el => el.classList.add('reveal-on-scroll'));
+
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
+  } else {
+    elements.forEach(el => el.classList.add('is-revealed'));
+  }
+}
+
+function initQuickContactForm() {
+  const form = document.getElementById('quickContactForm');
+  if (!form || form.dataset.initialized) return;
+  form.dataset.initialized = 'true';
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const status = document.getElementById('contactFormStatus');
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    const name = document.getElementById('contactName')?.value.trim();
+    const contact = document.getElementById('contactContact')?.value.trim();
+    const message = document.getElementById('contactMessage')?.value.trim();
+
+    if (!name || !contact || !message) {
+      if (status) {
+        status.hidden = false;
+        status.className = 'form-status is-error';
+        status.textContent = currentLanguage === 'en' ? 'Please fill in all required fields.' : 'يرجى ملء جميع الحقول المطلوبة.';
+      }
+      return;
+    }
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (status) {
+      status.hidden = false;
+      status.className = 'form-status is-success';
+      status.textContent = currentLanguage === 'en'
+        ? 'Thank you! Your message has been received and our team will get in touch soon.'
+        : 'شكرًا لتواصلكم معنا! تم استلام رسالتكم بنجاح وسيقوم فريقنا بالتواصل معكم في أقرب وقت.';
+    }
+    form.reset();
+    setTimeout(() => {
+      if (submitBtn) submitBtn.disabled = false;
+    }, 3500);
+  });
+}
+
 function renderPrograms() {
   const section = document.querySelector('#programs');
   const grid = $('#programGrid');
@@ -471,6 +674,7 @@ function renderPrograms() {
   });
   grid.append(track);
   duplicateLoopCards(track);
+  attachCarouselNav('#programs', '#programGrid', '.program-track');
 }
 
 function duplicateLoopCards(track) {
@@ -483,8 +687,8 @@ function duplicateLoopCards(track) {
 }
 
 function createEditorialCard(item, index) {
-  const card = make('article', `editorial-card${index === 0 ? ' editorial-feature' : ''}`);
-  const art = make('div', `editorial-art ${['art-field', 'art-seed', 'art-harvest'][index % 3]}`);
+  const card = make('article', 'editorial-card');
+  const art = make('div', 'editorial-art');
   const imageSrc = safeImage(item.image);
   if (imageSrc) {
     const image = make('img');
@@ -547,37 +751,22 @@ function matchesSearchTerm(item, query) {
 }
 
 function renderNews() {
+  const section = $('#news');
   const grid = $('#newsGrid');
   grid.replaceChildren();
-  const section = $('#news');
-  const toolbar = $('#newsToolbar');
-  const more = $('#newsMore');
   if (!siteData.news.length) {
     section.hidden = true;
-    if (toolbar) toolbar.hidden = true;
-    more.hidden = true;
     return;
   }
   section.hidden = false;
-  if (toolbar) toolbar.hidden = false;
-  let filtered = siteData.news.slice();
-  if (toolbar) {
-    const categories = new Map();
-    siteData.news.forEach(item => {
-      if (item.category && !categories.has(item.category)) categories.set(item.category, localized(item, 'category') || item.category);
-    });
-    populateFilter($('#newsCategory'), [...categories], currentLanguage === 'en' ? 'All categories' : 'كل التصنيفات');
-    const category = $('#newsCategory').value;
-    const searchTerm = $('#newsSearch').value.trim();
-    filtered = filtered.filter(item => (!category || item.category === category) && matchesSearchTerm(item, searchTerm));
-  }
-  filtered.sort((left, right) => dateValue(right.date) - dateValue(left.date));
-  if ($('#newsOrder').value === 'oldest') filtered.reverse();
-  filtered.slice(0, visibleNewsCount).forEach((item, index) => grid.append(createEditorialCard(item, index)));
-  const shown = Math.min(filtered.length, visibleNewsCount);
-  const count = $('#newsCount');
-  if (count) count.textContent = currentLanguage === 'en' ? shown + ' of ' + filtered.length + ' news items' : 'عرض ' + shown + ' من ' + filtered.length + ' خبر';
-  more.hidden = filtered.length <= shown;
+  const track = make('div', 'editorial-track');
+  const newsItems = currentLanguage === 'en' ? siteData.news : siteData.news;
+  newsItems.forEach((item, index) => {
+    track.append(createEditorialCard(item, index));
+  });
+  grid.append(track);
+  duplicateLoopCards(track);
+  attachCarouselNav('#news', '#newsGrid', '.editorial-track');
 }
 
 function renderProjects() {
@@ -660,6 +849,7 @@ function renderProjects() {
   });
   grid.append(track);
   if (track.children.length) duplicateLoopCards(track);
+  attachCarouselNav('#projects', '#projectGrid', '.project-track');
   const count = $('#projectCount');
   if (count) count.textContent = currentLanguage === 'en' ? projectItems.length + ' of ' + filtered.length + ' projects' : 'عرض ' + Math.min(filtered.length, 4) + ' من ' + filtered.length + ' مشروع';
   more.hidden = false;
@@ -667,19 +857,28 @@ function renderProjects() {
 function renderStories() {
   const section = $('#stories');
   const host = $('#storyList');
-  const items = (siteData.stories || []).filter(item => localized(item, 'quote') || localized(item, 'description')).slice(0, 3);
+  if (!host) return;
+  const items = (siteData.stories || []).filter(item => localized(item, 'quote') || localized(item, 'description') || localized(item, 'title')).slice(0, 3);
   host.replaceChildren();
   if (!items.length) {
-    section.hidden = true;
+    if (section) {
+      section.hidden = true;
+      section.setAttribute('hidden', '');
+      section.style.display = 'none';
+    }
     return;
   }
-  section.hidden = false;
+  if (section) {
+    section.hidden = false;
+    section.removeAttribute('hidden');
+    section.style.removeProperty('display');
+  }
   host.classList.add('story-placeholder');
   items.forEach(item => {
     const card = make('article', 'story-card');
     const mark = make('span', 'quote-mark', '“');
     mark.setAttribute('aria-hidden', 'true');
-    card.append(mark, make('p', '', localized(item, 'quote') || localized(item, 'description')));
+    card.append(mark, make('p', '', localized(item, 'quote') || localized(item, 'description') || localized(item, 'title')));
     const attribution = localized(item, 'attribution');
     if (attribution) card.append(make('span', 'story-credit', attribution));
     host.append(card);
@@ -718,6 +917,7 @@ function renderGallery() {
     duplicateLoopCards(track);
     track.style.setProperty('--carousel-duration', `${Math.max(90, galleryItems.length * 18)}s`);
   }
+  attachCarouselNav('#gallery', '#galleryGrid', '.gallery-track');
   more.hidden = false;
 }
 function renderPartners() {
@@ -800,11 +1000,6 @@ function renderContact() {
   });
   if (!count) host.append(make('p', 'contact-entry', 'أضف بيانات التواصل من لوحة إدارة المحتوى.'));
 }
-
-$('#newsCategory').addEventListener('change', () => { visibleNewsCount = CONTENT_PAGE_SIZE; renderNews(); applyLanguage($('#newsToolbar')); });
-$('#newsOrder').addEventListener('change', renderNews);
-$('#newsSearch').addEventListener('input', () => { visibleNewsCount = CONTENT_PAGE_SIZE; renderNews(); });
-$('#newsMore').addEventListener('click', () => { visibleNewsCount += CONTENT_PAGE_SIZE; renderNews(); });
 $('#projectCategory')?.addEventListener('change', () => { renderProjects(); applyLanguage($('#projectToolbar')); });
 $('#projectYear')?.addEventListener('change', () => { renderProjects(); applyLanguage($('#projectToolbar')); });
 $('#projectSearch')?.addEventListener('input', renderProjects);
@@ -921,7 +1116,7 @@ window.addEventListener('resize', positionHeroImageControls, { passive: true });
 function addSectionPageLinks() {
   const links = [
     ['programs', '/programs', 'استكشف جميع البرامج', 'Explore all programmes'],
-    ['news', '/news', 'جميع الأخبار', 'All news'],
+    
     ['stories', '/stories', 'جميع قصص الأثر', 'All impact stories'],
     ['partners', '/partners', 'استعرض الشركاء', 'View partners'],
   ];
@@ -952,7 +1147,12 @@ function applyEnglishHomepageLabels() {
   set('.main-nav > a[href="/#programs"]', 'Programmes');
   set('.main-nav > a[href="/#projects"]', 'Projects');
   set('.main-nav .nav-dropdown:nth-of-type(2) summary', 'News & media');
-  setAll('.main-nav .nav-dropdown:nth-of-type(2) .dropdown-panel a', ['News', 'Impact stories', 'Photo gallery']);
+  document.querySelectorAll('.main-nav .nav-dropdown:nth-of-type(2) .dropdown-panel a').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      if (href.includes('news')) link.textContent = 'News';
+      else if (href.includes('stories')) link.textContent = 'Impact stories';
+      else if (href.includes('gallery')) link.textContent = 'Photo gallery';
+    });
   set('.main-nav > a[href="/partners"]', 'Partners');
   set('.nav-cta', 'Become a partner ↗');
   set('.hero-landscape', '');
@@ -963,11 +1163,10 @@ function applyEnglishHomepageLabels() {
   set('.impact-heading .eyebrow', 'Our impact in numbers');
   set('.impact-heading h2', 'A journey of development');
   const impactTitle = document.querySelector('.impact-heading h2'); if (impactTitle) impactTitle.innerHTML = 'A journey of development <em>creating lasting impact</em>';
-  set('.impact-heading > p:last-child', 'A snapshot of the Association’s journey, projects, and service to the community.');
-  setAll('.impact-label', ['years of work', 'projects and initiatives', 'families reached through projects']);
+  set('.impact-heading > p:last-child', 'Key highlights of the Association’s journey, projects, and community service.'); set('#impactNote', 'Covers 11 development and relief projects implemented with a 100% completion rate (2022–2026) in partnership with international and local partners, with total funding of approximately $564K and 10,471 direct beneficiaries.');
+  setAll('.impact-label', ['Years of work', 'Implemented projects', 'Direct beneficiaries']);
   set('.program-section .eyebrow', 'Areas of work'); set('.program-section h2', 'Strategic programmes'); set('.program-section .section-summary', 'This section presents the Association’s approved programmes and areas of work.');
   set('.news-section .eyebrow', 'Latest updates'); set('.news-section h2', 'News and events');
-  setAll('#newsToolbar label span', ['Category', 'Date order', 'Search']); set('#newsCategory option', 'All categories'); set('#newsOrder option[value="newest"]', 'Newest first'); set('#newsOrder option[value="oldest"]', 'Oldest first'); document.querySelector('#newsSearch')?.setAttribute('placeholder', 'Search news'); set('#newsMore', 'Show more');
   set('.projects-section .eyebrow', 'Our projects'); set('.projects-section h2', 'Featured projects'); set('.projects-section .section-summary', 'Projects and activities added by the Association will appear here.'); set('#projectMore', 'Show more');
   set('.support-section .eyebrow', 'Support us'); set('.support-section h2', 'To strengthen agriculture'); const supportTitle = document.querySelector('.support-section h2'); if (supportTitle) supportTitle.innerHTML = 'To strengthen agriculture<br><em>and sustainable development</em>'; set('.support-section .section-summary', 'Your support enables the Association to carry out more agricultural and environmental projects and improve the lives of families and communities.');
   setAll('.stories-heading .eyebrow, .stories-heading h2, .stories-heading > p, .stories-heading a, .story-placeholder p', ['Stories from the field', 'Impact stories', 'Told by the people behind them', 'Add stories and testimonials with the authors’ consent and approved wording.', 'Share a story', 'No stories have been published yet.']);
@@ -975,9 +1174,34 @@ function applyEnglishHomepageLabels() {
   set('.partners-section .eyebrow', 'Creating impact together'); set('.partners-section h2', 'Partners and supporters'); set('.partners-section .section-summary', 'Partner names and logos added through the content management panel will appear here.');
   document.querySelector('.partner-slots')?.setAttribute('aria-label', 'Association partners');
   document.querySelector('.footer-sitemap nav')?.setAttribute('aria-label', 'Site map');
-  set('.footer-identity > p', 'Working together for sustainable agricultural and environmental development in Gaza.');
-  setAll('.footer-sitemap nav a', ['Home', 'About us', 'Programmes', 'Projects', 'News', 'Impact stories', 'Photo gallery', 'Partners', 'Support us', 'Contact us']);
-  set('.footer-contact .eyebrow', 'Contact us'); set('#footerContactTitle', 'Let’s work together'); set('.footer-contact-heading > p', 'We welcome your questions, suggestions, and partnership requests.'); set('.location-card h3', 'Location and office hours'); set('#mapLink', 'Open location in maps ↗'); set('.footer-bottom a', 'Back to top ↑');
+  set('.footer-identity > p', 'Through Cooperation, We Produce | Through Solidarity, We Grow | Through Sustainability, We Thrive');
+  const footerLabelMap = {
+      '#home': 'Home', '/en': 'Home', '/': 'Home',
+      'about': 'About us', 'programs': 'Programmes', 'projects': 'Projects',
+      'news': 'News', 'stories': 'Impact stories', 'gallery': 'Photo gallery',
+      'partners': 'Partners', 'support': 'Support us', 'contact': 'Contact us'
+    };
+    document.querySelectorAll('.footer-sitemap nav a').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      for (const [key, label] of Object.entries(footerLabelMap)) {
+        if (href === key || (key !== '/' && href.includes(key))) {
+          link.textContent = label;
+          break;
+        }
+      }
+    });
+  set('.footer-contact .eyebrow', 'Contact us'); set('#footerContactTitle', 'Let’s work together'); set('.footer-contact-heading > p', 'We welcome your questions, suggestions, and partnership requests.');
+  const contactFormTitle = document.querySelector('#contactFormCard h3');
+  if (contactFormTitle) contactFormTitle.textContent = 'Send Us a Direct Message';
+  const nameInput = document.getElementById('contactName');
+  if (nameInput) nameInput.placeholder = 'Full Name';
+  const contactInput = document.getElementById('contactContact');
+  if (contactInput) contactInput.placeholder = 'Email or Phone Number';
+  const msgInput = document.getElementById('contactMessage');
+  if (msgInput) msgInput.placeholder = 'Write your inquiry or message here...';
+  const submitText = document.querySelector('#contactSubmitBtn span');
+  if (submitText) submitText.textContent = 'Send Message';
+ set('.location-card h3', 'Location and office hours'); set('#mapLink', 'Open location in maps ↗'); set('.footer-bottom a', 'Back to top ↑');
 }
 
 function renderSite() {
@@ -1015,13 +1239,69 @@ function renderSite() {
   renderHeroImages();
   renderPrograms(); renderNews(); renderStories(); renderGallery(); renderProjects(); renderPartners(); renderContact();
   addSectionPageLinks();
-  for (const sectionId of ['programs', 'news', 'stories', 'gallery', 'projects', 'partners']) {
-    const unavailable = $(`#${sectionId}`).hidden;
-    document.querySelectorAll(`a[href="#${sectionId}"],a[href="/#${sectionId}"]`).forEach(link => { link.hidden = unavailable; });
-  }
+  const sectionsToCheck = [
+    { id: 'programs', count: (siteData.programs || []).length },
+    { id: 'news', count: (siteData.news || []).length },
+    { id: 'stories', count: (siteData.stories || []).filter(item => localized(item, 'quote') || localized(item, 'description') || localized(item, 'title')).length },
+    { id: 'gallery', count: (siteData.gallery || []).filter(item => safeImage(item.image)).length },
+    { id: 'projects', count: (siteData.projects || []).length },
+    { id: 'partners', count: (siteData.partners || []).length },
+  ];
+  sectionsToCheck.forEach(({ id, count }) => {
+    const section = $(`#${id}`);
+    const hasData = count > 0;
+    if (section) {
+      section.hidden = !hasData;
+      if (!hasData) {
+        section.setAttribute('hidden', '');
+        section.style.display = 'none';
+      } else {
+        section.removeAttribute('hidden');
+        section.style.removeProperty('display');
+      }
+    }
+    const linkSelectors = [
+      `a[href="#${id}"]`,
+      `a[href="/#${id}"]`,
+      `a[href="/en#${id}"]`,
+      `a[href="/${id}"]`,
+      `a[href="/${id}/"]`,
+      `a[href="/en/${id}"]`,
+      `a[href="/en/${id}/"]`,
+      `a[href*="page=${id}"]`,
+      `[data-nav="${id}"]`,
+    ];
+    document.querySelectorAll(linkSelectors.join(',')).forEach(link => {
+      link.hidden = !hasData;
+      if (!hasData) {
+        link.setAttribute('hidden', '');
+        link.style.display = 'none';
+      } else {
+        link.removeAttribute('hidden');
+        link.style.removeProperty('display');
+      }
+    });
+  });
+
+  document.querySelectorAll('.main-nav .nav-dropdown, .subpage-nav .subpage-nav-dropdown').forEach(dropdown => {
+    const childLinks = [...dropdown.querySelectorAll('.dropdown-panel a, div a')];
+    const visibleLinks = childLinks.filter(l => !l.hidden && l.style.display !== 'none');
+    if (childLinks.length > 0 && visibleLinks.length === 0) {
+      dropdown.hidden = true;
+      dropdown.style.display = 'none';
+      dropdown.setAttribute('hidden', '');
+    } else {
+      dropdown.hidden = false;
+      dropdown.style.removeProperty('display');
+      dropdown.removeAttribute('hidden');
+    }
+  });
   normalizeLocalLinks();
   applyLanguage();
   applyEnglishHomepageLabels();
+  initImpactCounter();
+  initScrollReveal();
+  initQuickContactForm();
 }
 
 const heroSection = $('.hero');

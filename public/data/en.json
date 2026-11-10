@@ -1,31 +1,31 @@
 {
-  "name": "الجمعية التعاونية للتنمية الزراعية والبيئة – غزة",
+  "name": "Cooperative Association for Agricultural Development and Environment – Gaza (CAADE)",
   "profile": {
     "logo": "/media/caade-logo.png",
-    "name": "Agricultural and Environmental Development Cooperative Association – Gaza",
-    "vision": "A pioneering cooperative association that strengthens the resilience and empowerment of members and the local community, and serves as an innovative cooperative model for sustainable agricultural development.",
-    "origin": "The Agricultural and Environmental Development Cooperative Association – Gaza (CAADE) was established in 2021 by a group of professionals with experience in agricultural development, cooperative work, environmental management, and development and humanitarian projects. They were driven by their belief in the central role of cooperatives in strengthening community resilience, improving livelihoods, and contributing to sustainable development. CAADE is an independent Palestinian cooperative association officially registered with the Palestinian Ministry of Labour’s Cooperative Work Directorate under registration number 1696, with legal personality and financial and administrative independence in accordance with Palestinian cooperative legislation.",
-    "about": "1. About us\n\nThe Agricultural and Environmental Development Cooperative Association – Gaza (CAADE) is an independent Palestinian cooperative association that works to promote sustainable economic, social, and environmental development and empower members, farmers, and local communities. It operates on the principles of cooperative work and the social and solidarity economy by developing innovative cooperative economic models and strengthening local production, services, cooperative assets, value chains, and marketing.\n\nThe association adopts an integrated approach that combines humanitarian response, early recovery, and sustainable development in light of the challenges facing the Gaza Strip, particularly the consequences of the war since October 2023. Its areas of work focus on strengthening food security, restoring and developing agricultural production and livelihoods, economic empowerment, sustainable agricultural and environmental solutions, efficient use of resources, and climate adaptation.\n\nCAADE serves both members and non-members, prioritizing farmers, women, youth, and the most vulnerable and affected households. Through its expertise, partnerships with national and international institutions, and its strategic plan for 2026–2030, it seeks to strengthen its role as an active cooperative and development partner in recovery, reconstruction, and sustainable development efforts in Gaza.\n\n2. Establishment and origins\n\nA leading cooperative association that strengthens the resilience and empowerment of members and local communities, and delivers an innovative and advanced cooperative model for sustainable agricultural development.",
-    "mission": "We are a cooperative association for agricultural development and the environment, working to serve members and the local community and strengthen our institutional capacities through innovative cooperative economic models, the development of agricultural production and value chains, cooperative marketing, the use of modern technologies, and the implementation of sustainable development programs in line with the principles of the social and solidarity economy. We work to promote participation, justice, solidarity, and sustainability, support the recovery and resilience of the agricultural sector, improve livelihoods, and contribute to environmental sustainability and national development.",
-    "values": "Justice and equal opportunities; transparency and accountability; excellence and quality; innovation; sustainability; solidarity and cooperation; partnership; empowerment and participation.",
+    "name": "Cooperative Association for Agricultural Development and Environment – Gaza (CAADE)",
+    "vision": "A pioneering cooperative association that strengthens the resilience and empowerment of its members and the local community, and serves as an innovative cooperative model for sustainable agricultural development.",
+    "origin": "The Cooperative Association for Agricultural Development and Environment – Gaza (CAADE) was established in 2021 by a group of professionals with experience in agricultural development, cooperative work, environmental management, and development and humanitarian projects. CAADE is an independent Palestinian cooperative association officially registered with the Palestinian Ministry of Labour – Cooperative Work Sector under registration number 1696, with legal personality and financial and administrative autonomy in accordance with Palestinian cooperative legislation.",
+    "about": "The Cooperative Association for Agricultural Development and Environment – Gaza (CAADE) is an independent Palestinian cooperative association established in 2021, with legal personality and financial and administrative autonomy, officially registered with the Palestinian Ministry of Labour – Cooperative Work Sector. The Association works to serve its members, farmers, and local communities, and to promote sustainable economic, social, and environmental development in the Gaza Strip.\n\nIn light of the humanitarian, economic, and environmental challenges facing the Gaza Strip, particularly the consequences of the war since October 2023, the Association adopts an integrated approach that combines humanitarian response, early recovery, and sustainable development. Its interventions focus on food security, restoring and developing agricultural production and livelihoods, economic empowerment, sustainable agricultural and environmental solutions, efficient resource use, and climate change adaptation.\n\nThe Association embraces the principles of cooperative action and the Social and Solidarity Economy (SSE) through developing innovative cooperative economic models, strengthening local production, cooperative services and assets, value chains, and marketing, thereby contributing to improved livelihoods, strengthened resilience, and self-reliance.\n\nThe Association implements its programmes for both members and non-members, prioritizing farmers, women, youth, and the most vulnerable and affected households. Building on its experience and national and international partnerships, CAADE seeks, through its strategic plan, to strengthen its role as an effective cooperative and development partner in the Gaza Strip.",
+    "mission": "We are a cooperative association for agricultural development and the environment, dedicated to serving our members and the local community and strengthening our institutional capacities through the development of innovative cooperative economic models, the advancement of agricultural production, value chains, and cooperative marketing, the application of modern technologies, and the implementation of sustainable development programmes guided by the principles of the Social and Solidarity Economy (SSE). Through these efforts, we promote participation, equity, and solidarity, support the recovery and resilience of the agricultural sector, improve livelihoods, and contribute to environmental sustainability and national development.",
+    "values": "Cooperation and solidarity; empowerment and democratic participation; transparency and accountability; justice, equality, and inclusion; sustainability; innovation and responsiveness to change; professionalism and institutional excellence; partnership and collaboration.",
     "statYears": "5",
-    "statProjects": "10",
-    "statBeneficiaries": "9,554–9,576",
+    "statProjects": "11",
+    "statBeneficiaries": "10,471",
     "phone": "+970599807090",
     "email": "caade.coop@gmail.com",
-    "address": "Beach Camp, Gaza, Palestine — near Al-Sitt Sura School and opposite the Al-Waleed Home building",
+    "address": "Palestine – Gaza – Al-Rimal Al-Gharbi – The Beach",
     "mapUrl": "https://www.google.com/maps/@31.5336939,34.4444411,19z",
-    "officeHours": "Sunday – Thursday / 8:00–2:30",
+    "officeHours": "Sunday – Thursday / 8:00 – 2:30",
     "facebook": "https://www.facebook.com/p/%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%88%D9%86%D9%8A%D8%A9-%D9%84%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%A8%D9%8A%D8%A6%D8%A9-%D8%BA%D8%B2%D8%A9-100076959926696",
     "instagram": "",
-    "whatsapp": "",
-    "heroIntro": "A Palestinian cooperative advancing sustainable agricultural and environmental development and supporting the resilience of farmers and families in Gaza."
+    "whatsapp": "https://wa.me/970599807090",
+    "heroIntro": "A Palestinian cooperative operating in line with the principles of the Social and Solidarity Economy to advance sustainable agricultural and environmental development and empower communities in the Gaza Strip."
   },
   "programs": [
     {
       "id": "strategic-1",
-      "title": "Institutional Excellence, Capacity Building, and Good Governance",
-      "description": "Strengthen institutional, administrative, and financial capacity, governance, transparency, accountability, and staff skills.",
+      "title": "Institutional Excellence and Capacity Building",
+      "description": "Strengthening institutional capacities and governance, and improving systems of efficiency, sustainability, and development impact.",
       "icon": "01",
       "sdgs": [
         { "code": "SDG 8", "name": "Decent Work and Economic Growth", "nameEn": "Decent Work and Economic Growth" },
@@ -35,34 +35,37 @@
     },
     {
       "id": "strategic-2",
-      "title": "Sustainable Agricultural Rehabilitation and Development",
-      "description": "Support agricultural recovery, sustainable production, efficient resource use, infrastructure, food security, and farmers’ resilience.",
+      "title": "Contributing to the Rehabilitation and Sustainable Development of the Agricultural Sector",
+      "description": "Supporting the recovery of the agricultural sector, enhancing its productivity, and strengthening its resilience and sustainability.",
       "icon": "02",
       "sdgs": [
         { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
         { "code": "SDG 12", "name": "Responsible Consumption and Production", "nameEn": "Responsible Consumption and Production" },
-        { "code": "SDG 13", "name": "Climate Action", "nameEn": "Climate Action" }
+        { "code": "SDG 13", "name": "Climate Action", "nameEn": "Climate Action" },
+        { "code": "SDG 15", "name": "Life on Land", "nameEn": "Life on Land" }
       ]
     },
     {
       "id": "strategic-3",
       "title": "Agricultural Value Chain Development and Cooperative Marketing",
-      "description": "Develop agricultural value chains, product quality, agro-processing, cooperative marketing, and local product competitiveness.",
+      "description": "Enhancing the economic value of agricultural products and improving their competitiveness through integrated value chains and effective cooperative marketing.",
       "icon": "03",
       "sdgs": [
         { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
         { "code": "SDG 8", "name": "Decent Work and Economic Growth", "nameEn": "Decent Work and Economic Growth" },
-        { "code": "SDG 9", "name": "Industry, Innovation and Infrastructure", "nameEn": "Industry, Innovation and Infrastructure" }
+        { "code": "SDG 9", "name": "Industry, Innovation and Infrastructure", "nameEn": "Industry, Innovation and Infrastructure" },
+        { "code": "SDG 12", "name": "Responsible Consumption and Production", "nameEn": "Responsible Consumption and Production" }
       ]
     },
     {
       "id": "strategic-4",
       "title": "Recovery, Sustainable Livelihoods, and Community Resilience",
-      "description": "Integrate humanitarian response with early recovery and economic and social empowerment to improve livelihoods and self-reliance.",
+      "description": "Responding to urgent needs and supporting early recovery, while empowering local communities to restore sustainable and dignified livelihoods.",
       "icon": "04",
       "sdgs": [
         { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
         { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
+        { "code": "SDG 5", "name": "Gender Equality", "nameEn": "Gender Equality" },
         { "code": "SDG 8", "name": "Decent Work and Economic Growth", "nameEn": "Decent Work and Economic Growth" },
         { "code": "SDG 10", "name": "Reduced Inequalities", "nameEn": "Reduced Inequalities" }
       ]
@@ -70,7 +73,7 @@
     {
       "id": "strategic-5",
       "title": "Environmental Management and Climate-Smart Sustainable Agriculture",
-      "description": "Protect natural resources, reduce climate impacts, and expand climate-smart, sustainable agricultural practices.",
+      "description": "Protecting the environment and natural resources, and promoting climate-smart agriculture and sustainable practices to address climate change.",
       "icon": "05",
       "sdgs": [
         { "code": "SDG 6", "name": "Clean Water and Sanitation", "nameEn": "Clean Water and Sanitation" },
@@ -80,7 +83,170 @@
       ]
     }
   ],
-  "news": [],
+  "news": [
+    {
+      "id": "activity-made-in-gaza-2026",
+      "title": "The Association’s Participation in the “Made in Gaza (Stories of Hope)” Exhibition",
+      "excerpt": "Participation in the “Made in Gaza” Exhibition organized by the Democracy and Workers’ Rights Center.",
+      "description": "In October 2026, the Cooperative Association for Agricultural Development and Environment – Gaza participated in the “Made in Gaza (Stories of Hope)” Exhibition, showcasing local agricultural products and highlighting community resilience.",
+      "date": "2026-10-15",
+      "category": "Exhibitions & Events",
+      "image": "/media/projects/association-activities/activity-36.jpg"
+    },
+    {
+      "id": "activity-olive-sector-study-2026",
+      "title": "Study and Assessment of the Olive and Olive Oil Sector",
+      "excerpt": "Field assessment of the olive sector in Gaza in cooperation with the Land Research Center and the Ministry of Agriculture.",
+      "description": "In September 2026, CAADE, in cooperation with the Land Research Center and the Palestinian Ministry of Agriculture, organized a comprehensive field study and assessment of the olive and olive oil sector across the Gaza Strip.",
+      "date": "2026-09-20",
+      "category": "Studies & Research",
+      "image": "/media/projects/association-activities/activity-17.jpg"
+    },
+    {
+      "id": "activity-ilo-consultation-2026",
+      "title": "Consultative Meeting with the International Labour Organization (ILO)",
+      "excerpt": "Exploring interventions and prospects for strengthening the agricultural sector and employment.",
+      "description": "In May 2026, the Association held a consultative meeting with the International Labour Organization (ILO) and agricultural cooperatives on potential interventions and prospects for strengthening the agricultural sector and employment.",
+      "date": "2026-05-18",
+      "category": "Consultative Meetings",
+      "image": "/media/projects/association-activities/activity-18.jpg"
+    },
+    {
+      "id": "activity-un-recovery-dialogue-2025",
+      "title": "Closing Meeting of the Gaza Recovery and Reconstruction Dialogues",
+      "excerpt": "Participating in discussions on Gaza’s recovery at the invitation of the Ministry of Planning and the United Nations.",
+      "description": "In November 2025, CAADE participated in the closing meeting of the week of discussions and dialogues on Gaza's recovery and reconstruction, organized by the Ministry of Planning and the United Nations.",
+      "date": "2025-11-28",
+      "category": "Conferences & Planning",
+      "image": "/media/projects/association-activities/activity-19.jpg"
+    },
+    {
+      "id": "activity-recovery-public-private-2025",
+      "title": "Gaza Recovery Discussions with Public and Private Sectors",
+      "excerpt": "Dialogue alongside public and private sector institutions on recovery and reconstruction.",
+      "description": "The Association participated alongside public and private sector institutions in discussions on Gaza's recovery and reconstruction, at the invitation of the Ministry of Planning and the United Nations (November 2025).",
+      "date": "2025-11-20",
+      "category": "Workshops & Planning",
+      "image": "/media/projects/association-activities/activity-16.jpg"
+    },
+    {
+      "id": "activity-recovery-civil-society-2025",
+      "title": "Civil Society Discussions on Gaza’s Recovery and Reconstruction",
+      "excerpt": "Consultations on cooperative and agricultural priorities in early recovery.",
+      "description": "In November 2025, CAADE joined civil society organizations in consultative sessions on Gaza's recovery and reconstruction, convened by the Ministry of Planning and the United Nations.",
+      "date": "2025-11-15",
+      "category": "Civil Society",
+      "image": "/media/projects/association-activities/activity-17.jpg"
+    },
+    {
+      "id": "activity-al-ahba-school-2025",
+      "title": "Al-Ahba Cooperative School Initiative for 470 Displaced Children",
+      "excerpt": "Establishing an educational learning centre in Al-Mawasi, Khan Younis – Bir 20.",
+      "description": "As part of CAADE's community initiatives, an educational learning centre (Al-Ahba Cooperative School) was established to provide education for 470 displaced children in Al-Mawasi, Khan Younis – Bir 20, in partnership with Women’s Affairs Center and Oxfam.",
+      "date": "2025-10-01",
+      "category": "Community Initiatives",
+      "image": "/media/projects/food-assistance/food-01.jpg"
+    },
+    {
+      "id": "activity-cooperative-board-elections-2025",
+      "title": "General Assembly Meeting and Elections of Board and Supervisory Committee",
+      "excerpt": "Democratic elections for the 2025–2028 term under the patronage of the Cooperative Work Authority.",
+      "description": "On 20 August 2025, CAADE held its General Assembly meeting under the patronage of the Cooperative Work Authority, successfully electing the 7-member Management Committee and 3-member Supervisory Committee for 2025–2028.",
+      "date": "2025-08-20",
+      "category": "Governance & Elections",
+      "image": "/media/annual-report-2022-photo-01.jpg"
+    },
+    {
+      "id": "activity-fresh-food-firdaous-2024",
+      "title": "Fresh Food Supplies for Displaced Families in Southern Gaza",
+      "excerpt": "Distributing fresh food and produce, generously funded by Firdaous Charity France in partnership with Taawon.",
+      "description": "CAADE implemented the 'Providing Fresh Food Supplies to Displaced Families in the Southern Gaza Strip (2024)' project, generously funded by Firdaous Charity France, in partnership with Taawon (Welfare Association).",
+      "date": "2024-04-10",
+      "category": "Relief Response",
+      "image": "/media/projects/food-assistance/food-04.jpg"
+    },
+    {
+      "id": "activity-rafah-camps-relief-2024",
+      "title": "Humanitarian Assistance to Displacement Camps in Rafah",
+      "excerpt": "Delivering relief and essential food supplies to displaced families in Rafah.",
+      "description": "In 2024, the Association provided urgent humanitarian assistance to displacement camps in Rafah in cooperation and coordination with international humanitarian organizations.",
+      "date": "2024-02-15",
+      "category": "Relief Response",
+      "image": "/media/projects/food-assistance/food-02.jpg"
+    },
+    {
+      "id": "activity-cooperative-strategy-workshop-2024",
+      "title": "Workshop on National Priorities for the Cooperative Sector (2024–2029)",
+      "excerpt": "Advancing the cooperative sector within the framework of the Cooperative Work Authority’s strategy.",
+      "description": "CAADE participated in the national workshop on “National Priorities for the Development and Advancement of the Cooperative Sector within the Framework of the Cooperative Work Authority’s Strategy (2024–2029)”.",
+      "date": "2024-01-20",
+      "category": "Strategy & Development",
+      "image": "/media/projects/association-activities/activity-19.jpg"
+    },
+    {
+      "id": "activity-ilo-training-2023",
+      "title": "Training Programme on “Management of Agricultural Cooperative Associations” with the ILO",
+      "excerpt": "Strengthening management, financial, and operational capacity of agricultural cooperatives.",
+      "description": "CAADE staff participated in the specialized training programme on the “Management of Agricultural Cooperative Associations” organized in collaboration with the International Labour Organization (ILO).",
+      "date": "2023-09-12",
+      "category": "Training & Capacity Building",
+      "image": "/media/projects/association-activities/activity-18.jpg"
+    },
+    {
+      "id": "activity-roots-summer-camp-2023",
+      "title": "Roots Summer Pioneers Camp “Stars, Not Numbers” (2023)",
+      "excerpt": "Youth and children's developmental summer camp under the Higher Council for Youth and Sports.",
+      "description": "CAADE organized the Roots Summer Pioneers Camp under the patronage of the Palestinian Higher Council for Youth and Sports under the motto “Stars, Not Numbers” (2023), supporting psychological and social well-being.",
+      "date": "2023-07-25",
+      "category": "Youth & Community",
+      "image": "/media/projects/association-activities/activity-34.jpg"
+    },
+    {
+      "id": "activity-thyme-value-chain-2023",
+      "title": "Table Thyme Cultivation and Production through a Value Chain Approach",
+      "excerpt": "Establishing drying and processing units to build sustainable income for farmers.",
+      "description": "Implementing table thyme cultivation and drying activities through a value chain approach, equipping farmers with sorting, packaging, and marketing capacities to enhance agricultural livelihoods.",
+      "date": "2023-06-15",
+      "category": "Value Chains",
+      "image": "/media/projects/association-activities/activity-35.jpg"
+    },
+    {
+      "id": "activity-social-security-law-2023",
+      "title": "Participation in Discussion of Draft Palestinian Social Security Law",
+      "excerpt": "Advocating for the rights and social protection of farmers and cooperative members.",
+      "description": "CAADE actively participated in national policy dialogues on the draft Palestinian Social Security Law, ensuring the inclusion of agricultural workers and smallholder farmers in social protection systems.",
+      "date": "2023-05-10",
+      "category": "Advocacy & Policy",
+      "image": "/media/projects/association-activities/activity-09.jpg"
+    },
+    {
+      "id": "activity-zeina-cooperation-2023",
+      "title": "Strengthening Cooperation with Zeina Cooperative Association",
+      "excerpt": "Putting into action the cooperative principle of 'Cooperation among Cooperatives'.",
+      "description": "CAADE established formal collaborative ties with Zeina Cooperative Association, in line with the universal cooperative principle of cooperation among cooperatives, to exchange expertise and shared assets.",
+      "date": "2023-03-15",
+      "category": "Cooperative Action",
+      "image": "/media/projects/association-activities/activity-08.jpg"
+    },
+    {
+      "id": "activity-al-baraka-insurance-2023",
+      "title": "Discussions with Al-Baraka Insurance Company on Agricultural Insurance",
+      "excerpt": "Exploring agricultural risk protection mechanisms for greenhouse farmers in Gaza.",
+      "description": "CAADE held working sessions with Al-Baraka Insurance Company to discuss ways to provide agricultural insurance for farmers in the protected agriculture sector, safeguarding producers against losses.",
+      "date": "2023-02-10",
+      "category": "Agricultural Insurance",
+      "image": "/media/projects/association-activities/activity-07.jpg"
+    },
+    {
+      "id": "activity-cash-for-work-sida-2022",
+      "title": "Multi-Sectoral Needs Response Project – Cash for Work Component",
+      "excerpt": "Providing dignified employment and livelihood support funded by Sida via Islamic Relief.",
+      "description": "CAADE implemented the cash-for-work component of the Multi-Sectoral Response project for conflict-affected households in Gaza, funded by Sida and implemented by Gaza Culture Group through Islamic Relief Palestine.",
+      "date": "2022-10-05",
+      "category": "Livelihoods & Work",
+      "image": "/media/projects/association-activities/activity-06.jpg"
+    }
+  ],
   "stories": [],
   "gallery": [
     {
@@ -665,207 +831,315 @@
   "projects": [
     {
       "id": "caade-project-01",
-      "category": "Completed project",
-      "title": "Ramadan 2022 Food Assistance (Food Vouchers)",
-      "description": "630 vulnerable households in North Gaza; ANERA and Al-Mustaqbal Foundation; USD 45,000; March–April 2022.",
+      "category": "Humanitarian and Relief Assistance",
+      "title": "Ramadan Food Assistance Project (Food Voucher Distribution)",
+      "description": "630 vulnerable households in North Gaza; ANERA, in cooperation with Al-Mustaqbal Foundation for Development; Project Budget: $45,000; Implementation: 2022.",
       "date": "2022-03-01",
       "image": "",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" }
+      ]
     },
     {
       "id": "caade-project-02",
-      "category": "Completed project",
-      "title": "Qurbani 2022 Meat Distribution",
-      "description": "700 households in North Gaza; ANERA; USD 21,000; June–July 2022.",
+      "category": "Humanitarian and Relief Assistance",
+      "title": "Qurbani 2022 Meat Distribution Project",
+      "description": "700 households in North Gaza; Funding Partner: ANERA; Project Budget: $21,000; Implementation: 2022.",
       "date": "2022-06-01",
       "image": "",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" }
+      ]
     },
     {
       "id": "caade-project-03",
-      "category": "Completed project",
-      "title": "Multi-Sectoral Response – Cash for Work",
-      "description": "15 farmers, graduates, and workers; Sida funded, implemented by Gaza Culture Group through Islamic Relief Palestine; USD 10,000; August 2022–January 2023.",
-      "date": "2022-08-15",
+      "category": "Development and Productive Projects",
+      "title": "Establishment of an Agricultural Freezing Unit for Vegetables and Fruits",
+      "description": "Freezing unit serving 20 farmers in North Gaza; GIZ through Oxfam, implemented by the Palestinian Center for Economic and Social Development; Project Budget: $8,913; Implementation: 2022–2023.",
+      "date": "2022-12-01",
       "image": "",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
+        { "code": "SDG 8", "name": "Decent Work and Economic Growth", "nameEn": "Decent Work and Economic Growth" },
+        { "code": "SDG 9", "name": "Industry, Innovation and Infrastructure", "nameEn": "Industry, Innovation and Infrastructure" },
+        { "code": "SDG 12", "name": "Responsible Consumption and Production", "nameEn": "Responsible Consumption and Production" }
+      ]
     },
     {
       "id": "caade-project-04",
-      "category": "Completed project",
-      "title": "Agricultural Freezing Unit for Vegetables and Fruits",
-      "description": "Unit serving 20 farmers in North Gaza; GIZ through Oxfam, implemented by PCED; USD 8,913; 2022–2023.",
-      "date": "2022-12-01",
+      "category": "Emergency Response and Livelihood Support",
+      "title": "Multi-Sectoral Response to the Needs of Conflict-Affected Households in Gaza – Cash for Work Component",
+      "description": "15 farmers, graduates, and workers; Swedish International Development Cooperation Agency (Sida), implemented by Gaza Culture Group through Islamic Relief Palestine; Project Budget: $10,000; Implementation: 2022–2023.",
+      "date": "2022-08-15",
       "image": "",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
+        { "code": "SDG 8", "name": "Decent Work and Economic Growth", "nameEn": "Decent Work and Economic Growth" }
+      ]
     },
     {
       "id": "caade-project-05",
-      "category": "Completed project",
-      "title": "Ramadan 2023 Food Assistance (Vouchers)",
-      "description": "444 households in North Gaza; ANERA; USD 44,400; March–April 2023.",
+      "category": "Humanitarian and Relief Assistance",
+      "title": "Ramadan 2023 Food Assistance Project (Food Voucher Distribution)",
+      "description": "444 households in North Gaza; Funding Partner: ANERA; Project Budget: $44,400; Implementation: 2023.",
       "date": "2023-03-01",
       "image": "",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" }
+      ]
     },
     {
       "id": "caade-project-06",
-      "category": "Completed project",
-      "title": "Qurbani 2023 Meat Distribution",
-      "description": "350 households in North Gaza; ANERA and Islamic Relief USA; USD 15,555; June–July 2023.",
+      "category": "Humanitarian and Relief Assistance",
+      "title": "Qurbani Meat Distribution Project (2023)",
+      "description": "350 households in North Gaza; ANERA (American Near East Refugee Aid) & Islamic Relief USA; Project Budget: $15,555; Implementation: 2023.",
       "date": "2023-06-01",
       "image": "/media/projects/association-activities/activity-16.jpg",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" }
+      ]
     },
     {
       "id": "caade-project-07",
-      "category": "Completed project",
-      "title": "Agricultural Drying Unit and Za’atar Production",
-      "description": "30 farmers; AECID and EU funded, implemented by Rural Women’s Development Society; USD 27,520; 2022–2023.",
-      "date": "2022-12-01",
-      "image": "",
+      "category": "Development and Productive Projects",
+      "title": "Agricultural Drying Unit and Table Thyme Production Project",
+      "description": "30 farmers; Funding Partner: ANERA; Project Budget: $27,520; Implementation: 2023.",
+      "date": "2023-05-01",
+      "image": "/media/projects/association-activities/activity-35.jpg",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
+        { "code": "SDG 8", "name": "Decent Work and Economic Growth", "nameEn": "Decent Work and Economic Growth" },
+        { "code": "SDG 9", "name": "Industry, Innovation and Infrastructure", "nameEn": "Industry, Innovation and Infrastructure" },
+        { "code": "SDG 12", "name": "Responsible Consumption and Production", "nameEn": "Responsible Consumption and Production" }
+      ]
     },
     {
       "id": "caade-project-08",
-      "category": "Completed project",
-      "title": "Fresh Food Assistance for Displaced Households in Southern Gaza",
-      "description": "1,180 displaced households; Taawon; USD 55,550; February–May 2024.",
-      "date": "2024-02-20",
-      "image": "/media/projects/food-assistance/food-04.jpg",
+      "category": "Emergency Response and Livelihood Support",
+      "title": "Emergency Support Project for Small-Scale Farmers and Food Security Support for Vulnerable Households in North Gaza (Cultivation of 20 Dunums of Za’atar)",
+      "description": "10 small-scale farmers cultivating 20 dunums of table thyme; Implemented by Union of Agricultural Work Committees (UAWC), supported by Taawon – Welfare Association; Project Budget: $16,000; Implementation: 2023.",
+      "date": "2023-08-01",
+      "image": "/media/ac67df5a-6229-463c-a458-2d497be0695e.jpg",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
+        { "code": "SDG 8", "name": "Decent Work and Economic Growth", "nameEn": "Decent Work and Economic Growth" },
+        { "code": "SDG 15", "name": "Life on Land", "nameEn": "Life on Land" }
+      ]
     },
     {
       "id": "caade-project-09",
-      "category": "Completed project",
-      "title": "Al-Ahba Cooperative School for Displaced Children",
-      "description": "470 children; Women’s Affairs Center and Oxfam; USD 30,000; October 2025–January 2026.",
-      "date": "2025-10-01",
-      "image": "",
+      "category": "Emergency Response and Livelihood Support",
+      "title": "Provision of Fresh Food Assistance to Displaced Households in Southern Gaza Strip",
+      "description": "1,180 displaced households across southern Gaza; Funding Partner: Taawon – Welfare Association; Project Budget: $55,550; Implementation: 2024.",
+      "date": "2024-02-20",
+      "image": "/media/projects/food-assistance/food-04.jpg",
       "gallery": "",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
+        { "code": "SDG 3", "name": "Good Health and Well-being", "nameEn": "Good Health and Well-being" },
+        { "code": "SDG 10", "name": "Reduced Inequalities", "nameEn": "Reduced Inequalities" }
+      ]
     },
     {
       "id": "caade-project-10",
-      "category": "Completed project",
-      "title": "Relief for Displaced and Conflict-Affected Households in Gaza",
-      "description": "Gaza and North Gaza; approximately 6,600 households; Arab Fund for Economic and Social Development, Kuwait, Grant 22/EE-03; USD 289,693; December 2025–July 2026.",
+      "category": "Emergency Response and Livelihood Support",
+      "title": "Al-Ahba Cooperative School Project for the Education of Displaced Children in Al-Mawasi, Khan Younis",
+      "description": "470 displaced children; Women’s Affairs Center & Oxfam; Project Budget: $30,000; Implementation: 2025.",
+      "date": "2025-10-01",
+      "image": "/media/projects/food-assistance/food-01.jpg",
+      "gallery": "",
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 4", "name": "Quality Education", "nameEn": "Quality Education" },
+        { "code": "SDG 10", "name": "Reduced Inequalities", "nameEn": "Reduced Inequalities" },
+        { "code": "SDG 11", "name": "Sustainable Cities and Communities", "nameEn": "Sustainable Cities and Communities" }
+      ]
+    },
+    {
+      "id": "caade-project-11",
+      "category": "Emergency Response and Livelihood Support",
+      "title": "Relief Project for Displaced and Conflict-Affected Households in Gaza",
+      "description": "6,622 displaced and conflict-affected households in Gaza and North Gaza; Arab Fund for Economic and Social Development – Kuwait, Grant No. (22/EE-03); Project Budget: $289,693; Implementation: 2026.",
       "date": "2025-12-01",
       "image": "/media/projects/arab-fund-relief/relief-distribution-main.jpg",
       "gallery": "/media/projects/arab-fund-relief/relief-distribution-wide.jpg\n/media/projects/arab-fund-relief/relief-food-packs.jpg\n/media/projects/arab-fund-relief/relief-family-meal.jpg",
-      "url": ""
+      "url": "",
+      "sdgs": [
+        { "code": "SDG 1", "name": "No Poverty", "nameEn": "No Poverty" },
+        { "code": "SDG 2", "name": "Zero Hunger", "nameEn": "Zero Hunger" },
+        { "code": "SDG 3", "name": "Good Health and Well-being", "nameEn": "Good Health and Well-being" },
+        { "code": "SDG 10", "name": "Reduced Inequalities", "nameEn": "Reduced Inequalities" }
+      ]
     }
   ],
   "partners": [
-    { "id": "anera", "name": "ANERA", "logo": "/media/partners/anera.jpg", "url": "https://anera.org/" },
+    { "id": "anera", "name": "ANERA (American Near East Refugee Aid)", "logo": "/media/partners/anera.jpg", "url": "https://anera.org/" },
+    { "id": "arab-fund", "name": "Arab Fund for Economic and Social Development – Kuwait", "logo": "/media/partners/arab-fund.png", "url": "https://www.arabfund.org/" },
+    { "id": "taawon", "name": "Taawon (Welfare Association)", "logo": "/media/partners/taawon.png", "url": "https://www.taawon.org/" },
     { "id": "oxfam", "name": "Oxfam", "logo": "/media/partners/oxfam.png", "url": "https://www.oxfam.org/" },
-    { "id": "giz", "name": "GIZ", "logo": "/media/partners/giz-official.svg", "url": "https://www.giz.de/" },
-    { "id": "taawon", "name": "Taawon", "logo": "/media/partners/taawon.png", "url": "https://www.taawon.org/" }
+    { "id": "giz", "name": "Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ)", "logo": "/media/partners/giz-official.svg", "url": "https://www.giz.de/" },
+    { "id": "islamic-relief", "name": "Islamic Relief", "logo": "/media/partners/islamic-relief.png", "url": "https://www.islamic-relief.org/" },
+    { "id": "sida", "name": "Swedish International Development Cooperation Agency (Sida)", "logo": "/media/partners/sida.png", "url": "https://www.sida.se/" },
+    { "id": "womens-affairs", "name": "Women’s Affairs Center", "logo": "/media/partners/womens-affairs-center.png", "url": "" },
+    { "id": "esdc", "name": "Palestinian Center for Economic and Social Development (ESDC)", "logo": "/media/partners/esdc.jpg", "url": "" },
+    { "id": "future-dev", "name": "Al-Mustaqbal Foundation for Development", "logo": "/media/partners/future-development-commission.png", "url": "" },
+    { "id": "gaza-culture", "name": "Gaza Culture and Development Group", "logo": "/media/partners/gaza-culture-development-group.jpg", "url": "" }
   ],
   "heroImages": [
     {
       "id": "38487e3d-b36c-453c-aca2-a7c740a23106",
-      "title": "Lie down",
+      "title": "Table Thyme Cultivation",
       "image": "/media/ac67df5a-6229-463c-a458-2d497be0695e.jpg"
     },
     {
       "id": "homepage-agriculture-06",
-      "title": "Agricultural scene from the Association's projects - 06",
+      "title": "Agricultural Scene from Association Projects",
       "image": "/media/projects/homepage/hero-06.jpg"
     }
   ],
   "institutionFacts": [
     {
-      "id": "legal-registration",
-      "label": "Legal registration",
-      "value": "No. 1696"
+      "id": "official-name",
+      "label": "Official Name",
+      "value": "Agricultural and Environmental Development Cooperative Association – Gaza (CAADE)"
+    },
+    {
+      "id": "legal-status",
+      "label": "Legal Status",
+      "value": "A cooperative association with legal personality and financial and administrative independence"
+    },
+    {
+      "id": "classification",
+      "label": "Classification",
+      "value": "Agricultural Cooperative Association"
+    },
+    {
+      "id": "legal-standing",
+      "label": "Legal Standing",
+      "value": "Registered in the State of Palestine – Ministry of Labour – Cooperative Work Sector, Registration No. (1696)"
     },
     {
       "id": "established",
-      "label": "Established",
-      "value": "29 December 2021"
+      "label": "Date of Establishment",
+      "value": "15 February 2021"
+    },
+    {
+      "id": "legal-registration",
+      "label": "Registration Number & Date",
+      "value": "No. 1696 on 29 December 2021"
     },
     {
       "id": "operations-began",
-      "label": "Operations began",
+      "label": "Operations Began",
       "value": "2022"
     },
     {
-      "id": "area-of-work",
-      "label": "Area of work",
-      "value": "Agricultural development"
-    },
-    {
       "id": "geographic-area",
-      "label": "Geographic area",
-      "value": "North Gaza Governorate"
+      "label": "Geographic Scope",
+      "value": "North and South Gaza Governorates"
     },
     {
       "id": "members",
-      "label": "Members",
-      "value": "28 (21 founding members)"
+      "label": "Membership",
+      "value": "28 members (19 males and 9 females), including 21 founding members"
+    },
+    {
+      "id": "governance-elections",
+      "label": "Governance & Elections",
+      "value": "Date of last elections: 20 August 2025 – Term of Management Committee: Until 20 August 2028"
+    },
+    {
+      "id": "board-structure",
+      "label": "Board Structure",
+      "value": "7 members elected for a 3-year term (Chairperson, Vice-Chairperson, Secretary, Treasurer, and 3 members)"
+    },
+    {
+      "id": "target-groups",
+      "label": "Target Groups",
+      "value": "Male and female farmers, and members and non-members of the local community"
+    },
+    {
+      "id": "approved-reports",
+      "label": "Approved Reports",
+      "value": "Administrative and financial reports approved by the General Assembly (2022, 2023, 2024, 2025)"
     }
   ],
   "board": [
     {
       "id": "jehad",
-      "name": "Jehad Mohammad Hassan Al-Kafarna",
-      "role": "Chairperson"
+      "name": "Mr. Jihad Mohammed Hassan Al-Kafarneh",
+      "role": "Chairperson of the Management Committee"
     },
     {
       "id": "issa",
-      "name": "Issa Walid Issa Khalifa",
-      "role": "Vice-Chairperson"
+      "name": "Eng. Issa Waleed Issa Khalifa",
+      "role": "Vice-Chairperson of the Management Committee"
     },
     {
       "id": "abdul-qader",
-      "name": "Abdel Qader Attia Abdel Qader Al-Kilani",
+      "name": "Mr. Abdul Qader Atiya Al-Kilani",
       "role": "Treasurer"
     },
     {
       "id": "kamla",
-      "name": "Kamla Ahmed Mohammad Abu Banat",
+      "name": "Ms. Kamelah Ahmed Abu Banat",
       "role": "Secretary"
     },
     {
       "id": "nasser",
-      "name": "Nasser Ibrahim Mohammad Abu Jarad",
-      "role": "Board member"
+      "name": "Mr. Nasser Ibrahim Abu Jarrad",
+      "role": "Board Member"
     },
     {
       "id": "mohammad-al-attar",
-      "name": "Mohammad Saadi Khalil Al-Attar",
-      "role": "Board member"
+      "name": "Mr. Mohammed Saadi Al-Attar",
+      "role": "Board Member"
     },
     {
       "id": "mohammad-al-shafie",
-      "name": "Mohammad Ahmed Fouad Al-Shafie",
-      "role": "Board member"
+      "name": "Mr. Mohammed Ahmed Al-Shafei",
+      "role": "Board Member"
     }
   ],
   "oversightCommittee": [
     {
-      "id": "zafaf",
-      "name": "Zafaf Saeed Rashid Al-Akhras",
-      "role": "Committee Chair"
+      "id": "nahid",
+      "name": "Mr. Nahidh Abdul Karim Al-Kafarneh",
+      "role": "Member of Supervisory Committee"
     },
     {
-      "id": "nahid",
-      "name": "Nahid Abdul Karim Abdul Razzaq Al-Kafarna",
-      "role": "Member"
+      "id": "zafaf",
+      "name": "Mr. Zaffaf Saeed Rashid Al-Akhras",
+      "role": "Member of Supervisory Committee"
     },
     {
       "id": "abdul-rab",
-      "name": "Abdul Rab Jamil Abdul Rab Abu Aida",
-      "role": "Member"
+      "name": "Mr. Abdul Rabbo Jameel Abu Eida",
+      "role": "Member of Supervisory Committee"
     }
   ]
 }

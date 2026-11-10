@@ -7,8 +7,10 @@ const PROJECT_GALLERY_IMAGES = Object.freeze({
   'caade-project-04': ['/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],
   'caade-project-06': ['/media/projects/association-activities/activity-17.jpg', '/media/projects/association-activities/activity-18.jpg', '/media/projects/association-activities/activity-19.jpg'],
   'caade-project-07': ['/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
-  'caade-project-08': ['/media/projects/food-assistance/food-05.jpg', '/media/projects/food-assistance/food-06.jpg', '/media/projects/food-assistance/food-07.jpg'],
-  'caade-project-10': [
+  'caade-project-08': ['/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
+  'caade-project-09': ['/media/projects/food-assistance/food-01.jpg', '/media/projects/food-assistance/food-02.jpg', '/media/projects/food-assistance/food-03.jpg'],
+  'caade-project-10': ['/media/projects/food-assistance/food-05.jpg', '/media/projects/food-assistance/food-06.jpg', '/media/projects/food-assistance/food-07.jpg'],
+  'caade-project-11': [
     '/media/projects/arab-fund-relief/relief-distribution-wide.jpg',
     '/media/projects/arab-fund-relief/relief-food-packs.jpg',
     '/media/projects/arab-fund-relief/relief-family-meal.jpg',
@@ -173,7 +175,26 @@ function renderDetail(item, profile = {}) {
   }
   container.append(article);
   document.querySelectorAll('[data-detail-name]').forEach(el=>el.textContent=language==='en'?'Cooperative Association for Agricultural Development and Environment – Gaza':'الجمعية التعاونية للتنمية الزراعية والبيئة – غزة');
-  const footerTagline=document.querySelector('#detailFooterTagline');if(footerTagline)footerTagline.textContent=language==='en'?'Working together for sustainable agricultural and environmental development in Gaza.':'نعمل معًا من أجل تنمية زراعية وبيئية مستدامة في قطاع غزة.';
+  const footerTagline=document.querySelector('#detailFooterTagline');if(footerTagline)footerTagline.textContent=language==='en'?'Through Cooperation, We Produce | Through Solidarity, We Grow | Through Sustainability, We Thrive':'بالتعاون ننتج | بالتكافل ننمو | بالاستدامة نرتقي';
+  const sectionsToCheck = ['programs', 'news', 'stories', 'gallery', 'projects', 'partners'];
+  sectionsToCheck.forEach(key => {
+    const items = (data[key] || []).filter(entry => {
+      if (!entry) return false;
+      if (typeof entry === 'object') return Object.values(entry).some(val => val && String(val).trim().length > 0);
+      return String(entry).trim().length > 0;
+    });
+    const hasData = items.length > 0;
+    document.querySelectorAll(`[data-nav="${key}"], a[href*="page=${key}"], a[href="/${key}"], a[href="/${key}/"], a[href="/en/${key}"], a[href="/en/${key}/"]`).forEach(el => {
+      el.hidden = !hasData;
+      if (!hasData) {
+        el.setAttribute('hidden', '');
+        el.style.display = 'none';
+      } else {
+        el.removeAttribute('hidden');
+        el.style.removeProperty('display');
+      }
+    });
+  });
 }
 
 async function loadDetail() {
@@ -183,7 +204,7 @@ async function loadDetail() {
   const data = await loadSiteContent();
   const item = (data[collection] || []).find(entry => entry.id === id);
   if (!item) throw new Error(language === 'en' ? 'This content could not be found.' : 'تعذر العثور على المحتوى المطلوب.');
-  renderDetail(item, data.profile);
+  renderDetail(item, data.profile, data);
 }
 
 loadDetail().catch(error => {
