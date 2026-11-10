@@ -68,7 +68,7 @@ function renderSdgSection(item) {
   return block;
 }
 
-function renderDetail(item, profile = {}) {
+function renderDetail(item, profile = {}, data = {}) {
   const isNews = collection === 'news';
   const title = getText(item, 'title');
   const summary = getText(item, isNews ? 'excerpt' : 'description');
