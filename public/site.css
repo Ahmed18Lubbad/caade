@@ -160,7 +160,7 @@ html[dir="ltr"] .identity-panel-header h3{letter-spacing:.08em}
 .program-card>a{position:absolute;bottom:14px;inset-inline-end:20px;color:var(--forest);font-size:18px}
 .feature-story{padding-block:clamp(56px,7vw,88px);background:linear-gradient(180deg,#f7faf5 0%,#fff 100%)}
 .feature-story{padding-block:clamp(56px,7vw,88px);background:linear-gradient(180deg,#f7faf5 0%,#fff 100%)}
-.feature-story-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.feature-story-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
 .feature-story-card{display:grid;grid-template-columns:54px minmax(0,1fr);gap:18px;align-items:start;position:relative;padding:20px 22px;background:#fff;border:1px solid #e4ece4;border-radius:18px;box-shadow:0 10px 24px rgba(19,41,31,.04);transition:transform .2s ease,box-shadow .2s ease;overflow:hidden}
 .feature-story-card::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:linear-gradient(180deg,var(--leaf),var(--gold))}
 .feature-story-card:nth-child(2)::before{background:linear-gradient(180deg,var(--gold),#e7c66d)}
@@ -211,6 +211,7 @@ body.english-layout .partners-layout > *{direction:ltr}
 .feature-story .feature-story-card:not(.is-open) .feature-story-copy > p{display:none}
 .feature-story .feature-story-card h3:focus-visible{outline:3px solid rgba(192,141,56,.45);outline-offset:5px;border-radius:4px}
 @media (max-width: 560px){.feature-story-card{grid-template-columns:1fr;gap:12px;padding:18px 16px}.feature-story-index{width:38px;height:38px}.feature-story-card > .feature-story-index,.feature-story-card .feature-story-copy h3,.feature-story-card .feature-story-copy > p{grid-column:1;grid-row:auto}}
+@media (max-width: 760px){.feature-story-grid{grid-template-columns:1fr}}
 
 .impact-band{position:relative;overflow:hidden;background:linear-gradient(180deg,#f6f8f3,#fff 90%);color:var(--ink)}
 .impact-band::before{content:"";position:absolute;inset:-100px auto auto -90px;width:260px;height:260px;border:1px solid #dce8d6;border-radius:50%;box-shadow:0 0 0 28px #f1f5ed,0 0 0 56px #f6f8f3;pointer-events:none}
