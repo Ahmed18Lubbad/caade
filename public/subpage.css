@@ -469,8 +469,8 @@ main .subpage-content,.detail-page{background-color:rgba(248,243,233,.72)}
   justify-content: center;
   width: max-content;
   max-width: 100%;
-  margin-top: -30px;
-  margin-bottom: 30px;
+  margin-top: 18px;
+  margin-bottom: 0;
   padding: 13px 22px;
   border: 1px solid #2f9d5b;
   border-radius: 999px;
@@ -496,7 +496,7 @@ main .subpage-content,.detail-page{background-color:rgba(248,243,233,.72)}
 @media(max-width:520px){
   .contact-whatsapp-button {
     width: 100%;
-    margin-top: -18px;
-    margin-bottom: 22px;
+    margin-top: 14px;
+    margin-bottom: 0;
   }
 }
