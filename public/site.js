@@ -619,6 +619,55 @@ function initScrollReveal() {
   }
 }
 
+// Turns the identity cards into an accessible accordion and keeps one answer open at a time.
+function initIdentityAccordion() {
+  const cards = [...document.querySelectorAll('.feature-story .feature-story-card')];
+  if (!cards.length) return;
+
+  cards.forEach((card, index) => {
+    const title = card.querySelector('.feature-story-copy h3');
+    const copy = card.querySelector('.feature-story-copy');
+    if (!title || !copy) return;
+    if (title.dataset.accordionInitialized === 'true') return;
+
+    const panelId = `identity-copy-${card.dataset.index || index + 1}`;
+    copy.id = panelId;
+    title.dataset.accordionInitialized = 'true';
+    title.setAttribute('role', 'button');
+    title.tabIndex = 0;
+    title.setAttribute('aria-controls', panelId);
+
+    const setOpen = (isOpen) => {
+      cards.forEach(otherCard => {
+        const otherTitle = otherCard.querySelector('.feature-story-copy h3');
+        const otherIsOpen = otherCard === card && isOpen;
+        otherCard.classList.toggle('is-open', otherIsOpen);
+        if (otherTitle) otherTitle.setAttribute('aria-expanded', String(otherIsOpen));
+      });
+    };
+
+    const toggle = () => setOpen(!card.classList.contains('is-open'));
+    title.addEventListener('click', toggle);
+    title.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggle();
+      }
+    });
+
+  });
+
+  cards.forEach(card => {
+    card.classList.remove('is-open');
+    const title = card.querySelector('.feature-story-copy h3');
+    if (title) title.setAttribute('aria-expanded', 'false');
+  });
+
+  const firstTitle = cards[0].querySelector('.feature-story-copy h3');
+  cards[0].classList.add('is-open');
+  if (firstTitle) firstTitle.setAttribute('aria-expanded', 'true');
+}
+
 function renderPrograms() {
   const section = document.querySelector('#programs');
   const grid = $('#programGrid');
@@ -1183,6 +1232,7 @@ function renderSite() {
   const heroAboutLink = $('#heroAboutLink');
   if (heroAboutLink) heroAboutLink.textContent = currentLanguage === 'en' ? 'Learn more about us →' : 'تعرّف على المزيد ←';
   renderAboutText();
+  initIdentityAccordion();
   fillText('visionCopy', localized(siteData.profile, 'vision'), currentLanguage === 'en' ? 'Add the vision in data/en.json.' : 'أضف الرؤية في data/ar.json.');
   fillText('missionCopy', localized(siteData.profile, 'mission'), currentLanguage === 'en' ? 'Add the mission in data/en.json.' : 'أضف الرسالة في data/ar.json.');
   fillText('valuesCopy', localized(siteData.profile, 'values'), currentLanguage === 'en' ? 'Add the values in data/en.json.' : 'أضف القيم في data/ar.json.');
