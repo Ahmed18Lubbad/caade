@@ -983,6 +983,8 @@ function renderContact() {
     ['facebook', 'تابعونا على فيسبوك', value => safeHref(value), true, 'f'],
     ['instagram', 'تابعونا على إنستغرام', value => safeHref(value), true, '◎'],
   ];
+  const whatsappEntry = entries.find(([key]) => key === 'whatsapp');
+  if (whatsappEntry) whatsappEntry[1] = currentLanguage === 'en' ? 'Contact us via WhatsApp' : 'تواصل معنا عبر واتساب';
   let count = 0;
   entries.forEach(([key, label, getHref, isSocial, icon]) => {
     const value = String(key === 'address' ? localized(profile, 'address') : profile[key] || '').trim();
