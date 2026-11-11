@@ -218,7 +218,7 @@ body.english-layout .partners-layout > *{direction:ltr}
 
 /* Separates the main homepage sections with a subtle branded divider. */
 main > section + section{position:relative;border-top:1px solid #e5ece3}
-main > section + section::before{content:"";position:absolute;top:-2px;left:50%;width:72px;height:3px;border-radius:999px;background:linear-gradient(90deg,var(--leaf),var(--gold));transform:translateX(-50%)}
+main > section + section::before{content:"";position:absolute;top:-2px;left:0;width:100%;height:3px;border-radius:0;background:linear-gradient(90deg,var(--leaf),var(--gold))}
 
 .impact-band{position:relative;overflow:hidden;background:linear-gradient(180deg,#f6f8f3,#fff 90%);color:var(--ink)}
 .impact-band::before{content:"";position:absolute;inset:-100px auto auto -90px;width:260px;height:260px;border:1px solid #dce8d6;border-radius:50%;box-shadow:0 0 0 28px #f1f5ed,0 0 0 56px #f6f8f3;pointer-events:none}
