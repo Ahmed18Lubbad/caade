@@ -328,7 +328,12 @@ function renderSupport(){
   const link=node('a','detail-link',text('تواصل معنا بشأن الدعم ←','Contact us about support →'));link.href='/contact';s.append(link);
 }
 function renderContact(){
+  const whatsappButton = node('a', 'contact-whatsapp-button', text('تواصل عبر واتساب ↗', 'Contact via WhatsApp ↗'));
+  whatsappButton.href = (data.profile || {}).whatsapp || 'https://wa.me/970599807090';
+  whatsappButton.target = '_blank';
+  whatsappButton.rel = 'noopener noreferrer';
   const s=section(text('بيانات التواصل','Contact information')),p=data.profile||{},grid=node('div','subpage-cards');s.append(grid);
+  s.append(whatsappButton);
   const fields=[[text('الهاتف','Phone'),p.phone],[text('البريد الإلكتروني','Email'),p.email],[text('العنوان','Address'),get(p,'address')],[text('ساعات العمل','Office hours'),get(p,'officeHours')]];
   fields.filter(([,value])=>value).forEach(([label,value])=>{const card=node('article','subpage-card');card.append(node('span','program-number',label),node('p','',value));grid.append(card);});
   const social=[[text('فيسبوك','Facebook'),p.facebook],[text('إنستغرام','Instagram'),p.instagram],[text('واتساب','WhatsApp'),p.whatsapp]];

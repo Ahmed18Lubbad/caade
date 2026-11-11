@@ -462,3 +462,41 @@ main .subpage-content,.detail-page{background-color:rgba(248,243,233,.72)}
   .subpage-header .brand-mark{flex-basis:64px;width:64px;height:64px}
 }
 @media(max-width:520px){.subpage-header .brand-name{font-size:10px;line-height:1.35}}
+
+.contact-whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-width: 100%;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  padding: 13px 22px;
+  border: 1px solid #2f9d5b;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #25d366, #159447);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(21, 148, 71, 0.2);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.contact-whatsapp-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 28px rgba(21, 148, 71, 0.28);
+}
+
+.contact-whatsapp-button:focus-visible {
+  outline: 3px solid #8ab46f;
+  outline-offset: 3px;
+}
+
+@media(max-width:520px){
+  .contact-whatsapp-button {
+    width: 100%;
+    margin-top: -18px;
+    margin-bottom: 22px;
+  }
+}
