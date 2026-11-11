@@ -1,5 +1,4 @@
-'use client';
-
+"use client";
 import { useEffect, useState } from 'react';
 
 const scripts = {
@@ -46,17 +45,23 @@ export default function LegacyPage({ html, language, kind }) {
   }, [html.bodyClass, kind, language]);
 
   const isEnglish = language === 'en';
+  const [showActions, setShowActions] = useState(false);
+  useEffect(() => {
+    setShowActions(true);
+  }, []);
   return <>
     {status !== 'ready' && <p className={`legacy-status legacy-status--${status}`} role={status === 'error' ? 'alert' : 'status'} aria-live="polite">
       {status === 'error' ? (isEnglish ? 'The page could not load. Please refresh and try again.' : 'تعذر تحميل الصفحة. يرجى تحديثها والمحاولة مرة أخرى.') : (isEnglish ? 'Loading…' : 'جارٍ تحميل الصفحة…')}
     </p>}
     <div className="legacy-page-shell">
       <div dangerouslySetInnerHTML={{ __html: html.body }} />
-      <aside className="site-floating-actions" aria-label={isEnglish ? 'Quick actions' : 'إجراءات سريعة'}>
-        <a className="floating-action floating-action--primary" href={`/${language}/subpage/?page=support`}>{isEnglish ? 'Support us' : 'ادعمنا'}</a>
-        <a className="floating-action" href={`/${language}/subpage/?page=contact`}>{isEnglish ? 'Contact us' : 'تواصل معنا'}</a>
-        <button className="floating-action floating-action--top" type="button" aria-label={isEnglish ? 'Back to top' : 'العودة إلى الأعلى'} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑</button>
-      </aside>
+      {showActions && (
+        <aside className="site-floating-actions" aria-label={isEnglish ? 'Quick actions' : 'إجراءات سريعة'}>
+          <a className="floating-action floating-action--primary" href={`/${language}/subpage/?page=support`}>{isEnglish ? 'Support us' : 'ادعمنا'}</a>
+          <a className="floating-action" href={`/${language}/subpage/?page=contact`}>{isEnglish ? 'Contact us' : 'تواصل معنا'}</a>
+          <button className="floating-action floating-action--top" type="button" aria-label={isEnglish ? 'Back to top' : 'العودة إلى الأعلى'} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑</button>
+        </aside>
+      )}
     </div>
   </>;
 }

@@ -87,11 +87,11 @@ function sdgIconUrl(goal) {
 function renderSdgBlock(item) {
   const goals = getSdgGoals(item);
   if (!goals.length) return null;
-  const block = node('div', 'subpage-sdg-block');
+  const block = node('div', 'subpage-sdg-icons');
   block.append(node('h3', 'subpage-sdg-title', text('أهداف التنمية المستدامة', 'Sustainable Development Goals')));
-  const list = node('div', 'subpage-sdg-list');
+  const list = node('ul', 'sdg-list');
   goals.forEach(goal => {
-    const itemNode = node('div', 'subpage-sdg-item');
+    const itemNode = node('li', 'sdg-badge');
     const code = (goal.code || goal.id || '').trim();
     const label = language === 'en' ? (goal.nameEn || goal.name || code) : (goal.name || goal.nameEn || code);
     const icon = node('img', 'subpage-sdg-icon');
@@ -102,9 +102,8 @@ function renderSdgBlock(item) {
     icon.decoding = 'async';
     if (!iconSrc) icon.style.display = 'none';
     else icon.onerror = () => { icon.style.display = 'none'; };
-    const meta = node('div', 'subpage-sdg-meta');
-    meta.append(node('span', 'subpage-sdg-code', code || 'SDG'), node('span', 'subpage-sdg-label', label || code || ''));
-    itemNode.append(icon, meta);
+    icon.title = label || code || 'SDG';
+    itemNode.append(icon);
     list.append(itemNode);
   });
   block.append(list);
@@ -146,7 +145,7 @@ function renderBoard() {
 }
 function renderPrograms() {
   const s=section(text('البرامج الاستراتيجية','Strategic programmes'));const grid=node('div','subpage-cards');s.append(grid);
-  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');card.append(node('span','program-number',String(i+1).padStart(2,'0')),node('h2','',get(program,'title')),node('p','',get(program,'description')));const sdgBlock=renderSdgBlock(program); if (sdgBlock) card.append(sdgBlock); grid.append(card);});
+  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');card.append(node('span','program-number',String(i+1).padStart(2,'0')),node('h2','',get(program,'title')),node('p','',get(program,'description')));const sdgBlock=renderSdgBlock(program);if(sdgBlock) card.append(sdgBlock); grid.append(card);});
 }
 function renderProjects() {
   const s=section(text('المشاريع والتدخلات','Projects and interventions'));const grid=node('div','subpage-projects');s.append(grid);
@@ -155,7 +154,7 @@ function renderProjects() {
     const projectImages=[project.image,...(PROJECT_GALLERY_IMAGES[project.id]||[]),...(project.gallery||'').split(/\r?\n/)]
       .map(source=>String(source||'').trim())
       .filter((source,index,sources)=>(source.startsWith('/media/')||source.startsWith('https://'))&&sources.indexOf(source)===index)
-      .slice(0,4);
+      .slice(0,1);
     if(projectImages.length>1){
       const gallery=node('div','subpage-project-gallery');
       projectImages.forEach((source,index)=>{const image=node('img','');image.src=source;image.alt=index===0?get(project,'title'):'';image.loading='lazy';image.decoding='async';gallery.append(image);});
@@ -181,7 +180,8 @@ function renderProjects() {
     card.append(node('span','subpage-pill',get(project,'category')||text('مشروع','Project')));
     if(year) card.append(node('time','',year));
     card.append(node('h2','',get(project,'title')),node('p','',get(project,'description')));
-    const sdgBlock=renderSdgBlock(project); if (sdgBlock) card.append(sdgBlock);
+    const sdgBlock=renderSdgBlock(project);
+    if(sdgBlock) card.append(sdgBlock);
     const link=node('a','detail-link',text('تفاصيل المشروع ←','Project details →'));link.href=`/projects/${encodeURIComponent(project.id)}`;card.append(link);grid.append(card);
   });
 }
@@ -299,7 +299,7 @@ function renderCollection(collection, kind) {
   const titles={news:text('آخر الأخبار والأنشطة','Latest news and activities'),stories:text('حكايات من الميدان','Stories from the field'),gallery:text('صور توثق أنشطة الجمعية ومشاريعها','Photos documenting the Association’s work')};
   const s=section(titles[kind]), grid=node('div',kind==='gallery'?'subpage-gallery':'subpage-cards');s.append(grid);
   const rawItems=kind==='gallery'?[...(data[collection]||[]),...FEATURED_GALLERY_IMAGES]:data[collection]||[];
-  const items=kind==='gallery'?rawItems.filter((item,index,all)=>item.image&&all.findIndex(candidate=>candidate.image===item.image)===index).sort((a,b)=>galleryQualityRank(a)-galleryQualityRank(b)):rawItems;
+  const items=kind==='gallery'?rawItems.filter((item,index,all)=>item.image&&all.findIndex(candidate=>candidate.image===item.image)===index).sort((a,b)=>galleryQualityRank(a)-galleryQualityRank(b)):rawItems.filter((item,index,all)=>!item.image||all.findIndex(candidate=>candidate.image===item.image)===index);
   (kind==='gallery'?items:items.slice(0,4)).forEach((item,index)=>{
     if(kind==='gallery'){
       const figure=node('figure','subpage-gallery-item'),open=node('button','subpage-gallery-open'),image=node('img','');

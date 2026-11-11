@@ -7,10 +7,10 @@
   let framePending = false;
   const updateHeader = () => {
     framePending = false;
-    const progress = Math.min(Math.max(window.scrollY, 0) / 160, 1);
     header.classList.toggle('is-compact', window.scrollY > 24);
-    header.style.setProperty('--header-opacity', String((0.42 + progress * 0.22).toFixed(3)));
-    header.style.setProperty('--header-light-opacity', String((0.52 + progress * 0.16).toFixed(3)));
+    // Keep the scroll state fixed; it must not become darker as the page continues scrolling.
+    header.style.setProperty('--header-opacity', '0.25');
+    header.style.setProperty('--header-light-opacity', '0.25');
   };
   const scheduleUpdate = () => {
     if (framePending) return;

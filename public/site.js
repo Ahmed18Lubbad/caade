@@ -241,6 +241,17 @@ function safeImage(value) {
   return url.startsWith('/media/') || /^https:\/\//i.test(url) ? url : '';
 }
 
+function uniqueItemsByImage(items) {
+  const seen = new Set();
+  return items.filter(item => {
+    const source = safeImage(item?.image);
+    if (!source) return true;
+    if (seen.has(source)) return false;
+    seen.add(source);
+    return true;
+  });
+}
+
 function make(tag, className = '', text = '') {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -296,13 +307,9 @@ function appendSdgs(container, item) {
     icon.decoding = 'async';
     if (!iconSrc) icon.style.display = 'none';
     else icon.onerror = () => { icon.style.display = 'none'; };
-    const codeSpan = make('span', 'sdg-badge-code', code || 'SDG');
-    const labelSpan = make('span', 'sdg-badge-label', label || code || '');
-    chip.append(icon, codeSpan, labelSpan);
-    chip.title = currentLanguage === 'en'
-      ? `${goal.nameEn || goal.name || code || ''} (${code || ''})`
-      : `${goal.name || goal.nameEn || code || ''} (${code || ''})`;
-    chip.setAttribute('aria-label', chip.title);
+    chip.append(icon);
+    chip.title = label || code || 'SDG';
+    chip.setAttribute('aria-label', label || code || 'SDG');
     list.append(chip);
   });
   container.append(list);
@@ -760,12 +767,11 @@ function renderNews() {
   }
   section.hidden = false;
   const track = make('div', 'editorial-track');
-  const newsItems = currentLanguage === 'en' ? siteData.news : siteData.news;
+  const newsItems = uniqueItemsByImage(siteData.news);
   newsItems.forEach((item, index) => {
     track.append(createEditorialCard(item, index));
   });
   grid.append(track);
-  duplicateLoopCards(track);
   attachCarouselNav('#news', '#newsGrid', '.editorial-track');
 }
 
@@ -804,12 +810,18 @@ function renderProjects() {
   if (!filtered.length) {
     grid.append(make('p', 'empty-content', currentLanguage === 'en' ? 'No projects match the selected filters.' : 'لا توجد نتائج مطابقة للفلاتر.'));
   }
-  const projectItems = currentLanguage === 'en' ? filtered : filtered.slice(0, 4);
+  const projectItems = uniqueItemsByImage(currentLanguage === 'en' ? filtered : filtered.slice(0, 4));
+  const usedProjectImages = new Set();
   projectItems.forEach(item => {
     const card = make('article', 'project-card');
-    const imageSrc = safeImage(item.image);
+    let imageSrc = safeImage(item.image);
+    if (imageSrc && usedProjectImages.has(imageSrc)) imageSrc = '';
+    if (imageSrc) usedProjectImages.add(imageSrc);
     const gallerySources = [...(PROJECT_GALLERY_IMAGES[item.id] || []), ...(item.gallery || '').split(/\r?\n/)]
-      .map(safeImage).filter(Boolean).filter((source, index, sources) => sources.indexOf(source) === index).slice(0, 3);
+      .map(safeImage).filter(Boolean).filter((source, index, sources) => sources.indexOf(source) === index)
+      .filter(source => !usedProjectImages.has(source)).slice(0, 1);
+    if (imageSrc) gallerySources.length = 0;
+    gallerySources.forEach(source => usedProjectImages.add(source));
     const artwork = make('div', 'project-card-art' + (imageSrc || gallerySources.length ? '' : ' project-card-art--placeholder') + (gallerySources.length ? ' project-card-art--gallery' : ''));
     const appendArtworkImage = (source, alt, isLogo = false) => {
       const image = make('img', isLogo ? 'project-card-logo' : '');
@@ -832,8 +844,8 @@ function renderProjects() {
     card.append(make('span', '', localized(item, 'category') || (currentLanguage === 'en' ? 'Project' : 'مشروع')));
     card.append(make('h3', '', localized(item, 'title')));
     if (item.date) card.append(make('time', '', item.date));
-    if (localized(item, 'description')) card.append(make('p', '', localized(item, 'description')));
     appendSdgs(card, item);
+    if (localized(item, 'description')) card.append(make('p', '', localized(item, 'description')));
     const detail = make('a', 'detail-link', currentLanguage === 'en' ? 'Project details →' : 'تفاصيل المشروع ←');
     detail.href = '/projects/' + encodeURIComponent(item.id);
     card.append(detail);
@@ -848,7 +860,6 @@ function renderProjects() {
     track.append(card);
   });
   grid.append(track);
-  if (track.children.length) duplicateLoopCards(track);
   attachCarouselNav('#projects', '#projectGrid', '.project-track');
   const count = $('#projectCount');
   if (count) count.textContent = currentLanguage === 'en' ? projectItems.length + ' of ' + filtered.length + ' projects' : 'عرض ' + Math.min(filtered.length, 4) + ' من ' + filtered.length + ' مشروع';

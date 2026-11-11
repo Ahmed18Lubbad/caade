@@ -336,6 +336,22 @@ main .subpage-content,.detail-page{background-color:rgba(248,243,233,.72)}
 .subpage-projects .subpage-project time{margin:0 0 8px}
 .subpage-projects .subpage-project h2{margin:0 0 10px;line-height:1.6}
 .subpage-projects .subpage-project p{flex:1;margin:0;line-height:1.95}
+
+/* Keep the subpage header before the hero section, like the homepage header. */
+.subpage-header {
+  position:fixed !important;
+  top:0;
+  inset-inline:0;
+}
+.subpage-body {
+  padding-top:0 !important;
+}
+.subpage-main {
+  padding-top:68px !important;
+}
+@media(max-width:700px) {
+  .subpage-main {padding-top:54px !important}
+}
 .subpage-projects .subpage-project .detail-link{margin-top:20px;padding-top:14px;border-top:1px solid #edf1eb}
 @media(max-width:900px){.subpage-projects{gap:20px}}
 @media(max-width:700px){

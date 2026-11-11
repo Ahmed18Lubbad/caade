@@ -45,11 +45,11 @@ function renderSdgSection(item) {
   if (collection === 'news') return;
   const goals = getSdgGoals(item);
   if (!goals.length) return;
-  const block = element('div', 'detail-sdg-block');
+  const block = element('div', 'detail-sdg-icons');
   const heading = element('h2', 'detail-sdg-title', language === 'en' ? 'Sustainable Development Goals' : 'أهداف التنمية المستدامة');
-  const list = element('ul', 'detail-sdg-list');
+  const list = element('div', 'detail-sdg-icon-list');
   goals.forEach(goal => {
-    const chip = element('li', 'detail-sdg-item');
+    const chip = element('div', 'detail-sdg-icon-item');
     const code = (goal.code || goal.id || '').trim();
     const label = language === 'en' ? (goal.nameEn || goal.name || code) : (goal.name || goal.nameEn || code);
     const icon = element('img', 'detail-sdg-icon');
@@ -59,9 +59,8 @@ function renderSdgSection(item) {
     icon.loading = 'lazy';
     icon.decoding = 'async';
     icon.onerror = () => { icon.style.display = 'none'; };
-    const codeNode = element('span', 'detail-sdg-code', code || 'SDG');
-    const labelNode = element('span', 'detail-sdg-label', label || code || '');
-    chip.append(icon, codeNode, labelNode);
+    icon.title = label || code || 'SDG';
+    chip.append(icon);
     list.append(chip);
   });
   block.append(heading, list);
