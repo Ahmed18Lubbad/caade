@@ -624,6 +624,15 @@ function initIdentityAccordion() {
   const cards = [...document.querySelectorAll('.feature-story .feature-story-card')];
   if (!cards.length) return;
 
+  // Uses a small inline icon set so each identity heading has a clear visual meaning without extra assets.
+  const identityIcons = [
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-3.2 3.3-5 7-5s6.2 1.8 7 5"/><path d="M4 5h3M17 5h3"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-5h6v5"/><path d="M3 9h18"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h16"/><circle cx="18" cy="12" r="2"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.2 5.3L20 10l-5.8 1.7L12 17l-2.2-5.3L4 10l5.8-1.7L12 3Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M4.5 7.5h15M6 16.5h12"/><path d="M7 7.5c0 3 2.2 5 5 5s5-2 5-5M8 16.5c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5"/></svg>',
+  ];
+
   cards.forEach((card, index) => {
     const title = card.querySelector('.feature-story-copy h3');
     const copy = card.querySelector('.feature-story-copy');
@@ -633,6 +642,11 @@ function initIdentityAccordion() {
     const panelId = `identity-copy-${card.dataset.index || index + 1}`;
     copy.id = panelId;
     title.dataset.accordionInitialized = 'true';
+    const icon = document.createElement('span');
+    icon.className = 'feature-story-title-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML = identityIcons[index] || identityIcons[0];
+    title.prepend(icon);
     title.setAttribute('role', 'button');
     title.tabIndex = 0;
     title.setAttribute('aria-controls', panelId);
