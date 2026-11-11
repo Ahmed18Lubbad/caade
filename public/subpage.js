@@ -327,6 +327,7 @@ function renderSupport(){
   options.forEach(([title,copy])=>{const card=node('article','subpage-card');card.append(node('h2','',title),node('p','',copy));grid.append(card);});
   const link=node('a','detail-link',text('تواصل معنا بشأن الدعم ←','Contact us about support →'));link.href='/contact';s.append(link);
 }
+// Builds the contact page cards and adds the direct WhatsApp call-to-action.
 function renderContact(){
   const whatsappButton = node('a', 'contact-whatsapp-button', text('تواصل عبر واتساب ↗', 'Contact via WhatsApp ↗'));
   whatsappButton.href = (data.profile || {}).whatsapp || 'https://wa.me/970599807090';
