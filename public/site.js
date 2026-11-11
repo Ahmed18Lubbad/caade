@@ -619,6 +619,7 @@ function initScrollReveal() {
   }
 }
 
+/* removed fake contact form handler */
 function initQuickContactForm() {
   const form = document.getElementById('quickContactForm');
   if (!form || form.dataset.initialized) return;
@@ -1297,7 +1298,6 @@ function renderSite() {
   applyEnglishHomepageLabels();
   initImpactCounter();
   initScrollReveal();
-  initQuickContactForm();
 }
 
 const heroSection = $('.hero');
