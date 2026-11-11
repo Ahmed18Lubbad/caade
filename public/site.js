@@ -619,43 +619,6 @@ function initScrollReveal() {
   }
 }
 
-/* removed fake contact form handler */
-function initQuickContactForm() {
-  const form = document.getElementById('quickContactForm');
-  if (!form || form.dataset.initialized) return;
-  form.dataset.initialized = 'true';
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const status = document.getElementById('contactFormStatus');
-    const submitBtn = document.getElementById('contactSubmitBtn');
-    const name = document.getElementById('contactName')?.value.trim();
-    const contact = document.getElementById('contactContact')?.value.trim();
-    const message = document.getElementById('contactMessage')?.value.trim();
-
-    if (!name || !contact || !message) {
-      if (status) {
-        status.hidden = false;
-        status.className = 'form-status is-error';
-        status.textContent = currentLanguage === 'en' ? 'Please fill in all required fields.' : 'يرجى ملء جميع الحقول المطلوبة.';
-      }
-      return;
-    }
-
-    if (submitBtn) submitBtn.disabled = true;
-    if (status) {
-      status.hidden = false;
-      status.className = 'form-status is-success';
-      status.textContent = currentLanguage === 'en'
-        ? 'Thank you! Your message has been received and our team will get in touch soon.'
-        : 'شكرًا لتواصلكم معنا! تم استلام رسالتكم بنجاح وسيقوم فريقنا بالتواصل معكم في أقرب وقت.';
-    }
-    form.reset();
-    setTimeout(() => {
-      if (submitBtn) submitBtn.disabled = false;
-    }, 3500);
-  });
-}
-
 function renderPrograms() {
   const section = document.querySelector('#programs');
   const grid = $('#programGrid');
@@ -962,6 +925,7 @@ function renderPartners() {
   });
 }
 
+// Renders the footer contact cards from the localized profile data.
 function renderContact() {
   const host = $('#publicContact');
   host.replaceChildren();
@@ -1190,16 +1154,6 @@ function applyEnglishHomepageLabels() {
       }
     });
   set('.footer-contact .eyebrow', 'Contact us'); set('#footerContactTitle', 'Let’s work together'); set('.footer-contact-heading > p', 'We welcome your questions, suggestions, and partnership requests.');
-  const contactFormTitle = document.querySelector('#contactFormCard h3');
-  if (contactFormTitle) contactFormTitle.textContent = 'Send Us a Direct Message';
-  const nameInput = document.getElementById('contactName');
-  if (nameInput) nameInput.placeholder = 'Full Name';
-  const contactInput = document.getElementById('contactContact');
-  if (contactInput) contactInput.placeholder = 'Email or Phone Number';
-  const msgInput = document.getElementById('contactMessage');
-  if (msgInput) msgInput.placeholder = 'Write your inquiry or message here...';
-  const submitText = document.querySelector('#contactSubmitBtn span');
-  if (submitText) submitText.textContent = 'Send Message';
  set('.location-card h3', 'Location and office hours'); set('#mapLink', 'Open location in maps ↗'); set('.footer-bottom a', 'Back to top ↑');
 }
 
