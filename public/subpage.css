@@ -324,7 +324,7 @@ main .subpage-content,.detail-page{background-color:rgba(248,243,233,.72)}
 .subpage-projects{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
 .subpage-projects .subpage-project{min-width:0;padding:24px;gap:0}
 .subpage-projects .subpage-project>img,
-.subpage-projects .subpage-project>.subpage-project-gallery{width:calc(100% + 48px);margin:-24px -24px 20px}
+.subpage-projects .subpage-project>.subpage-project-gallery{width:calc(104% + 48px);margin:-24px -24px 20px}
 .subpage-projects .subpage-project>.subpage-project-gallery{border-radius:0;aspect-ratio:16/9}
 .subpage-projects .subpage-project>.subpage-project-gallery img{min-height:0}
 .subpage-projects .subpage-project>.subpage-project-art{position:relative;display:grid;place-items:center;isolation:isolate;width:calc(100% + 48px);height:190px;margin:-24px -24px 20px;overflow:hidden;background:linear-gradient(135deg,#dce9d5,#f3f6ed 52%,#d4e1ca)}
