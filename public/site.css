@@ -1337,7 +1337,7 @@ p{text-align:start;text-wrap:pretty}
 @media(max-width:520px){.detail-body{padding-top:82px}}
 /* Small-screen fit and long-content wrapping */
 .container,.header-inner,.footer-main,.footer-bottom,main{min-width:0}
-img,video,iframe{max-width:100%}
+img,video,iframe{max-width:111%}
 .contact-entry strong,.contact-entry span,.social-link,.footer-brand strong,.footer-bottom>span,.project-card h3,.project-card p,.subpage-copy,.subpage-card,.subpage-project,.detail-article{overflow-wrap:anywhere}
 .content-toolbar label,.content-toolbar input,.content-toolbar select{min-width:0;max-width:100%}
 .detail-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
