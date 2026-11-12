@@ -1661,6 +1661,19 @@ body.menu-open{overflow:hidden}
   .hero.has-hero-photos .hero-copy{padding-inline:12px}
 }
 
+/* Keeps the desktop hero title on one line and gives the description a wider second line. */
+@media(min-width:761px){
+  .hero.has-hero-photos .hero-copy{width:min(100%,1100px);max-width:1100px;padding-block:30px}
+  .hero.has-hero-photos .hero-copy h1{max-width:none;font-size:clamp(30px,3.5vw,48px);white-space:nowrap}
+  .hero.has-hero-photos .hero-copy h1 br{display:none}
+  .hero.has-hero-photos .hero-copy h1 .hero-title-line{display:inline !important}
+  .hero.has-hero-photos .hero-copy h1 .hero-title-line:nth-child(2){margin-top:0;margin-inline-start:10px}
+  .hero.has-hero-photos .hero-description{max-width:none}
+}
+@media(min-width:1100px){
+  .hero.has-hero-photos .hero-description{white-space:nowrap}
+}
+
  .legacy-status{position:fixed;z-index:300;inset-inline:16px;top:16px;width:max-content;max-width:calc(100% - 32px);margin:auto;padding:10px 16px;border-radius:999px;background:#173d2cf2;color:#fff;font-size:13px;box-shadow:0 10px 28px #071e1440}
 .legacy-status--error{background:#9d342a}
 .site-floating-actions{position:fixed;z-index:220;inset-inline-end:18px;bottom:18px;display:flex;align-items:center;gap:8px}
