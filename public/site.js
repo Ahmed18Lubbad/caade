@@ -1003,32 +1003,26 @@ function renderContact() {
   mapLink.hidden = !mapUrl;
   if (mapUrl) mapLink.href = mapUrl;
   const entries = [
-    ['phone', 'الاتصال الهاتفي', value => `tel:${value.replace(/[^+\d]/g, '')}`, false, '☎'],
-    ['email', 'البريد الإلكتروني', value => `mailto:${value}`, false, '✉'],
-    ['address', 'العنوان', () => '', false, '⌖'],
-    ['whatsapp', 'تابعونا على واتساب', value => `https://wa.me/${value.replace(/\D/g, '')}`, true, '◉'],
-    ['facebook', 'تابعونا على فيسبوك', value => safeHref(value), true, 'f'],
-    ['instagram', 'تابعونا على إنستغرام', value => safeHref(value), true, '◎'],
+    ['phone', 'الاتصال الهاتفي', value => `tel:${value.replace(/[^+\d]/g, '')}`, '☎'],
+    ['email', 'البريد الإلكتروني', value => `mailto:${value}`, '✉'],
+    ['address', 'العنوان', () => '', '⌖'],
   ];
-  const whatsappEntry = entries.find(([key]) => key === 'whatsapp');
-  if (whatsappEntry) whatsappEntry[1] = currentLanguage === 'en' ? 'Contact us via WhatsApp' : 'تواصل معنا عبر واتساب';
   let count = 0;
-  entries.forEach(([key, label, getHref, isSocial, icon]) => {
+  entries.forEach(([key, label, getHref, icon]) => {
     const value = String(key === 'address' ? localized(profile, 'address') : profile[key] || '').trim();
     if (!value) return;
     count++;
     const href = getHref(value);
-    const node = href ? make('a', isSocial ? `social-link social-link--${key}` : `contact-entry contact-entry--${key}`) : make('p', `contact-entry contact-entry--${key}`);
+    const node = href ? make('a', 'contact-entry') : make('p', 'contact-entry');
     if (href) {
       node.href = href;
-      if (isSocial) { node.target = '_blank'; node.rel = 'noopener noreferrer'; }
     }
-    const iconNode = make('span', 'contact-icon', icon);
+    const iconNode = make('span', 'contact-icon');
     iconNode.setAttribute('aria-hidden', 'true');
+    iconNode.textContent = icon;
     node.append(iconNode);
     node.append(make('span', '', label));
-    if (!isSocial) node.append(make('strong', '', value));
-    else node.append(make('span', 'social-arrow', '↗'));
+    node.append(make('strong', '', value));
     host.append(node);
   });
   if (!count) host.append(make('p', 'contact-entry', 'أضف بيانات التواصل من لوحة إدارة المحتوى.'));
@@ -1229,17 +1223,13 @@ function renderSite() {
     const breakMarker = ' للتنمية ';
     const breakIndex = title.indexOf(breakMarker);
     if (breakIndex > 0) {
-      const firstLine = document.createElement('span');
-      const secondLine = document.createElement('span');
-      firstLine.className = 'hero-title-line';
-      secondLine.className = 'hero-title-line';
-      firstLine.textContent = title.slice(0, breakIndex + breakMarker.length).trim();
-      secondLine.textContent = title.slice(breakIndex + breakMarker.length).trim();
-      heroTitle.replaceChildren(
-        firstLine,
-        document.createElement('br'),
-        secondLine,
-      );
+      const firstPart = document.createElement('span');
+      const accentPart = document.createElement('span');
+      firstPart.className = 'hero-title-line';
+      accentPart.className = 'hero-title-line hero-title-accent';
+      firstPart.textContent = title.slice(0, breakIndex + breakMarker.length).trim();
+      accentPart.textContent = title.slice(breakIndex + breakMarker.length).trim();
+      heroTitle.replaceChildren(firstPart, document.createTextNode(' '), accentPart);
     }
   }
   fillText('heroDescription', localized(siteData.profile, 'heroIntro'), '');

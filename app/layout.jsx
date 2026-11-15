@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
     <html lang="ar" dir="rtl">
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-        <link rel="stylesheet" href="/site.css" />
+        <link rel="stylesheet" href="/site.css?v=20261115-github-release" />
         <link rel="stylesheet" href="/subpage.css" />
       </head>
       <body>{children}</body>
