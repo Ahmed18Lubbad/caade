@@ -4,12 +4,18 @@ const params = new URLSearchParams(window.location.search);
 const collection = params.get('collection');
 const id = params.get('id');
 const PROJECT_GALLERY_IMAGES = Object.freeze({
+  'caade-project-03': [
+    '/media/projects/agricultural-freezing-unit/produce-display.jpg',
+    '/media/projects/agricultural-freezing-unit/packaged-vegetables.jpg',
+    '/media/projects/agricultural-freezing-unit/freezing-equipment.jpg',
+    '/media/projects/agricultural-freezing-unit/food-processing-equipment.jpg',
+  ],
   'caade-project-04': ['/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],
-  'caade-project-06': ['/media/projects/association-activities/activity-17.jpg', '/media/projects/association-activities/activity-18.jpg', '/media/projects/association-activities/activity-19.jpg'],
+  'caade-project-02': ['/media/projects/qurbani-2022/qurbani-2022-02.jpg', '/media/projects/qurbani-2022/qurbani-2022-03.jpg', '/media/projects/qurbani-2022/qurbani-2022-04.jpg'],
+  'caade-project-06': ['/media/projects/qurbani-2023/qurbani-2023-02.jpg', '/media/projects/qurbani-2023/qurbani-2023-03.jpg', '/media/projects/qurbani-2023/qurbani-2023-04.jpg'],
   'caade-project-07': ['/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
-  'caade-project-08': ['/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
-  'caade-project-09': ['/media/projects/food-assistance/food-01.jpg', '/media/projects/food-assistance/food-02.jpg', '/media/projects/food-assistance/food-03.jpg'],
-  'caade-project-10': ['/media/projects/food-assistance/food-05.jpg', '/media/projects/food-assistance/food-06.jpg', '/media/projects/food-assistance/food-07.jpg'],
+  'caade-project-09': ['/media/projects/fresh-food-assistance/fresh-food-02.jpg', '/media/projects/fresh-food-assistance/fresh-food-03.jpg', '/media/projects/fresh-food-assistance/fresh-food-04.jpg'],
+  'caade-project-10': ['/media/projects/al-ahba-cooperative-school/al-ahba-school-02.jpg', '/media/projects/al-ahba-cooperative-school/al-ahba-school-03.jpg', '/media/projects/al-ahba-cooperative-school/al-ahba-school-04.jpg'],
   'caade-project-11': [
     '/media/projects/arab-fund-relief/relief-distribution-wide.jpg',
     '/media/projects/arab-fund-relief/relief-food-packs.jpg',

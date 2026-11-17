@@ -1,5 +1,7 @@
 // منطق الصفحات التعريفية الفرعية، مع تحميل بيانات الصفحة وعرضها.
 const pageKey = new URLSearchParams(location.search).get('page') || 'about';
+document.body.classList.toggle('subpage-projects-page', pageKey === 'projects');
+document.body.classList.toggle('subpage-programs-page', pageKey === 'programs');
 let language = location.pathname.startsWith('/en/') ? 'en' : 'ar';
 
 // Render the selected content collection inside the shared subpage shell.
@@ -145,7 +147,7 @@ function renderBoard() {
 }
 function renderPrograms() {
   const s=section(text('البرامج الاستراتيجية','Strategic programmes'));const grid=node('div','subpage-cards');s.append(grid);
-  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');card.append(node('span','program-number',String(i+1).padStart(2,'0')),node('h2','',get(program,'title')),node('p','',get(program,'description')));const sdgBlock=renderSdgBlock(program);if(sdgBlock) card.append(sdgBlock); grid.append(card);});
+  (data.programs||[]).forEach((program,i)=>{const card=node('article','subpage-card');if(program.id)card.id=program.id;card.append(node('span','program-number',String(i+1).padStart(2,'0')),node('h2','',get(program,'title')),node('p','',get(program,'description')));const sdgBlock=renderSdgBlock(program);if(sdgBlock) card.append(sdgBlock); grid.append(card);});
 }
 function renderProjects() {
   const s=section(text('المشاريع والتدخلات','Projects and interventions'));const grid=node('div','subpage-projects');s.append(grid);
@@ -357,7 +359,6 @@ function render() {
   const logoValue=String(p.logo||'').trim();
   const logoSrc=logoValue.startsWith('/media/')||/^https:\/\//i.test(logoValue)?logoValue:'/media/caade-logo.png';
   document.querySelectorAll('.brand-mark img').forEach(image=>{image.src=logoSrc;});
-  $('#subpageLogo').src=logoSrc;
   const favicon=$('#siteFavicon');if(favicon){favicon.href=logoSrc;if(logoValue)favicon.removeAttribute('type');}
   document.documentElement.lang=language;document.documentElement.dir=language==='en'?'ltr':'rtl';
   if (language === 'en') {
@@ -368,14 +369,14 @@ function render() {
     const brand = document.querySelector('.subpage-header .brand'); if (brand) brand.setAttribute('aria-label', 'Homepage');
     const nav = document.querySelector('#subpageNav'); if (nav) nav.setAttribute('aria-label', 'Main navigation');
     const menu = document.querySelector('#subpageMenuToggle'); if (menu) menu.setAttribute('aria-label', 'Open menu');
-    const notice = document.querySelector('.subpage-nav-dropdown summary'); if (notice) notice.textContent = 'News & media';
+    const summaries = document.querySelectorAll('.subpage-nav-dropdown summary');
+    ['About us', 'Programmes', 'Projects', 'News & media', 'Partners'].forEach((label, index) => { if (summaries[index]) summaries[index].textContent = label; });
   }
   // Keep the document title in the active interface language.
   document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
   document.title=`${page.title[language==='en'?1:0]} – ${get(p,'nameEn')||data.name}`;
   $('#pageEyebrow').textContent=text('الجمعية التعاونية للتنمية الزراعية والبيئة – غزة','Cooperative Association for Agricultural Development and Environment – Gaza');
   $('#pageTitle').textContent=page.title[language==='en'?1:0];$('#pageIntro').textContent=page.intro[language==='en'?1:0];
-  $('#subpageLogo').alt=text('شعار الجمعية التعاونية للتنمية الزراعية والبيئة – غزة','Logo of the Cooperative Association for Agricultural Development and Environment – Gaza');
   document.querySelectorAll('[data-name]').forEach(el=>el.textContent=language==='en'?(p.nameEn||data.name):data.name);
   if(language==='en'){
     const footerLabels=['Home','About us','Programmes','Projects','News','Impact stories','Photo gallery','Partners','Support us','Contact us'];
@@ -421,9 +422,20 @@ function render() {
       dropdown.removeAttribute('hidden');
     }
   });
+  populateSubpageNavMenus();
 
   initSectionReveal();
   document.title=`${page.title[language==='en'?1:0]} – ${language==='en'?(get(p,'nameEn')||data.name):data.name}`;
+}
+function populateSubpageNavMenus(){
+  const groups={
+    programs:(data.programs||[]).map(item=>({href:`/programs#${encodeURIComponent(item.id||'')}`,label:get(item,'title')})),
+    projects:(data.projects||[]).map(item=>({href:`/projects/${encodeURIComponent(item.id)}`,label:get(item,'title')})),
+  };
+  Object.entries(groups).forEach(([key,items])=>document.querySelectorAll(`#subpageNav [data-menu-items="${key}"]`).forEach(panel=>{
+    panel.querySelectorAll('.generated-menu-link').forEach(link=>link.remove());
+    items.forEach(item=>{const link=node('a','generated-menu-link',item.label);link.href=item.href;panel.append(link);});
+  }));
 }
 function initSectionReveal(){
   const sections=document.querySelectorAll('#pageContent>.subpage-section');
@@ -435,10 +447,16 @@ function initSectionReveal(){
   sections.forEach(section=>{section.classList.add('will-reveal-section');observer.observe(section);});
 }
 $('#languageToggle').addEventListener('click',()=>{const target=language==='ar'?'en':'ar';location.href=`/${target}/subpage/${location.search}`;});
-loadSiteContent().then(result=>{data=result;render();document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href.startsWith('/#'))link.href=`/${language}/${href.slice(1)}`;else if(href==='/'||href==='/index.html')link.href=`/${language}/`;else if(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)\/?$/.test(href)){const page=href.replaceAll('/','');link.href=`/${language}/subpage/?page=${page}`;}else if(/^\/(news|projects)\/[A-Za-z0-9_-]+$/.test(href)){const [,collection,id]=href.split('/');link.href=`/${language}/detail/?collection=${collection}&id=${encodeURIComponent(id)}`;}});}).catch(()=>{$('#pageContent').replaceChildren(node('p','empty-page',text('تعذر تحميل محتوى الصفحة. حاول تحديثها.','Page content could not be loaded. Please refresh.')));});
+loadSiteContent().then(result=>{data=result;render();document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href.startsWith('/#'))link.href=`/${language}/${href.slice(1)}`;else if(href==='/'||href==='/index.html')link.href=`/${language}/`;else if(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)#(.+)$/.test(href)){const [,page,anchor]=href.match(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)#(.+)$/);link.href=`/${language}/subpage/?page=${page}#${anchor}`;}else if(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)\/?$/.test(href)){const page=href.replaceAll('/','');link.href=`/${language}/subpage/?page=${page}`;}else if(/^\/(news|projects)\/[A-Za-z0-9_-]+$/.test(href)){const [,collection,id]=href.split('/');link.href=`/${language}/detail/?collection=${collection}&id=${encodeURIComponent(id)}`;}});}).catch(()=>{$('#pageContent').replaceChildren(node('p','empty-page',text('تعذر تحميل محتوى الصفحة. حاول تحديثها.','Page content could not be loaded. Please refresh.')));});
 
 const subpageMenuToggle=document.querySelector('#subpageMenuToggle');
 const subpageNav=document.querySelector('#subpageNav');
+document.querySelectorAll('.subpage-nav-dropdown').forEach(dropdown=>{
+  dropdown.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'&&matchMedia('(hover: hover) and (pointer: fine)').matches)dropdown.open=true;});
+  dropdown.addEventListener('pointerleave',()=>{if(!dropdown.contains(document.activeElement))dropdown.open=false;});
+  dropdown.addEventListener('focusin',()=>{dropdown.open=true;});
+  dropdown.addEventListener('focusout',event=>{if(!dropdown.contains(event.relatedTarget))dropdown.open=false;});
+});
 if(subpageMenuToggle&&subpageNav){
   const closeSubpageMenu=()=>{subpageNav.classList.remove('is-open');subpageMenuToggle.setAttribute('aria-expanded','false');subpageMenuToggle.setAttribute('aria-label',language==='en'?'Open menu':'فتح القائمة');};
   subpageMenuToggle.addEventListener('click',()=>{const open=subpageMenuToggle.getAttribute('aria-expanded')!=='true';subpageMenuToggle.setAttribute('aria-expanded',String(open));subpageNav.classList.toggle('is-open',open);subpageMenuToggle.setAttribute('aria-label',open?(language==='en'?'Close menu':'إغلاق القائمة'):(language==='en'?'Open menu':'فتح القائمة'));});

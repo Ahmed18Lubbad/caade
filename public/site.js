@@ -414,6 +414,8 @@ function normalizeLocalLinks(root = document) {
     if (href.startsWith('/#')) { link.href = `${prefix}/${href.slice(1)}`; return; }
     const detail = href.match(/^\/(news|projects)\/([A-Za-z0-9_-]{1,80})$/);
     if (detail) { link.href = `${prefix}/detail/?collection=${detail[1]}&id=${encodeURIComponent(detail[2])}`; return; }
+    const anchoredPage = href.match(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)#(.+)$/);
+    if (anchoredPage) { link.href = `${prefix}/subpage/?page=${anchoredPage[1]}#${anchoredPage[2]}`; return; }
     const page = href.match(/^\/(about|programs|projects|partners|news|stories|gallery|support|contact)\/?$/);
     if (page) link.href = `${prefix}/subpage/?page=${page[1]}`;
   });
@@ -695,6 +697,7 @@ function renderPrograms() {
   const programItems = currentLanguage === 'en' ? siteData.programs : siteData.programs.slice(0, 4);
   programItems.forEach((item, index) => {
     const card = make('article', 'program-card');
+    if (item.id) card.id = item.id;
     card.append(make('span', 'program-icon', item.icon || '✳'));
     card.append(make('span', 'program-number', String(index + 1).padStart(2, '0')));
     card.append(make('h3', '', localized(item, 'title')));
@@ -1163,18 +1166,19 @@ function applyEnglishHomepageLabels() {
   set('.header-utility-links a[data-nav="contact"]', 'Contact us');
   set('.main-nav > a[href="#home"]', 'Home');
   set('.main-nav .nav-dropdown:nth-of-type(1) summary', 'About us');
-  setAll('.main-nav .nav-dropdown:nth-of-type(1) .dropdown-panel a', ['About the Association', 'Vision and mission']);
-  set('.main-nav > a[href="/#programs"]', 'Programmes');
-  set('.main-nav > a[href="/#projects"]', 'Projects');
-  set('.main-nav .nav-dropdown:nth-of-type(2) summary', 'News & media');
-  document.querySelectorAll('.main-nav .nav-dropdown:nth-of-type(2) .dropdown-panel a').forEach(link => {
+  setAll('.main-nav .nav-dropdown:nth-of-type(1) .dropdown-panel a', ['About the Association', 'Vision and mission', 'Cooperative values', 'Board of directors', 'Supervisory committee']);
+  set('.main-nav .nav-dropdown:nth-of-type(2) summary', 'Programmes');
+  set('.main-nav .nav-dropdown:nth-of-type(3) summary', 'Projects');
+  set('.main-nav .nav-dropdown:nth-of-type(4) summary', 'News & media');
+  document.querySelectorAll('.main-nav .nav-dropdown:nth-of-type(4) .dropdown-panel a').forEach(link => {
       const href = link.getAttribute('href') || '';
       if (href.includes('news')) link.textContent = 'News';
       else if (href.includes('stories')) link.textContent = 'Impact stories';
       else if (href.includes('gallery')) link.textContent = 'Photo gallery';
     });
-  set('.main-nav > a[href="/partners"]', 'Partners');
-  set('.nav-cta', 'Become a partner ↗');
+  set('.main-nav .nav-dropdown:nth-of-type(5) summary', 'Partners');
+  setAll('.main-nav .nav-dropdown:nth-of-type(5) .dropdown-panel a', ['Partners and supporters', 'Become a partner']);
+  set('.nav-cta', 'Become a partner');
   set('.hero-landscape', '');
   set('.feature-kicker', 'From the field');
   set('.feature-card strong', 'Association news and initiatives');
@@ -1214,6 +1218,41 @@ function applyEnglishHomepageLabels() {
  set('.location-card h3', 'Location and office hours'); set('#mapLink', 'Open location in maps ↗'); set('.footer-bottom a', 'Back to top ↑');
 }
 
+function populateMainNavMenus() {
+  const groups = {
+    programs: (siteData.programs || []).map(item => ({ href: `/programs#${encodeURIComponent(item.id || '')}`, label: localized(item, 'title') })),
+    projects: (siteData.projects || []).map(item => ({ href: `/projects/${encodeURIComponent(item.id)}`, label: localized(item, 'title') })),
+  };
+  Object.entries(groups).forEach(([key, items]) => {
+    document.querySelectorAll(`.main-nav [data-menu-items="${key}"]`).forEach(panel => {
+      panel.querySelectorAll('.generated-menu-link').forEach(link => link.remove());
+      items.forEach(item => {
+        const link = document.createElement('a');
+        link.className = 'generated-menu-link';
+        link.href = item.href;
+        link.textContent = item.label;
+        panel.append(link);
+      });
+    });
+  });
+}
+
+function initHoverDropdowns(selector) {
+  document.querySelectorAll(selector).forEach(dropdown => {
+    dropdown.addEventListener('pointerenter', event => {
+      if (event.pointerType === 'mouse' && matchMedia('(hover: hover) and (pointer: fine)').matches) dropdown.open = true;
+    });
+    dropdown.addEventListener('pointerleave', () => {
+      if (!dropdown.contains(document.activeElement)) dropdown.open = false;
+    });
+    dropdown.addEventListener('focusin', () => { dropdown.open = true; });
+    dropdown.addEventListener('focusout', event => {
+      if (!dropdown.contains(event.relatedTarget)) dropdown.open = false;
+    });
+  });
+}
+initHoverDropdowns('.main-nav .nav-dropdown');
+
 function renderSite() {
   updateOrganizationName();
   fillText('heroTitle', currentLanguage === 'en' ? siteData.profile.nameEn || siteData.nameEn || siteData.name : siteData.name, siteData.name);
@@ -1245,6 +1284,7 @@ function renderSite() {
   fillText('statBeneficiaries', siteData.profile.statBeneficiaries, '—');
   renderHeroImages();
   renderPrograms(); renderNews(); renderStories(); renderGallery(); renderProjects(); renderPartners(); renderContact();
+  populateMainNavMenus();
   addSectionPageLinks();
   const sectionsToCheck = [
     { id: 'programs', count: (siteData.programs || []).length },
@@ -1332,6 +1372,7 @@ mainNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', ()
   menuButton?.setAttribute('aria-label', currentLanguage === 'en' ? 'Open menu' : 'فتح القائمة');
   mainNav?.classList.remove('is-open');
   document.body.classList.remove('menu-open');
+  mainNav?.querySelectorAll('details[open]').forEach(item => { item.open = false; });
 }));
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
