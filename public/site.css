@@ -1660,7 +1660,7 @@ body.menu-open{overflow:hidden}
 
 /* Keeps the desktop hero title on one line and gives the description a wider second line. */
 @media(min-width:761px){
-  .hero.has-hero-photos .hero-copy{width:min(100%,1100px);max-width:566px;padding-block:30px}
+  .hero.has-hero-photos .hero-copy{width:min(100%,1100px);max-width:721px;padding-block:30px}
   .hero.has-hero-photos .hero-copy h1{max-width:none;font-size:clamp(30px,3.5vw,48px);white-space:nowrap}
   .hero.has-hero-photos .hero-copy h1 br{display:none}
   .hero.has-hero-photos .hero-copy h1 .hero-title-line{display:inline !important}
