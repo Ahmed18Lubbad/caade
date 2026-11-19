@@ -555,3 +555,112 @@ body.subpage-body .site-header.subpage-header.is-over-light .language-toggle{bor
   .subpage-header .subpage-nav-dropdown>div a{white-space:normal;line-height:1.7}
 }
 
+/* Keep the shared sections fluid, including the impact band on very wide displays. */
+.impact-band{height:auto!important;min-height:0!important}
+.impact-inner{
+  width:min(1180px,calc(100% - 56px));
+  height:auto;
+  grid-template-columns:minmax(250px,.72fr) minmax(0,1.65fr);
+  align-items:center;
+  gap:clamp(28px,4vw,72px);
+  padding-block:clamp(52px,6vw,96px);
+  text-align:start;
+}
+.impact-heading{justify-self:stretch}
+.impact-heading .eyebrow{justify-content:flex-start}
+.impact-heading h2{font-size:clamp(28px,3vw,42px);line-height:1.3}
+.impact-heading>p:last-child{max-width:38ch;margin:0;font-size:clamp(15px,1.15vw,18px);line-height:1.8}
+.impact-grid{
+  position:relative;
+  left:auto;
+  grid-column:2;
+  display:flex;
+  width:100%;
+  max-width:none;
+  justify-content:center;
+  gap:clamp(0px,1vw,16px);
+  margin:0;
+  transform:none;
+}
+.impact-grid::before{display:none}
+.impact-card,
+.impact-card+.impact-card{
+  flex:0 1 clamp(176px,14vw,248px);
+  width:clamp(176px,14vw,248px);
+  height:auto;
+  aspect-ratio:1;
+  min-height:0;
+  margin:0;
+  padding:clamp(14px,1.5vw,24px);
+  gap:clamp(4px,.65vw,10px);
+}
+.impact-icon{width:clamp(34px,2.8vw,48px);height:clamp(34px,2.8vw,48px)}
+.impact-icon svg{width:clamp(22px,1.8vw,30px);height:clamp(22px,1.8vw,30px)}
+.impact-number{font-size:clamp(28px,2.7vw,46px)}
+.impact-label{font-size:clamp(12px,.95vw,16px);line-height:1.5}
+.impact-note{grid-column:2;max-width:none;margin:20px 0 0;text-align:start;font-size:clamp(13px,.9vw,16px);line-height:1.75}
+
+@media(max-width:1050px){
+  .impact-inner{width:min(820px,calc(100% - 40px));grid-template-columns:minmax(0,1fr);gap:24px;text-align:center}
+  .impact-heading{justify-self:center}
+  .impact-heading .eyebrow{justify-content:center}
+  .impact-heading>p:last-child{max-width:58ch;margin-inline:auto}
+  .impact-grid{grid-column:1;width:100%;max-width:820px;margin:0 auto}
+  .impact-card,.impact-card+.impact-card{flex-basis:clamp(150px,23vw,220px);width:clamp(150px,23vw,220px)}
+  .impact-note{grid-column:1;max-width:820px;margin:18px auto 0;text-align:center}
+}
+@media(max-width:600px){
+  .impact-inner{width:calc(100% - 32px);gap:18px;padding-block:42px}
+  .impact-heading h2{font-size:clamp(25px,7vw,34px)}
+  .impact-grid{gap:clamp(0px,1.5vw,8px)}
+  .impact-card,.impact-card+.impact-card{flex:0 1 clamp(88px,25vw,148px);width:clamp(88px,25vw,148px);padding:8px;gap:3px}
+  .impact-icon{width:clamp(20px,5.5vw,30px);height:clamp(20px,5.5vw,30px)}
+  .impact-icon svg{width:clamp(15px,4vw,22px);height:clamp(15px,4vw,22px)}
+  .impact-number{font-size:clamp(17px,5vw,26px)}
+  .impact-label{font-size:clamp(10px,2.8vw,13px);line-height:1.35}
+  .impact-note{margin-top:14px;font-size:12px;line-height:1.75}
+}
+
+@media(min-width:1600px){
+  :root{--section-block:clamp(96px,5vw,136px);--section-title:clamp(38px,2.8vw,56px);--layout-gap:clamp(22px,1.5vw,32px)}
+  body{font-size:clamp(17px,.78vw,21px)}
+  .container{width:min(86vw,1780px)}
+  .impact-inner{width:min(86vw,1780px)}
+  .site-header .header-inner{min-height:clamp(104px,6vw,124px)}
+  .site-header .brand-mark.has-logo{flex-basis:clamp(92px,5.4vw,116px);width:clamp(92px,5.4vw,116px);height:clamp(92px,5.4vw,116px)}
+  .site-header .brand-name{font-size:clamp(14px,.9vw,19px)}
+  .site-header .brand-name small{font-size:clamp(11px,.65vw,14px)}
+  .site-header .main-nav{gap:clamp(10px,1vw,20px)}
+  .site-header .nav-link,.site-header .nav-dropdown summary{font-size:clamp(13px,.75vw,16px)}
+  .site-header .nav-cta,.site-header .language-toggle{font-size:clamp(12px,.7vw,15px);padding:clamp(10px,.7vw,14px) clamp(14px,1vw,20px)}
+  .hero .hero-layout{min-height:clamp(720px,46vw,1080px);gap:clamp(64px,6vw,120px);padding-block:clamp(160px,9vw,220px) clamp(100px,6vw,144px)}
+  .hero h1{font-size:clamp(68px,4.3vw,96px)}
+  .hero-description{max-width:680px;font-size:clamp(18px,1.05vw,23px)}
+  .hero-landscape{min-height:clamp(480px,32vw,700px);border-width:clamp(8px,.6vw,12px);border-radius:clamp(24px,1.8vw,34px)}
+  .section-pad{padding-block:var(--section-block)}
+  .section-heading h2,.section-lead h2,.stories-heading h2,.partners-layout h2{font-size:var(--section-title)}
+  .section-summary,.section-lead>p,.stories-heading>p,.partners-layout>div:first-child>p:not(.eyebrow){font-size:clamp(17px,.95vw,21px)}
+  .program-card,.project-placeholder-grid .project-card,.gallery-tile,.editorial-track .editorial-card{flex-basis:min(430px,calc((min(86vw,1780px) - 2 * var(--layout-gap))/3));width:min(430px,calc((min(86vw,1780px) - 2 * var(--layout-gap))/3))}
+  .editorial-copy h3,.program-card h3,.project-card h3{font-size:clamp(18px,1vw,23px)}
+  .editorial-copy p,.program-card p,.project-card p{font-size:clamp(15px,.8vw,19px)}
+  .subpage-header .header-inner{width:min(86vw,1780px)!important;max-width:1780px!important;min-height:clamp(104px,6vw,124px)!important}
+  .subpage-header .brand-mark{flex-basis:clamp(92px,5.4vw,116px);width:clamp(92px,5.4vw,116px);height:clamp(92px,5.4vw,116px)}
+  .subpage-header .brand-name,.subpage-header .subpage-nav>a,.subpage-header .subpage-nav-dropdown summary{font-size:clamp(14px,.85vw,18px)}
+  .subpage-hero .container,.subpage-content{width:min(86vw,1780px);max-width:1780px}
+  .subpage-hero{padding-block:clamp(90px,7vw,140px) clamp(76px,5vw,112px)}
+  .subpage-hero h1{max-width:1200px;font-size:clamp(54px,4vw,82px)}
+  .subpage-hero #pageIntro{max-width:1040px;font-size:clamp(20px,1.25vw,25px)}
+  .subpage-content{padding-block:clamp(72px,5vw,120px)}
+  .subpage-copy,.subpage-section p{font-size:clamp(17px,.95vw,21px);line-height:1.95}
+  .detail-page{width:min(86vw,1780px)}
+}
+
+@media(min-width:2600px){
+  .hero .hero-layout{min-height:min(52vw,1160px)}
+  .impact-inner{grid-template-columns:minmax(380px,.7fr) minmax(0,1.8fr);gap:clamp(100px,6vw,180px)}
+  .impact-card,.impact-card+.impact-card{flex-basis:clamp(240px,9vw,300px);width:clamp(240px,9vw,300px)}
+  .impact-heading h2{font-size:clamp(46px,2.4vw,68px)}
+  .impact-heading>p:last-child{font-size:clamp(20px,1vw,25px)}
+  .impact-note{font-size:clamp(16px,.75vw,20px)}
+}
+
