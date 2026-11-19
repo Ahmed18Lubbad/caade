@@ -14,7 +14,7 @@ html[lang="en"] .subpage-header .brand-name{white-space:normal;overflow-wrap:nor
 .subpage-hero{padding:70px 0 60px;background:linear-gradient(120deg,#173d2c,#24663b 65%,#39824b);color:#fff}
 .subpage-hero .container{max-width:1180px}
 .subpage-back{display:inline-flex;gap:8px;align-items:center;margin-bottom:28px;color:#e7f1e5;font-size:13px}
-.subpage-hero .eyebrow{margin:0 0 12px;color:#ffdf84;font-weight:700}
+.subpage-hero .eyebrow{margin:0 0 12px;color:#ffdf84;font-size:12px;font-weight:700}
 .subpage-hero h1{max-width:900px;margin:0 0 15px;font-size:clamp(30px,5vw,52px);line-height:1.3}
 .subpage-hero #pageIntro{max-width:820px;margin:0;color:#e5eee2;font-size:17px;line-height:1.9}
 .subpage-content{padding-block:52px 84px;min-height:44vh}
@@ -100,14 +100,14 @@ html[lang="en"] .subpage-header .brand-name{white-space:normal;overflow-wrap:nor
 .subpage-attribution{display:block;margin-top:12px;color:#768577;font-size:13px}
 
 /* Bring the subpage title and reading sizes in line with the reduced site scale. */
-.subpage-hero h1{font-size:clamp(27px,4.3vw,44px)}
-.subpage-hero #pageIntro{font-size:15px}
+.subpage-hero h1{font-size:clamp(29px,4.5vw,47px)}
+.subpage-hero #pageIntro{font-size:16px}
 .subpage-section h2{font-size:clamp(20px,2.7vw,27px)}
 .subpage-copy{font-size:15px}
 .subpage-fact strong{font-size:18px}
 .subpage-card h2,.subpage-project h2,.board-card h3{font-size:17px}
 .subpage-card p,.subpage-project p,.board-card p{font-size:14px}
-@media(max-width:700px){.subpage-hero h1{font-size:clamp(25px,7vw,34px)}.subpage-hero #pageIntro{font-size:14px}}
+@media(max-width:700px){.subpage-hero h1{font-size:clamp(27px,7.2vw,36px)}.subpage-hero #pageIntro{font-size:15px}}
 
 /* Shared navigation, reading rhythm, and page footers */
 .subpage-menu-toggle{display:none;place-items:center;width:44px;height:44px;padding:9px;border:1px solid #dce5dc;border-radius:12px;background:#fff;color:#244532;cursor:pointer}
@@ -535,21 +535,21 @@ body.subpage-body .site-header.subpage-header.is-over-light .subpage-nav-dropdow
 body.subpage-body .site-header.subpage-header.is-compact .language-toggle,
 body.subpage-body .site-header.subpage-header.is-over-light .language-toggle{border-color:rgba(255,255,255,.38)!important;background:rgba(255,255,255,.1)!important;color:#f7f5ef!important}
 
-/* CAADE-colored low-poly facets on green subpage heroes. */
-body:not(.subpage-projects-page):not(.subpage-programs-page) .subpage-hero{position:relative;isolation:isolate;overflow:hidden}
-body:not(.subpage-projects-page):not(.subpage-programs-page) .subpage-hero::before,
-body:not(.subpage-projects-page):not(.subpage-programs-page) .subpage-hero::after{position:absolute;z-index:0;display:block;content:"";pointer-events:none}
-body:not(.subpage-projects-page):not(.subpage-programs-page) .subpage-hero::before{
+/* CAADE-colored low-poly facets across green and photo subpage heroes. */
+.subpage-hero{position:relative;isolation:isolate;overflow:hidden}
+.subpage-hero::before,
+.subpage-hero::after{position:absolute;z-index:0;display:block;content:"";pointer-events:none}
+.subpage-hero::before{
   inset:0 auto 0 0;width:min(58vw,760px);height:100%;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='104' viewBox='0 0 90 104'%3E%3Cg fill='none' stroke='%23dce9c8' stroke-opacity='.43' stroke-width='1.15'%3E%3Cpath d='M15 1 45 1 60 27 45 53 15 53 0 27zM60 27 90 27 105 53 90 79 60 79 45 53zM15 53 45 53 60 79 45 105 15 105 0 79z'/%3E%3C/g%3E%3Cg fill='%23b8ce83' fill-opacity='.14'%3E%3Cpath d='M15 8 39 8 51 27 39 46 15 46 4 27z'/%3E%3C/g%3E%3Cg fill='%23d8bd75' fill-opacity='.2'%3E%3Ccircle cx='75' cy='53' r='2.2'/%3E%3C/g%3E%3Cg stroke='%23d8bd75' stroke-opacity='.28' stroke-width='1'%3E%3Cpath d='M45 53h15'/%3E%3C/g%3E%3C/svg%3E");
   background-size:90px 104px;background-position:left center;opacity:.78;
   -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 48%,transparent 100%);
   mask-image:linear-gradient(90deg,#000 0%,#000 48%,transparent 100%);
 }
-body:not(.subpage-projects-page):not(.subpage-programs-page) .subpage-hero::after{
+.subpage-hero::after{
   display:none;
 }
-body:not(.subpage-projects-page):not(.subpage-programs-page) .subpage-hero>.container{position:relative;z-index:1}
+.subpage-hero>.container{position:relative;z-index:1}
 @media(min-width:1201px){
   .subpage-header .subpage-nav-dropdown>div{top:100%;width:max-content;min-width:0;max-width:min(620px,calc(100vw - 40px));max-height:min(70vh,520px);overflow:auto;grid-template-columns:1fr;gap:5px;padding:14px}
   .subpage-header .subpage-nav-dropdown>div a{white-space:normal;line-height:1.7}

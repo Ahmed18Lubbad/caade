@@ -67,8 +67,8 @@ export default function RootLayout({ children }) {
     <html lang="ar" dir="rtl">
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-        <link rel="stylesheet" href="/site.css?v=nav-mega-20261117" />
-        <link rel="stylesheet" href="/subpage.css?v=nav-mega-20261117" />
+        <link rel="stylesheet" href="/site.css?v=impact-text-scale-20261118" />
+        <link rel="stylesheet" href="/subpage.css?v=subpage-hex-heroes-20261118" />
       </head>
       <body>{children}</body>
     </html>

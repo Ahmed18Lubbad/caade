@@ -115,9 +115,8 @@ function renderSdgBlock(item) {
 function section(title) { const el=node('section','subpage-section'); el.append(node('h2','',title)); $('#pageContent').append(el); return el; }
 function renderAbout() {
   const p=data.profile||{};
-  const aboutSections=String(get(p,'about')||'').split(/\n\s*\n(?=\d+\.\s)/).filter(Boolean);
-  const aboutText=aboutSections[0]?.split(/\n+/).slice(1).join('\n\n').trim()||get(p,'about');
-  const originText=get(p,'origin')||aboutSections[1]?.split(/\n+/).slice(1).join('\n\n').trim();
+  const aboutText=get(p,'about');
+  const originText=get(p,'origin');
   const profileSection=section(text('معلومات الجمعية','Association profile'));
   const grid=node('div','feature-story-grid subpage-feature-story-grid'); profileSection.append(grid);
   const cards=[

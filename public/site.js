@@ -423,7 +423,6 @@ function normalizeLocalLinks(root = document) {
 
 function updateOrganizationName() {
   document.querySelectorAll('[data-organization-name]').forEach(node => { node.textContent = siteData.name; });
-  document.documentElement.style.removeProperty('--site-watermark');
   const favicon = $('#siteFavicon');
   const logoSrc = safeImage(siteData.profile.logo);
   if (favicon) {
@@ -1059,6 +1058,17 @@ function showHeroImage(index) {
     dot.classList.toggle('is-active', active);
     dot.setAttribute('aria-pressed', String(active));
   });
+  const activeItem = photos[activeHeroImage].heroItem;
+  if (activeItem) {
+    const title = $('#heroTitle');
+    const description = $('#heroDescription');
+    if (title) title.textContent = localized(activeItem, 'headline') || localized(activeItem, 'title');
+    if (description) description.textContent = localized(activeItem, 'description');
+    const hero = $('.hero');
+    hero?.classList.remove('is-changing');
+    void hero?.offsetWidth;
+    hero?.classList.add('is-changing');
+  }
 }
 
 function restartHeroImageRotation() {
@@ -1094,6 +1104,7 @@ function renderHeroImages() {
   }
   images.forEach(({ item, src }, index) => {
     const photo = make('div', 'hero-photo');
+    photo.heroItem = item;
     const image = make('img');
     image.alt = localized(item, 'title') || (currentLanguage === 'en' ? 'Agricultural project' : 'مشهد زراعي');
     image.loading = index === 0 ? 'eager' : 'lazy';
