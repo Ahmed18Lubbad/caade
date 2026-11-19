@@ -1071,7 +1071,7 @@ body{background:#fbfcfa}
 .hero-controls div button.is-active,.hero-image-dot.is-active{flex-basis:44px;width:44px;height:44px;border-radius:50%;background:transparent}
 .hero-controls div button::before,.hero-image-dot::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.68);transition:width .2s,background .2s}
 .hero-controls div button.is-active::before,.hero-image-dot.is-active::before{width:22px;border-radius:6px;background:var(--gold)}
-.editorial-art{height:clamp(170px,19vw,220px);aspect-ratio:16/10}
+.editorial-art{height:clamp(170px,19vw,220px);aspect-ratio:20/10}
 .editorial-art img,.project-card>img,.gallery-tile img{background-color:#f2f5ef}
 .editorial-art img,.project-card>img,.gallery-tile img{filter:saturate(.94) contrast(1.02);transition:filter .25s,transform .35s}
 .editorial-card:hover .editorial-art img,.project-card:hover>img,.gallery-tile:hover img{filter:saturate(1) contrast(1.03)}
