@@ -7,9 +7,20 @@ let language = location.pathname.startsWith('/en/') ? 'en' : 'ar';
 // Render the selected content collection inside the shared subpage shell.
 let data;
 const PROJECT_GALLERY_IMAGES = Object.freeze({
+  'caade-project-03': [
+    '/media/projects/agricultural-freezing-unit/freezing-unit-equipment.jpg',
+    '/media/projects/agricultural-freezing-unit/cold-storage-chamber.jpg',
+    '/media/projects/agricultural-freezing-unit/packaged-produce.jpg',
+    '/media/projects/agricultural-freezing-unit/fresh-produce-display.jpg',
+  ],
   'caade-project-04': ['/media/projects/association-activities/activity-06.jpg', '/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],
   'caade-project-06': ['/media/projects/association-activities/activity-16.jpg', '/media/projects/association-activities/activity-17.jpg', '/media/projects/association-activities/activity-18.jpg', '/media/projects/association-activities/activity-19.jpg'],
-  'caade-project-07': ['/media/projects/association-activities/activity-34.jpg', '/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
+  'caade-project-07': [
+    '/media/projects/table-thyme-production/drying-racks.jpg',
+    '/media/projects/table-thyme-production/thyme-sieving.jpg',
+    '/media/projects/table-thyme-production/thyme-processing.jpg',
+    '/media/projects/table-thyme-production/processing-facility.jpeg',
+  ],
   'caade-project-08': ['/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
   'caade-project-09': ['/media/projects/food-assistance/food-01.jpg', '/media/projects/food-assistance/food-02.jpg', '/media/projects/food-assistance/food-03.jpg'],
   'caade-project-10': ['/media/projects/food-assistance/food-04.jpg', '/media/projects/food-assistance/food-05.jpg', '/media/projects/food-assistance/food-06.jpg', '/media/projects/food-assistance/food-07.jpg'],
@@ -239,14 +250,15 @@ function galleryCategory(item) {
   return 'projects';
 }
 function galleryQualityRank(item) { return GALLERY_QUALITY_PRIORITY.get(item.image) ?? GALLERY_QUALITY_PRIORITY.size; }
+function galleryYear(item) {
+  return String(item.year || item.date || item.image?.match(/\/gallery\/(\d{4})\//)?.[1] || item.id?.match(/20\d{2}/)?.[0] || '');
+}
+function galleryYearRank(item) { return Number(galleryYear(item)) || 0; }
 
 function enhanceGallery(items, section, grid) {
   if (!items.length) return;
-  const filters = [
-    ['all', text('كل الصور', 'All photos')], ['projects', text('المشاريع', 'Projects')],
-    ['farmers', text('المزارعون', 'Farmers')], ['relief', text('الإغاثة', 'Relief')],
-    ['environment', text('البيئة', 'Environment')],
-  ];
+  const years = [...new Set(items.map(galleryYear).filter(Boolean))].sort((a, b) => Number(b) - Number(a));
+  const filters = [['all', text('كل الصور', 'All photos')], ...years.map(year => [year, year])];
   const toolbar = node('div', 'gallery-filters');
   toolbar.setAttribute('role', 'toolbar');
   filters.forEach(([value, label], index) => {
@@ -272,7 +284,7 @@ function enhanceGallery(items, section, grid) {
     const place = item.location || item.area || item.community || item.beneficiaries;
     location.textContent = place ? `⌖ ${place}` : '';
     location.hidden = !place;
-    const year = item.date || item.year || item.id?.match(/20\d{2}/)?.[0] || '';
+    const year = galleryYear(item);
     date.textContent = year; date.dateTime = year;
     open.setAttribute('aria-label', text(`تكبير الصورة: ${get(item, 'title')}`, `Enlarge image: ${get(item, 'title')}`));
     open.onclick = () => openGalleryImage(item.image, get(item, 'title'), items.map(candidate => ({ image: candidate.image, alt: get(candidate, 'title') })));
@@ -280,18 +292,18 @@ function enhanceGallery(items, section, grid) {
   setStage(items[0]);
   items.forEach((item, index) => {
     const thumb = node('button', `gallery-thumbnail${index === 0 ? ' is-active' : ''}`); thumb.type = 'button';
-    thumb.dataset.category = galleryCategory(item); thumb.setAttribute('aria-label', get(item, 'title'));
+    thumb.dataset.year = galleryYear(item); thumb.setAttribute('aria-label', get(item, 'title'));
     const thumbImage = node('img', ''); thumbImage.src = item.image; thumbImage.alt = ''; thumbImage.loading = 'lazy'; thumbImage.decoding = 'async';
     thumb.append(thumbImage); thumb.onclick = () => { setStage(item); thumbnails.querySelectorAll('button').forEach(button => button.classList.remove('is-active')); thumb.classList.add('is-active'); };
     thumbnails.append(thumb);
   });
 
-  grid.querySelectorAll('.subpage-gallery-item').forEach((figure, index) => { figure.dataset.category = galleryCategory(items[index]); });
+  grid.querySelectorAll('.subpage-gallery-item').forEach((figure, index) => { figure.dataset.year = galleryYear(items[index]); });
   toolbar.querySelectorAll('button').forEach(button => button.onclick = () => {
     const filter = button.dataset.filter;
     toolbar.querySelectorAll('button').forEach(item => { item.classList.toggle('is-active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
-    grid.querySelectorAll('.subpage-gallery-item').forEach(figure => { figure.hidden = filter !== 'all' && figure.dataset.category !== filter; });
-    thumbnails.querySelectorAll('.gallery-thumbnail').forEach(thumb => { thumb.hidden = filter !== 'all' && thumb.dataset.category !== filter; });
+    grid.querySelectorAll('.subpage-gallery-item').forEach(figure => { figure.hidden = filter !== 'all' && figure.dataset.year !== filter; });
+    thumbnails.querySelectorAll('.gallery-thumbnail').forEach(thumb => { thumb.hidden = filter !== 'all' && thumb.dataset.year !== filter; });
   });
   section.insertBefore(toolbar, grid); section.insertBefore(stage, grid); section.insertBefore(thumbnails, grid);
 }
@@ -300,14 +312,15 @@ function renderCollection(collection, kind) {
   const titles={news:text('آخر الأخبار والأنشطة','Latest news and activities'),stories:text('حكايات من الميدان','Stories from the field'),gallery:text('صور توثق أنشطة الجمعية ومشاريعها','Photos documenting the Association’s work')};
   const s=section(titles[kind]), grid=node('div',kind==='gallery'?'subpage-gallery':'subpage-cards');s.append(grid);
   const rawItems=kind==='gallery'?[...(data[collection]||[]),...FEATURED_GALLERY_IMAGES]:data[collection]||[];
-  const items=kind==='gallery'?rawItems.filter((item,index,all)=>item.image&&all.findIndex(candidate=>candidate.image===item.image)===index).sort((a,b)=>galleryQualityRank(a)-galleryQualityRank(b)):rawItems.filter((item,index,all)=>!item.image||all.findIndex(candidate=>candidate.image===item.image)===index);
+  const items=kind==='gallery'?rawItems.filter((item,index,all)=>item.image&&all.findIndex(candidate=>candidate.image===item.image)===index).sort((a,b)=>galleryYearRank(b)-galleryYearRank(a)||galleryQualityRank(a)-galleryQualityRank(b)):rawItems.filter((item,index,all)=>!item.image||all.findIndex(candidate=>candidate.image===item.image)===index);
   (kind==='gallery'?items:items.slice(0,4)).forEach((item,index)=>{
     if(kind==='gallery'){
       const figure=node('figure','subpage-gallery-item'),open=node('button','subpage-gallery-open'),image=node('img','');
       open.type='button';open.setAttribute('aria-label',text(`فتح الصورة: ${get(item,'title')}`,`Open image: ${get(item,'title')}`));
       image.src=item.image;image.alt=get(item,'title');image.loading='lazy';image.decoding='async';
       open.append(image);open.addEventListener('click',()=>openGalleryImage(item.image,get(item,'title'),items.map(candidate=>({image:candidate.image,alt:get(candidate,'title')}))));
-      figure.append(open,node('figcaption','',get(item,'title')));grid.append(figure);return;
+      const year = galleryYear(item); figure.dataset.year = year;
+      figure.append(open,node('figcaption','',year ? `${get(item,'title')} · ${year}` : get(item,'title')));grid.append(figure);return;
     }
     const card=node('article',kind==='stories'?'subpage-card subpage-story':'subpage-card');
     if(item.image){const image=node('img','subpage-card-image');image.src=item.image;image.alt=get(item,'title');image.loading='lazy';image.decoding='async';card.append(image);}

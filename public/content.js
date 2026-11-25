@@ -52,7 +52,9 @@ async function loadSiteContent() {
   }
 
   const combined = combine(ar, en);
-  combined.gallery = [...(combined.gallery || []), ...fieldGallery];
+  // The gallery manifest is the source of truth for the files currently stored
+  // in public/media/gallery. Older language entries may reference retired files.
+  combined.gallery = fieldGallery;
   combined.heroImages = [...(combined.heroImages || []), ...fieldGallery.filter(item => item.featured)];
   return combined;
 }

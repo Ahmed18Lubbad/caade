@@ -38,6 +38,12 @@ const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)]
 
 // Project-specific image fallbacks supplement gallery paths stored in JSON.
 const PROJECT_GALLERY_IMAGES = Object.freeze({
+  'caade-project-03': [
+    '/media/projects/agricultural-freezing-unit/freezing-unit-equipment.jpg',
+    '/media/projects/agricultural-freezing-unit/cold-storage-chamber.jpg',
+    '/media/projects/agricultural-freezing-unit/packaged-produce.jpg',
+    '/media/projects/agricultural-freezing-unit/fresh-produce-display.jpg',
+  ],
   'caade-project-04': [
     '/media/projects/association-activities/activity-07.jpg',
     '/media/projects/association-activities/activity-08.jpg',
@@ -49,9 +55,10 @@ const PROJECT_GALLERY_IMAGES = Object.freeze({
     '/media/projects/association-activities/activity-19.jpg',
   ],
   'caade-project-07': [
-    '/media/projects/association-activities/activity-35.jpg',
-    '/media/projects/association-activities/activity-36.jpg',
-    '/media/projects/association-activities/activity-37.jpg',
+    '/media/projects/table-thyme-production/drying-racks.jpg',
+    '/media/projects/table-thyme-production/thyme-sieving.jpg',
+    '/media/projects/table-thyme-production/thyme-processing.jpg',
+    '/media/projects/table-thyme-production/processing-facility.jpeg',
   ],
   'caade-project-08': [
     { code: 'SDG 1', name: 'القضاء على الفقر', nameEn: 'No Poverty' },

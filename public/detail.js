@@ -5,15 +5,20 @@ const collection = params.get('collection');
 const id = params.get('id');
 const PROJECT_GALLERY_IMAGES = Object.freeze({
   'caade-project-03': [
-    '/media/projects/agricultural-freezing-unit/produce-display.jpg',
-    '/media/projects/agricultural-freezing-unit/packaged-vegetables.jpg',
-    '/media/projects/agricultural-freezing-unit/freezing-equipment.jpg',
-    '/media/projects/agricultural-freezing-unit/food-processing-equipment.jpg',
+    '/media/projects/agricultural-freezing-unit/freezing-unit-equipment.jpg',
+    '/media/projects/agricultural-freezing-unit/cold-storage-chamber.jpg',
+    '/media/projects/agricultural-freezing-unit/packaged-produce.jpg',
+    '/media/projects/agricultural-freezing-unit/fresh-produce-display.jpg',
   ],
   'caade-project-04': ['/media/projects/association-activities/activity-07.jpg', '/media/projects/association-activities/activity-08.jpg', '/media/projects/association-activities/activity-09.jpg'],
   'caade-project-02': ['/media/projects/qurbani-2022/qurbani-2022-02.jpg', '/media/projects/qurbani-2022/qurbani-2022-03.jpg', '/media/projects/qurbani-2022/qurbani-2022-04.jpg'],
   'caade-project-06': ['/media/projects/qurbani-2023/qurbani-2023-02.jpg', '/media/projects/qurbani-2023/qurbani-2023-03.jpg', '/media/projects/qurbani-2023/qurbani-2023-04.jpg'],
-  'caade-project-07': ['/media/projects/association-activities/activity-35.jpg', '/media/projects/association-activities/activity-36.jpg', '/media/projects/association-activities/activity-37.jpg'],
+  'caade-project-07': [
+    '/media/projects/table-thyme-production/drying-racks.jpg',
+    '/media/projects/table-thyme-production/thyme-sieving.jpg',
+    '/media/projects/table-thyme-production/thyme-processing.jpg',
+    '/media/projects/table-thyme-production/processing-facility.jpeg',
+  ],
   'caade-project-09': ['/media/projects/fresh-food-assistance/fresh-food-02.jpg', '/media/projects/fresh-food-assistance/fresh-food-03.jpg', '/media/projects/fresh-food-assistance/fresh-food-04.jpg'],
   'caade-project-10': ['/media/projects/al-ahba-cooperative-school/al-ahba-school-02.jpg', '/media/projects/al-ahba-cooperative-school/al-ahba-school-03.jpg', '/media/projects/al-ahba-cooperative-school/al-ahba-school-04.jpg'],
   'caade-project-11': [
